@@ -1,7 +1,9 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
 
+var BlogApp = require("./components/BlogApp");
+
 ReactDOM.render(
-  <h1>welcome to Pepperpapa&lsquo;s Blog!</h1>,
+  <BlogApp />,
   document.getElementById("root")
 );

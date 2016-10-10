@@ -56,11 +56,9 @@
 	var React = __webpack_require__(2);
 	var ReactDOM = __webpack_require__(35);
 
-	ReactDOM.render(React.createElement(
-	  "h1",
-	  null,
-	  "welcome to Pepperpapa\u2018s Blog!"
-	), document.getElementById("root"));
+	var BlogApp = __webpack_require__(173);
+
+	ReactDOM.render(React.createElement(BlogApp, null), document.getElementById("root"));
 
 /***/ },
 /* 2 */
@@ -21463,6 +21461,89 @@
 
 	module.exports = ReactDOMNullInputValuePropHook;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(2);
+
+	var Header = __webpack_require__(174);
+	var Footer = __webpack_require__(175);
+
+	var BlogApp = React.createClass({
+	  displayName: "BlogApp",
+
+	  render: function render() {
+	    return (
+	      // return value require only one root element
+	      React.createElement(
+	        "div",
+	        null,
+	        React.createElement(Header, null),
+	        React.createElement(Footer, null)
+	      )
+	    );
+	  }
+	});
+
+	module.exports = BlogApp;
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(2);
+
+	var Header = React.createClass({
+	  displayName: "Header",
+
+	  render: function render() {
+	    return React.createElement(
+	      "header",
+	      { style: { backgroundColor: "darkcyan" } },
+	      React.createElement("img", { src: "/blog/images/logo.png", style: { width: "120px", height: "120px" } }),
+	      React.createElement(
+	        "h1",
+	        null,
+	        "Pepperpapa's Blog"
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Header;
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(2);
+
+	var Footer = React.createClass({
+	  displayName: "Footer",
+
+	  render: function render() {
+	    return React.createElement(
+	      "footer",
+	      null,
+	      "Copyright \xA9 2016",
+	      React.createElement(
+	        "a",
+	        { href: "mailto:zhongxin2506@outlook.com" },
+	        "zhongxin2506@outlook.com"
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Footer;
 
 /***/ }
 /******/ ]);
