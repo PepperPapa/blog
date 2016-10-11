@@ -1,0 +1,19 @@
+header {
+  background-color: gray;
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 10em;
+  }
+  .logo {
+    width: 60px;
+    height: 60px;
+  }
+  ul {
+    list-style: none;
+    li {
+      display: inline-block;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+header {
+  background-color: gray; }
+  header div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 10em; }
+  header .logo {
+    width: 60px;
+    height: 60px; }
+  header ul {
+    list-style: none; }
+    header ul li {
+      display: inline-block; }
+
+/*# sourceMappingURL=layout.css.map */

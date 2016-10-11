@@ -21505,12 +21505,38 @@
 	  render: function render() {
 	    return React.createElement(
 	      "header",
-	      { style: { backgroundColor: "darkcyan" } },
-	      React.createElement("img", { src: "/blog/images/logo.png", style: { width: "120px", height: "120px" } }),
+	      null,
 	      React.createElement(
-	        "h1",
+	        "div",
 	        null,
-	        "Pepperpapa's Blog"
+	        React.createElement("img", { className: "logo", src: "/blog/images/logo.png", alt: "logo" }),
+	        React.createElement(
+	          "h1",
+	          null,
+	          "Pepperpapa's Blog"
+	        ),
+	        React.createElement(
+	          "nav",
+	          null,
+	          React.createElement(
+	            "ul",
+	            null,
+	            React.createElement(
+	              "li",
+	              { className: "nav nav-alert" },
+	              "message"
+	            ),
+	            React.createElement(
+	              "li",
+	              { className: "nav nav-user" },
+	              React.createElement(
+	                "a",
+	                { href: "#" },
+	                "user"
+	              )
+	            )
+	          )
+	        )
 	      )
 	    );
 	  }
