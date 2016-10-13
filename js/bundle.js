@@ -21593,24 +21593,120 @@
 	      null,
 	      React.createElement(
 	        "section",
-	        null,
+	        { className: "posts-container" },
 	        React.createElement(
 	          "article",
 	          null,
 	          React.createElement(
-	            "h1",
-	            null,
-	            "post test"
-	          ),
-	          React.createElement(
-	            "h2",
-	            null,
-	            "post at 2016-10-13 22:48"
+	            "h3",
+	            { className: "post-title" },
+	            React.createElement(
+	              "a",
+	              { href: "#" },
+	              "22 Essential WordPress Plugins for Non-Profits in 2016 and Beyond"
+	            )
 	          ),
 	          React.createElement(
 	            "p",
-	            null,
-	            "test post"
+	            { className: "post-info" },
+	            "Posted on October 12, 2016 by Brenda Barron in Resources | 10 comments"
+	          ),
+	          React.createElement(
+	            "p",
+	            { className: "post-summary" },
+	            "It\u2019s a sad reality that many fantastic non-profits are underfunded, understaffed, and lacking in technical know-how. After all, a heart of gold doesn\u2019t come pre-packaged with vast resources and a degree in computer science. As a result, the quality and effectiveness of many non-profit websites...Node \u5F00\u53D1\u79BB \u4E0D\u5F00 npm\uFF0C\u800C\u811A\u672C\u529F\u80FD\u662F npm \u6700\u5F3A\u5927\u3001\u6700\u5E38\u7528\u7684\u529F\u80FD\u4E4B\u4E00\u3002 \u672C\u6587\u4ECB\u7ECD\u5982\u4F55\u4F7F\u7528 npm \u811A\u672C\uFF08npm scripts\uFF09\u3002"
+	          )
+	        ),
+	        React.createElement(
+	          "article",
+	          null,
+	          React.createElement(
+	            "h3",
+	            { className: "post-title" },
+	            React.createElement(
+	              "a",
+	              { href: "#" },
+	              "22 Essential WordPress Plugins for Non-Profits in 2016 and Beyond"
+	            )
+	          ),
+	          React.createElement(
+	            "p",
+	            { className: "post-info" },
+	            "Posted on October 12, 2016 by Brenda Barron in Resources | 10 comments"
+	          ),
+	          React.createElement(
+	            "p",
+	            { className: "post-summary" },
+	            "It\u2019s a sad reality that many fantastic non-profits are underfunded, understaffed, and lacking in technical know-how. After all, a heart of gold doesn\u2019t come pre-packaged with vast resources and a degree in computer science. As a result, the quality and effectiveness of many non-profit websites...Node \u5F00\u53D1\u79BB \u4E0D\u5F00 npm\uFF0C\u800C\u811A\u672C\u529F\u80FD\u662F npm \u6700\u5F3A\u5927\u3001\u6700\u5E38\u7528\u7684\u529F\u80FD\u4E4B\u4E00\u3002 \u672C\u6587\u4ECB\u7ECD\u5982\u4F55\u4F7F\u7528 npm \u811A\u672C\uFF08npm scripts\uFF09\u3002"
+	          )
+	        ),
+	        React.createElement(
+	          "article",
+	          null,
+	          React.createElement(
+	            "h3",
+	            { className: "post-title" },
+	            React.createElement(
+	              "a",
+	              { href: "#" },
+	              "22 Essential WordPress Plugins for Non-Profits in 2016 and Beyond"
+	            )
+	          ),
+	          React.createElement(
+	            "p",
+	            { className: "post-info" },
+	            "Posted on October 12, 2016 by Brenda Barron in Resources | 10 comments"
+	          ),
+	          React.createElement(
+	            "p",
+	            { className: "post-summary" },
+	            "It\u2019s a sad reality that many fantastic non-profits are underfunded, understaffed, and lacking in technical know-how. After all, a heart of gold doesn\u2019t come pre-packaged with vast resources and a degree in computer science. As a result, the quality and effectiveness of many non-profit websites...Node \u5F00\u53D1\u79BB \u4E0D\u5F00 npm\uFF0C\u800C\u811A\u672C\u529F\u80FD\u662F npm \u6700\u5F3A\u5927\u3001\u6700\u5E38\u7528\u7684\u529F\u80FD\u4E4B\u4E00\u3002 \u672C\u6587\u4ECB\u7ECD\u5982\u4F55\u4F7F\u7528 npm \u811A\u672C\uFF08npm scripts\uFF09\u3002"
+	          )
+	        ),
+	        React.createElement(
+	          "article",
+	          null,
+	          React.createElement(
+	            "h3",
+	            { className: "post-title" },
+	            React.createElement(
+	              "a",
+	              { href: "#" },
+	              "22 Essential WordPress Plugins for Non-Profits in 2016 and Beyond"
+	            )
+	          ),
+	          React.createElement(
+	            "p",
+	            { className: "post-info" },
+	            "Posted on October 12, 2016 by Brenda Barron in Resources | 10 comments"
+	          ),
+	          React.createElement(
+	            "p",
+	            { className: "post-summary" },
+	            "It\u2019s a sad reality that many fantastic non-profits are underfunded, understaffed, and lacking in technical know-how. After all, a heart of gold doesn\u2019t come pre-packaged with vast resources and a degree in computer science. As a result, the quality and effectiveness of many non-profit websites...Node \u5F00\u53D1\u79BB \u4E0D\u5F00 npm\uFF0C\u800C\u811A\u672C\u529F\u80FD\u662F npm \u6700\u5F3A\u5927\u3001\u6700\u5E38\u7528\u7684\u529F\u80FD\u4E4B\u4E00\u3002 \u672C\u6587\u4ECB\u7ECD\u5982\u4F55\u4F7F\u7528 npm \u811A\u672C\uFF08npm scripts\uFF09\u3002"
+	          )
+	        ),
+	        React.createElement(
+	          "article",
+	          null,
+	          React.createElement(
+	            "h3",
+	            { className: "post-title" },
+	            React.createElement(
+	              "a",
+	              { href: "#" },
+	              "22 Essential WordPress Plugins for Non-Profits in 2016 and Beyond"
+	            )
+	          ),
+	          React.createElement(
+	            "p",
+	            { className: "post-info" },
+	            "Posted on October 12, 2016 by Brenda Barron in Resources | 10 comments"
+	          ),
+	          React.createElement(
+	            "p",
+	            { className: "post-summary" },
+	            "It\u2019s a sad reality that many fantastic non-profits are underfunded, understaffed, and lacking in technical know-how. After all, a heart of gold doesn\u2019t come pre-packaged with vast resources and a degree in computer science. As a result, the quality and effectiveness of many non-profit websites...Node \u5F00\u53D1\u79BB \u4E0D\u5F00 npm\uFF0C\u800C\u811A\u672C\u529F\u80FD\u662F npm \u6700\u5F3A\u5927\u3001\u6700\u5E38\u7528\u7684\u529F\u80FD\u4E4B\u4E00\u3002 \u672C\u6587\u4ECB\u7ECD\u5982\u4F55\u4F7F\u7528 npm \u811A\u672C\uFF08npm scripts\uFF09\u3002"
 	          )
 	        )
 	      ),
@@ -21621,7 +21717,7 @@
 	          "section",
 	          null,
 	          React.createElement(
-	            "h2",
+	            "h3",
 	            null,
 	            "category"
 	          ),
@@ -21644,7 +21740,7 @@
 	          "section",
 	          null,
 	          React.createElement(
-	            "h2",
+	            "h3",
 	            null,
 	            "recent posts"
 	          ),

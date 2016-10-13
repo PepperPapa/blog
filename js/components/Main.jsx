@@ -4,23 +4,83 @@ var Main = React.createClass({
   render: function() {
     return (
       <main>
-        <section>
+        <section className="posts-container">
           <article>
-            <h1>post test</h1>
-            <h2>post at 2016-10-13 22:48</h2>
-            <p>test post</p>
+            <h3 className="post-title"><a href="#">22 Essential WordPress Plugins for
+              Non-Profits in 2016 and Beyond</a></h3>
+            <p className="post-info">Posted on October 12, 2016 by Brenda Barron
+              in Resources | 10 comments</p>
+            <p className="post-summary">It’s a sad reality that many fantastic
+              non-profits are underfunded, understaffed, and lacking in technical
+              know-how. After all, a heart of gold doesn’t come pre-packaged with
+              vast resources and a degree in computer science. As a result, the
+              quality and effectiveness of many non-profit websites...Node 开发离
+              不开 npm，而脚本功能是 npm 最强大、最常用的功能之一。 本文介绍如何使用
+              npm 脚本（npm scripts）。</p>
+          </article>
+          <article>
+            <h3 className="post-title"><a href="#">22 Essential WordPress Plugins for
+              Non-Profits in 2016 and Beyond</a></h3>
+            <p className="post-info">Posted on October 12, 2016 by Brenda Barron
+              in Resources | 10 comments</p>
+            <p className="post-summary">It’s a sad reality that many fantastic
+              non-profits are underfunded, understaffed, and lacking in technical
+              know-how. After all, a heart of gold doesn’t come pre-packaged with
+              vast resources and a degree in computer science. As a result, the
+              quality and effectiveness of many non-profit websites...Node 开发离
+              不开 npm，而脚本功能是 npm 最强大、最常用的功能之一。 本文介绍如何使用
+              npm 脚本（npm scripts）。</p>
+          </article>
+          <article>
+            <h3 className="post-title"><a href="#">22 Essential WordPress Plugins for
+              Non-Profits in 2016 and Beyond</a></h3>
+            <p className="post-info">Posted on October 12, 2016 by Brenda Barron
+              in Resources | 10 comments</p>
+            <p className="post-summary">It’s a sad reality that many fantastic
+              non-profits are underfunded, understaffed, and lacking in technical
+              know-how. After all, a heart of gold doesn’t come pre-packaged with
+              vast resources and a degree in computer science. As a result, the
+              quality and effectiveness of many non-profit websites...Node 开发离
+              不开 npm，而脚本功能是 npm 最强大、最常用的功能之一。 本文介绍如何使用
+              npm 脚本（npm scripts）。</p>
+          </article>
+          <article>
+            <h3 className="post-title"><a href="#">22 Essential WordPress Plugins for
+              Non-Profits in 2016 and Beyond</a></h3>
+            <p className="post-info">Posted on October 12, 2016 by Brenda Barron
+              in Resources | 10 comments</p>
+            <p className="post-summary">It’s a sad reality that many fantastic
+              non-profits are underfunded, understaffed, and lacking in technical
+              know-how. After all, a heart of gold doesn’t come pre-packaged with
+              vast resources and a degree in computer science. As a result, the
+              quality and effectiveness of many non-profit websites...Node 开发离
+              不开 npm，而脚本功能是 npm 最强大、最常用的功能之一。 本文介绍如何使用
+              npm 脚本（npm scripts）。</p>
+          </article>
+          <article>
+            <h3 className="post-title"><a href="#">22 Essential WordPress Plugins for
+              Non-Profits in 2016 and Beyond</a></h3>
+            <p className="post-info">Posted on October 12, 2016 by Brenda Barron
+              in Resources | 10 comments</p>
+            <p className="post-summary">It’s a sad reality that many fantastic
+              non-profits are underfunded, understaffed, and lacking in technical
+              know-how. After all, a heart of gold doesn’t come pre-packaged with
+              vast resources and a degree in computer science. As a result, the
+              quality and effectiveness of many non-profit websites...Node 开发离
+              不开 npm，而脚本功能是 npm 最强大、最常用的功能之一。 本文介绍如何使用
+              npm 脚本（npm scripts）。</p>
           </article>
         </section>
         <aside>
           <section>
-            <h2>category</h2>
+            <h3>category</h3>
             <ul>
               <li>web frontend</li>
               <li>math</li>
             </ul>
           </section>
           <section>
-            <h2>recent posts</h2>
+            <h3>recent posts</h3>
             <ul>
               <li>web frontend</li>
               <li>math</li>

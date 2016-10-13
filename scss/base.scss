@@ -1,8 +1,8 @@
 body {
   margin: 0;
-  font-family: "Microsoft Yahei",SimSun,sans-serif;
+  font-family: 'Trebuchet MS', Arial, 'Lucida Grande', Verdana, Lucida, Helvetica, sans-serif;
   color: #555;
-  background: #f5f6f5;
+  // background: #f5f6f5;
 }
 
 h1,
@@ -20,4 +20,27 @@ a {
   &:hover {
     color: #333;
   }
+}
+
+.posts-container {
+  margin: .2em;
+  padding: 2em 1em 1em 1em;
+  article {
+    padding: 1em;
+    h3 {
+      margin: .5em 0;
+      font-size: 1.8em;
+    }
+    .post-info {
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: #aeaeae;
+    }
+  }
+}
+
+aside {
+  margin: .2em;
+  padding: 2em 1em 1em 1em;
+  border-left: 1px solid #eee;
 }
