@@ -5,16 +5,15 @@ var Header = React.createClass({
     return (
       <header>
         <div>
-          <img className="logo" src="/blog/images/logo.png" alt="logo" />
-          <h1>Pepperpapa's Blog</h1>
+          <div>
+            <img className="logo" src="/blog/images/logo.png" alt="logo" />
+            <h1>Pepperpapa's Blog</h1>
+          </div>
+
           <nav>
             <ul>
-              <li className="nav nav-alert">
-                message
-              </li>
-              <li className="nav nav-user">
-                <a href="#">user</a>
-              </li>
+              <li><a href="#">登陆</a></li>
+              <li><a href="#">注册</a></li>
             </ul>
           </nav>
         </div>

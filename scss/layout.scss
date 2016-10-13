@@ -1,5 +1,19 @@
+#app-container {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
 header {
-  background-color: gray;
+  background-color: #333;
+  color: white;
+  h1,
+  a {
+    color: inherit;
+    &:hover {
+      color: inherit;
+    }
+  }
   div {
     display: flex;
     align-items: center;
@@ -7,13 +21,40 @@ header {
     margin: 0 10em;
   }
   .logo {
-    width: 60px;
-    height: 60px;
+    width: 3em;
+    height: 3em;
   }
   ul {
     list-style: none;
     li {
-      display: inline-block;
+      display: inline;
+      margin-right: 1em;
     }
   }
+}
+
+main {
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 60em;
+  background: white;
+  flex: 1;
+}
+
+main > section {
+  width: 75%;
+}
+
+main > aside {
+  width: 25%;
+}
+
+footer {
+  padding: 10px 0;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+  color: #333;
+  font-family: Georgia;
+  font-style: italic;
 }

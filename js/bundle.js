@@ -21471,6 +21471,7 @@
 	var React = __webpack_require__(2);
 
 	var Header = __webpack_require__(174);
+	var Main = __webpack_require__(176);
 	var Footer = __webpack_require__(175);
 
 	var BlogApp = React.createClass({
@@ -21481,8 +21482,9 @@
 	      // return value require only one root element
 	      React.createElement(
 	        "div",
-	        null,
+	        { id: "app-container" },
 	        React.createElement(Header, null),
+	        React.createElement(Main, null),
 	        React.createElement(Footer, null)
 	      )
 	    );
@@ -21509,11 +21511,15 @@
 	      React.createElement(
 	        "div",
 	        null,
-	        React.createElement("img", { className: "logo", src: "/blog/images/logo.png", alt: "logo" }),
 	        React.createElement(
-	          "h1",
+	          "div",
 	          null,
-	          "Pepperpapa's Blog"
+	          React.createElement("img", { className: "logo", src: "/blog/images/logo.png", alt: "logo" }),
+	          React.createElement(
+	            "h1",
+	            null,
+	            "Pepperpapa's Blog"
+	          )
 	        ),
 	        React.createElement(
 	          "nav",
@@ -21523,16 +21529,20 @@
 	            null,
 	            React.createElement(
 	              "li",
-	              { className: "nav nav-alert" },
-	              "message"
-	            ),
-	            React.createElement(
-	              "li",
-	              { className: "nav nav-user" },
+	              null,
 	              React.createElement(
 	                "a",
 	                { href: "#" },
-	                "user"
+	                "\u767B\u9646"
+	              )
+	            ),
+	            React.createElement(
+	              "li",
+	              null,
+	              React.createElement(
+	                "a",
+	                { href: "#" },
+	                "\u6CE8\u518C"
 	              )
 	            )
 	          )
@@ -21559,17 +21569,106 @@
 	    return React.createElement(
 	      "footer",
 	      null,
-	      "Copyright \xA9 2016",
-	      React.createElement(
-	        "a",
-	        { href: "mailto:zhongxin2506@outlook.com" },
-	        "zhongxin2506@outlook.com"
-	      )
+	      "Copyright \xA9 2016 | zhongxin2506@outlook.com"
 	    );
 	  }
 	});
 
 	module.exports = Footer;
+
+/***/ },
+/* 176 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(2);
+
+	var Main = React.createClass({
+	  displayName: "Main",
+
+	  render: function render() {
+	    return React.createElement(
+	      "main",
+	      null,
+	      React.createElement(
+	        "section",
+	        null,
+	        React.createElement(
+	          "article",
+	          null,
+	          React.createElement(
+	            "h1",
+	            null,
+	            "post test"
+	          ),
+	          React.createElement(
+	            "h2",
+	            null,
+	            "post at 2016-10-13 22:48"
+	          ),
+	          React.createElement(
+	            "p",
+	            null,
+	            "test post"
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        "aside",
+	        null,
+	        React.createElement(
+	          "section",
+	          null,
+	          React.createElement(
+	            "h2",
+	            null,
+	            "category"
+	          ),
+	          React.createElement(
+	            "ul",
+	            null,
+	            React.createElement(
+	              "li",
+	              null,
+	              "web frontend"
+	            ),
+	            React.createElement(
+	              "li",
+	              null,
+	              "math"
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          "section",
+	          null,
+	          React.createElement(
+	            "h2",
+	            null,
+	            "recent posts"
+	          ),
+	          React.createElement(
+	            "ul",
+	            null,
+	            React.createElement(
+	              "li",
+	              null,
+	              "web frontend"
+	            ),
+	            React.createElement(
+	              "li",
+	              null,
+	              "math"
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Main;
 
 /***/ }
 /******/ ]);
