@@ -21471,8 +21471,8 @@
 	var React = __webpack_require__(2);
 
 	var Header = __webpack_require__(174);
-	var Main = __webpack_require__(176);
-	var Footer = __webpack_require__(175);
+	var Main = __webpack_require__(175);
+	var Footer = __webpack_require__(176);
 
 	var BlogApp = React.createClass({
 	  displayName: "BlogApp",
@@ -21556,28 +21556,6 @@
 
 /***/ },
 /* 175 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var React = __webpack_require__(2);
-
-	var Footer = React.createClass({
-	  displayName: "Footer",
-
-	  render: function render() {
-	    return React.createElement(
-	      "footer",
-	      null,
-	      "Copyright \xA9 2016 | zhongxin2506@outlook.com"
-	    );
-	  }
-	});
-
-	module.exports = Footer;
-
-/***/ },
-/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21715,11 +21693,17 @@
 	        null,
 	        React.createElement(
 	          "section",
+	          { className: "search-posts" },
+	          React.createElement("input", { type: "text", placeholder: "search ariticle" }),
+	          React.createElement("input", { type: "image", src: "./images/search_btn.png" })
+	        ),
+	        React.createElement(
+	          "section",
 	          null,
 	          React.createElement(
-	            "h3",
+	            "h2",
 	            null,
-	            "category"
+	            "\u5206\u7C7B"
 	          ),
 	          React.createElement(
 	            "ul",
@@ -21727,12 +21711,20 @@
 	            React.createElement(
 	              "li",
 	              null,
-	              "web frontend"
+	              React.createElement(
+	                "a",
+	                { href: "#" },
+	                "web frontend"
+	              )
 	            ),
 	            React.createElement(
 	              "li",
 	              null,
-	              "math"
+	              React.createElement(
+	                "a",
+	                { href: "#" },
+	                "math"
+	              )
 	            )
 	          )
 	        ),
@@ -21740,9 +21732,9 @@
 	          "section",
 	          null,
 	          React.createElement(
-	            "h3",
+	            "h2",
 	            null,
-	            "recent posts"
+	            "\u6700\u8FD1\u6587\u7AE0"
 	          ),
 	          React.createElement(
 	            "ul",
@@ -21750,12 +21742,20 @@
 	            React.createElement(
 	              "li",
 	              null,
-	              "web frontend"
+	              React.createElement(
+	                "a",
+	                { href: "#" },
+	                "web frontend"
+	              )
 	            ),
 	            React.createElement(
 	              "li",
 	              null,
-	              "math"
+	              React.createElement(
+	                "a",
+	                { href: "#" },
+	                "math"
+	              )
 	            )
 	          )
 	        )
@@ -21765,6 +21765,28 @@
 	});
 
 	module.exports = Main;
+
+/***/ },
+/* 176 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(2);
+
+	var Footer = React.createClass({
+	  displayName: "Footer",
+
+	  render: function render() {
+	    return React.createElement(
+	      "footer",
+	      null,
+	      "Copyright \xA9 2016 | zhongxin2506@outlook.com"
+	    );
+	  }
+	});
+
+	module.exports = Footer;
 
 /***/ }
 /******/ ]);

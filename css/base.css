@@ -1,7 +1,8 @@
 body {
   margin: 0;
   font-family: 'Trebuchet MS', Arial, 'Lucida Grande', Verdana, Lucida, Helvetica, sans-serif;
-  color: #555; }
+  color: #555;
+  background: #f8fafa; }
 
 h1,
 h2,
@@ -12,16 +13,20 @@ h6 {
   color: #333; }
 
 a {
-  color: #555;
+  color: #333;
   text-decoration: none; }
   a:hover {
-    color: #333; }
+    color: #888; }
 
 .posts-container {
   margin: .2em;
   padding: 2em 1em 1em 1em; }
   .posts-container article {
-    padding: 1em; }
+    margin-bottom: 1em;
+    padding: 1em;
+    border: 1px solid #eee;
+    border-bottom: 1px solid #ddd;
+    background: white; }
     .posts-container article h3 {
       margin: .5em 0;
       font-size: 1.8em; }
@@ -32,7 +37,33 @@ a {
 
 aside {
   margin: .2em;
-  padding: 2em 1em 1em 1em;
-  border-left: 1px solid #eee; }
+  padding: 2em 1em 1em 1em; }
+  aside h2 {
+    margin-bottom: .5em;
+    padding-bottom: .2em;
+    border-bottom: 1px solid #ddd; }
+  aside .search-posts {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #e0e0e0;
+    background: white; }
+    aside .search-posts input[type=text] {
+      border: none;
+      outline: none;
+      padding: .6em .9em;
+      height: 1.2em;
+      font-size: inherit;
+      width: 90%; }
+    aside .search-posts input[type=image] {
+      padding-right: .6em; }
+  aside section {
+    margin-bottom: 2.5em; }
+  aside ul {
+    margin-top: 0;
+    list-style: none;
+    padding-left: .6em; }
+    aside ul li {
+      padding: .2em 0; }
 
 /*# sourceMappingURL=base.css.map */

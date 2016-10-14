@@ -72,18 +72,22 @@ var Main = React.createClass({
           </article>
         </section>
         <aside>
+          <section className="search-posts">
+            <input type="text" placeholder="search ariticle" />
+            <input type="image" src="./images/search_btn.png" />
+          </section>
           <section>
-            <h3>category</h3>
+            <h2>分类</h2>
             <ul>
-              <li>web frontend</li>
-              <li>math</li>
+              <li><a href="#">web frontend</a></li>
+              <li><a href="#">math</a></li>
             </ul>
           </section>
           <section>
-            <h3>recent posts</h3>
+            <h2>最近文章</h2>
             <ul>
-              <li>web frontend</li>
-              <li>math</li>
+              <li><a href="#">web frontend</a></li>
+              <li><a href="#">math</a></li>
             </ul>
           </section>
         </aside>
