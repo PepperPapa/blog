@@ -1,4 +1,5 @@
 var React = require("react");
+import { Link } from "react-router";
 
 var Header = React.createClass({
   render: function() {
@@ -8,8 +9,8 @@ var Header = React.createClass({
           <h1>Pepperpapa's Blog</h1>
           <nav>
             <ul>
-              <li><a href="#">登陆</a></li>
-              <li><a href="#">注册</a></li>
+              <li><Link to="/login">登陆</Link></li>
+              <li><Link to="/signup">注册</Link></li>
             </ul>
           </nav>
         </div>

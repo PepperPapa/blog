@@ -57,14 +57,38 @@
 
 	var React = __webpack_require__(2);
 	var ReactDOM = __webpack_require__(35);
+	/* follow the Browser History topic in link
+	"https://css-tricks.com/learning-react-router/" */
 
 
 	var BlogApp = __webpack_require__(173);
+	var Login = __webpack_require__(240);
+	var Signup = __webpack_require__(242);
 
+	// you can't insert comments in first parameter for ReactDOM.render function
+	/*
+	 for hashHistory
+	 path="/" corresponed to url "http://192.168.177.129:8090/blog"
+	 path="/login" corresponed to url "http://192.168.177.129:8090/blog/#/login"
+	 path="/signup" corresponed to url "http://192.168.177.129:8090/blog/#/signup"
+	 path for "/*" don't make requests to server
+
+	 for browserHistory
+	 path="/" corresponed to url "http://192.168.177.129:8090/blog"
+	 path="/login" corresponed to url "http://192.168.177.129:8090/blog/login"
+	 path="/signup" corresponed to url "http://192.168.177.129:8090/blog/signup"
+	 path for "/*" server will response the same HTML file "index.html"
+	*/
 	ReactDOM.render(React.createElement(
 	  _reactRouter.Router,
-	  null,
-	  React.createElement(_reactRouter.Route, { path: "/", component: BlogApp })
+	  { history: _reactRouter.browserHistory },
+	  React.createElement(
+	    _reactRouter.Route,
+	    { path: "/blog" },
+	    React.createElement(_reactRouter.IndexRoute, { component: BlogApp })
+	  ),
+	  React.createElement(_reactRouter.Route, { path: "/login", component: Login }),
+	  React.createElement(_reactRouter.Route, { path: "/signup", component: Signup })
 	), document.getElementById("root"));
 
 /***/ },
@@ -21506,7 +21530,10 @@
 
 	"use strict";
 
+	var _reactRouter = __webpack_require__(177);
+
 	var React = __webpack_require__(2);
+
 
 	var Header = React.createClass({
 	  displayName: "Header",
@@ -21533,8 +21560,8 @@
 	              "li",
 	              null,
 	              React.createElement(
-	                "a",
-	                { href: "#" },
+	                _reactRouter.Link,
+	                { to: "/login" },
 	                "\u767B\u9646"
 	              )
 	            ),
@@ -21542,8 +21569,8 @@
 	              "li",
 	              null,
 	              React.createElement(
-	                "a",
-	                { href: "#" },
+	                _reactRouter.Link,
+	                { to: "/signup" },
 	                "\u6CE8\u518C"
 	              )
 	            )
@@ -27711,6 +27738,57 @@
 
 	exports.default = (0, _createRouterHistory2.default)(_createHashHistory2.default);
 	module.exports = exports['default'];
+
+/***/ },
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(2);
+
+	var Login = React.createClass({
+	  displayName: "Login",
+
+	  render: function render() {
+	    return (
+	      // return value require only one root element
+	      React.createElement(
+	        "div",
+	        null,
+	        "login page"
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Login;
+
+/***/ },
+/* 241 */,
+/* 242 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(2);
+
+	var Signup = React.createClass({
+	  displayName: "Signup",
+
+	  render: function render() {
+	    return (
+	      // return value require only one root element
+	      React.createElement(
+	        "div",
+	        null,
+	        "signup page"
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Signup;
 
 /***/ }
 /******/ ]);

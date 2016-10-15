@@ -56,7 +56,8 @@ aside {
       font-size: inherit;
       width: 90%; }
     aside .search-posts input[type=image] {
-      padding-right: .6em; }
+      padding-right: .6em;
+      outline: none; }
   aside section {
     margin-bottom: 2.5em; }
   aside ul {
