@@ -1,7 +1,6 @@
 var React = require("react");
 
 var Header = require("./Header");
-var Main = require("./Main");
 var Footer = require("./Footer");
 
 var BlogApp = React.createClass({
@@ -10,7 +9,7 @@ var BlogApp = React.createClass({
       // return value require only one root element
       <div id="app-container">
         <Header />
-        <Main />
+        {this.props.children}
         <Footer />
       </div>
     );

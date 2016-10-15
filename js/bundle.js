@@ -62,6 +62,9 @@
 
 
 	var BlogApp = __webpack_require__(173);
+	var Main = __webpack_require__(175);
+	var NewPost = __webpack_require__(243);
+	var PostDetail = __webpack_require__(244);
 	var Login = __webpack_require__(240);
 	var Signup = __webpack_require__(242);
 
@@ -84,8 +87,10 @@
 	  { history: _reactRouter.browserHistory },
 	  React.createElement(
 	    _reactRouter.Route,
-	    { path: "/blog" },
-	    React.createElement(_reactRouter.IndexRoute, { component: BlogApp })
+	    { path: "/blog", component: BlogApp },
+	    React.createElement(_reactRouter.IndexRoute, { component: Main }),
+	    React.createElement(_reactRouter.Route, { path: "newpost", component: NewPost }),
+	    React.createElement(_reactRouter.Route, { path: ":postId", component: PostDetail })
 	  ),
 	  React.createElement(_reactRouter.Route, { path: "/login", component: Login }),
 	  React.createElement(_reactRouter.Route, { path: "/signup", component: Signup })
@@ -21502,7 +21507,6 @@
 	var React = __webpack_require__(2);
 
 	var Header = __webpack_require__(174);
-	var Main = __webpack_require__(175);
 	var Footer = __webpack_require__(176);
 
 	var BlogApp = React.createClass({
@@ -21515,7 +21519,7 @@
 	        "div",
 	        { id: "app-container" },
 	        React.createElement(Header, null),
-	        React.createElement(Main, null),
+	        this.props.children,
 	        React.createElement(Footer, null)
 	      )
 	    );
@@ -27751,12 +27755,31 @@
 	  displayName: "Login",
 
 	  render: function render() {
+	    var container_style = {
+	      position: "relative",
+	      minHeight: "100vh",
+	      backgroundImage: "url('../../images/bg.jpg')",
+	      backgroundSize: "cover"
+	    };
+	    var login_area_style = {
+	      position: "absolute",
+	      left: "50%",
+	      top: "30%",
+	      margin: "0 auto",
+	      width: "100%",
+	      maxWidth: "40em",
+	      background: "white"
+	    };
 	    return (
 	      // return value require only one root element
 	      React.createElement(
 	        "div",
-	        null,
-	        "login page"
+	        { style: container_style },
+	        React.createElement(
+	          "div",
+	          { className: "login-area", style: login_area_style },
+	          "login page"
+	        )
 	      )
 	    );
 	  }
@@ -27789,6 +27812,64 @@
 	});
 
 	module.exports = Signup;
+
+/***/ },
+/* 243 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(2);
+
+	var NewPost = React.createClass({
+	  displayName: "NewPost",
+
+	  render: function render() {
+	    var style = {
+	      display: "flex",
+	      flex: "1"
+	    };
+	    return (
+	      // return value require only one root element
+	      React.createElement(
+	        "div",
+	        { style: style },
+	        "newpost page"
+	      )
+	    );
+	  }
+	});
+
+	module.exports = NewPost;
+
+/***/ },
+/* 244 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(2);
+
+	var PostDetail = React.createClass({
+	  displayName: "PostDetail",
+
+	  render: function render() {
+	    var style = {
+	      display: "flex",
+	      flex: "1"
+	    };
+	    return (
+	      // return value require only one root element
+	      React.createElement(
+	        "div",
+	        { style: style },
+	        "post detail page"
+	      )
+	    );
+	  }
+	});
+
+	module.exports = PostDetail;
 
 /***/ }
 /******/ ]);

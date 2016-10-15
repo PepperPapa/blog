@@ -5,6 +5,9 @@ var ReactDOM = require("react-dom");
 import { Router, Route, IndexRoute, browserHistory } from "react-router";
 
 var BlogApp = require("./components/BlogApp");
+var Main = require("./components/Main");
+var NewPost = require("./components/NewPost");
+var PostDetail = require("./components/PostDetail");
 var Login = require("./components/Login");
 var Signup = require("./components/Signup");
 
@@ -25,8 +28,10 @@ var Signup = require("./components/Signup");
 */
 ReactDOM.render((
   <Router history={browserHistory}>
-    <Route path="/blog">
-      <IndexRoute component={BlogApp} />
+    <Route path="/blog" component={BlogApp}>
+      <IndexRoute component={Main} />
+      <Route path="newpost" component={NewPost} />
+      <Route path=":postId" component={PostDetail} />
     </Route>
     <Route path="/login" component={Login} />
     <Route path="/signup" component={Signup} />
