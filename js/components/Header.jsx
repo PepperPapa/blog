@@ -5,11 +5,7 @@ var Header = React.createClass({
     return (
       <header>
         <div>
-          <div>
-            <img className="logo" src="/blog/images/logo.png" alt="logo" />
-            <h1>Pepperpapa's Blog</h1>
-          </div>
-
+          <h1>Pepperpapa's Blog</h1>
           <nav>
             <ul>
               <li><a href="#">登陆</a></li>

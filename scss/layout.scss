@@ -15,6 +15,11 @@ header {
       color: inherit;
     }
   }
+  h1 {
+    padding-left: 1.6em;
+    background: url("../images/logo.png") no-repeat center left;
+    background-size: auto 100%;
+  }
   div {
     display: flex;
     align-items: center;

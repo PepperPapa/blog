@@ -13,6 +13,10 @@ header {
     header h1:hover,
     header a:hover {
       color: inherit; }
+  header h1 {
+    padding-left: 1.6em;
+    background: url("../images/logo.png") no-repeat center left;
+    background-size: auto 100%; }
   header div {
     display: flex;
     align-items: center;
