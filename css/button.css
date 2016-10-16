@@ -1,0 +1,21 @@
+button {
+  padding: .3em .8em;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: .2em;
+  background: #58a linear-gradient(rgba(255, 255, 255, 0.2), transparent);
+  box-shadow: 0 0.05em 0.25em rgba(0, 0, 0, 0.5);
+  color: white;
+  text-shadow: 0 -0.05em 0.05em rgba(0, 0, 0, 0.5);
+  font-size: 100%;
+  line-height: 1.5;
+  outline: none; }
+  button:hover {
+    background: #58a linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)); }
+
+button.error {
+  background-color: #c00; }
+
+button.primary {
+  background-color: #006799; }
+
+/*# sourceMappingURL=button.css.map */

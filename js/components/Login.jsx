@@ -1,27 +1,67 @@
 var React = require("react");
+import { Link } from "react-router";
 
 var Login = React.createClass({
   render: function() {
-    var container_style = {
-      position: "relative",
-      minHeight: "100vh",
-      backgroundImage: "url('../../images/bg.jpg')",
-      backgroundSize: "cover",
-    }
-    var login_area_style = {
-      position: "absolute",
-      left: "50%",
-      top: "30%",
-      margin: "0 auto",
-      width: "100%",
-      maxWidth: "40em",
-      background: "white",
+    var style = {
+      container: {
+        position: "relative",
+        padding: "1em",
+        minHeight: "100vh",
+        backgroundImage: "url('../../images/bg.jpg')",
+        backgroundSize: "cover",
+        color: "#72777c"
+      },
+      login_area: {
+        maxWidth: "380px",
+        margin: "50vh auto 0",
+        padding: "1.2em 1.6em",
+        transform: "translateY(-50%)",
+        background: "white",
+        boxShadow: "0 0 0 50vmax rgba(0,0,0,.8)"
+      },
+      input: {
+        margin: "2px 6px 16px 0",
+        padding: "3px",
+        border: "1px solid #ddd",
+        boxSizing: "border-box",
+        width: "100%",
+        fontSize: "1.5em",
+        background: "#fbfbfb",
+        color: "#32373c",
+      },
+      link: {
+        color: "inherit",
+      }
     }
     return (
       // return value require only one root element
-      <div style={container_style}>
-        <div className="login-area" style={login_area_style}>
-          login page
+      <div style={style.container}>
+        <div className="login-area" style={style.login_area}>
+          <p style={{margin: "0"}}>
+            <label htmlFor="user-name">用户名</label><br />
+            <input type="text" id="user-name" style={style.input} />
+          </p>
+          <p style={{margin: "0"}}>
+            <label htmlFor="user-password">密码</label><br />
+            <input type="password" id="user-password" style={style.input} />
+          </p>
+          <p style={{margin: "0",
+                     display: "flex",
+                     alignItems: "center",
+                     justifyContent: "space-between"}}>
+            <label htmlFor="user-rember">
+              <input type="checkbox" id="user-rember"/>
+              记住我</label>
+            <button className="primary">登陆</button>
+          </p>
+          <p style={{fontSize: ".8em", marginTop: "3em"}}>
+            <Link to="signup" style={style.link}>注册</Link>|
+            <a href="#" style={style.link}>忘记密码？</a>
+          </p>
+          <p style={{fontSize: ".8em"}}>
+            <Link to="/blog" style={style.link}>←回到博客首页</Link>
+          </p>
         </div>
       </div>
     );
