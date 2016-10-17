@@ -1,4 +1,5 @@
 var React = require("react");
+import { Link } from "react-router";
 
 var Main = React.createClass({
   render: function() {
@@ -17,6 +18,9 @@ var Main = React.createClass({
               quality and effectiveness of many non-profit websites...Node 开发离
               不开 npm，而脚本功能是 npm 最强大、最常用的功能之一。 本文介绍如何使用
               npm 脚本（npm scripts）。</p>
+            <p style={{marginTop: "2em"}}>
+              <Link to="#" className="link-expand">阅读全文 »</Link>
+            </p>
           </article>
           <article>
             <h3 className="post-title"><a href="#">22 Essential WordPress Plugins for
@@ -30,6 +34,9 @@ var Main = React.createClass({
               quality and effectiveness of many non-profit websites...Node 开发离
               不开 npm，而脚本功能是 npm 最强大、最常用的功能之一。 本文介绍如何使用
               npm 脚本（npm scripts）。</p>
+            <p style={{marginTop: "1.6em"}}>
+              <Link to="#" className="link-expand">阅读全文 »</Link>
+            </p>
           </article>
           <article>
             <h3 className="post-title"><a href="#">22 Essential WordPress Plugins for
@@ -43,6 +50,9 @@ var Main = React.createClass({
               quality and effectiveness of many non-profit websites...Node 开发离
               不开 npm，而脚本功能是 npm 最强大、最常用的功能之一。 本文介绍如何使用
               npm 脚本（npm scripts）。</p>
+            <p style={{marginTop: "1.6em"}}>
+              <Link to="#" className="link-expand">阅读全文 »</Link>
+            </p>
           </article>
           <article>
             <h3 className="post-title"><a href="#">22 Essential WordPress Plugins for
@@ -56,6 +66,9 @@ var Main = React.createClass({
               quality and effectiveness of many non-profit websites...Node 开发离
               不开 npm，而脚本功能是 npm 最强大、最常用的功能之一。 本文介绍如何使用
               npm 脚本（npm scripts）。</p>
+            <p style={{marginTop: "1.6em"}}>
+              <Link to="#" className="link-expand">阅读全文 »</Link>
+            </p>
           </article>
           <article>
             <h3 className="post-title"><a href="#">22 Essential WordPress Plugins for
@@ -69,6 +82,9 @@ var Main = React.createClass({
               quality and effectiveness of many non-profit websites...Node 开发离
               不开 npm，而脚本功能是 npm 最强大、最常用的功能之一。 本文介绍如何使用
               npm 脚本（npm scripts）。</p>
+            <p style={{marginTop: "1.6em"}}>
+              <Link to="#" className="link-expand">阅读全文 »</Link>
+            </p>
           </article>
         </section>
         <aside>

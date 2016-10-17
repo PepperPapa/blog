@@ -36,6 +36,13 @@ a.link-to {
   }
 }
 
+a.link-expand {
+  color: #0073aa;
+  &:hover {
+    color: #04577e;
+  }
+}
+
 .posts-container {
   margin: .2em;
   padding: 2em 1em 1em 1em;
