@@ -22,6 +22,20 @@ a {
   }
 }
 
+a.link-header {
+  color: white;
+  &:hover {
+    color: rgba(255,255,255,.8);
+  }
+}
+
+a.link-to {
+  color: inherit;
+  &:hover {
+    color: #0073aa;
+  }
+}
+
 .posts-container {
   margin: .2em;
   padding: 2em 1em 1em 1em;

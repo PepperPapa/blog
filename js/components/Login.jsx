@@ -29,9 +29,6 @@ var Login = React.createClass({
         fontSize: "1.5em",
         background: "#fbfbfb",
         color: "#32373c",
-      },
-      link: {
-        color: "inherit",
       }
     }
     return (
@@ -56,11 +53,11 @@ var Login = React.createClass({
             <button className="primary">登陆</button>
           </p>
           <p style={{fontSize: ".8em", marginTop: "3em"}}>
-            <Link to="signup" style={style.link}>注册</Link>|
-            <a href="#" style={style.link}>忘记密码？</a>
+            <Link to="signup" className="link-to">注册</Link>|
+            <a href="#" className="link-to">忘记密码？</a>
           </p>
           <p style={{fontSize: ".8em"}}>
-            <Link to="/blog" style={style.link}>←回到博客首页</Link>
+            <Link to="/blog" className="link-to">←回到博客首页</Link>
           </p>
         </div>
       </div>

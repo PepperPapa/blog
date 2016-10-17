@@ -18,6 +18,16 @@ a {
   a:hover {
     color: #888; }
 
+a.link-header {
+  color: white; }
+  a.link-header:hover {
+    color: rgba(255, 255, 255, 0.8); }
+
+a.link-to {
+  color: inherit; }
+  a.link-to:hover {
+    color: #0073aa; }
+
 .posts-container {
   margin: .2em;
   padding: 2em 1em 1em 1em; }

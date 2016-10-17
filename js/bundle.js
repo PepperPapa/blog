@@ -27487,7 +27487,7 @@
 	              null,
 	              React.createElement(
 	                _reactRouter.Link,
-	                { to: "/login" },
+	                { to: "/login", className: "link-header" },
 	                "\u767B\u9646"
 	              )
 	            ),
@@ -27496,7 +27496,7 @@
 	              null,
 	              React.createElement(
 	                _reactRouter.Link,
-	                { to: "/signup" },
+	                { to: "/signup", className: "link-header" },
 	                "\u6CE8\u518C"
 	              )
 	            )
@@ -27842,9 +27842,6 @@
 	        fontSize: "1.5em",
 	        background: "#fbfbfb",
 	        color: "#32373c"
-	      },
-	      link: {
-	        color: "inherit"
 	      }
 	    };
 	    return (
@@ -27900,13 +27897,13 @@
 	            { style: { fontSize: ".8em", marginTop: "3em" } },
 	            React.createElement(
 	              _reactRouter.Link,
-	              { to: "signup", style: style.link },
+	              { to: "signup", className: "link-to" },
 	              "\u6CE8\u518C"
 	            ),
 	            "|",
 	            React.createElement(
 	              "a",
-	              { href: "#", style: style.link },
+	              { href: "#", className: "link-to" },
 	              "\u5FD8\u8BB0\u5BC6\u7801\uFF1F"
 	            )
 	          ),
@@ -27915,7 +27912,7 @@
 	            { style: { fontSize: ".8em" } },
 	            React.createElement(
 	              _reactRouter.Link,
-	              { to: "/blog", style: style.link },
+	              { to: "/blog", className: "link-to" },
 	              "\u2190\u56DE\u5230\u535A\u5BA2\u9996\u9875"
 	            )
 	          )
@@ -27968,9 +27965,6 @@
 	        fontSize: "1.5em",
 	        background: "#fbfbfb",
 	        color: "#32373c"
-	      },
-	      link: {
-	        color: "inherit"
 	      }
 	    };
 	    return (
@@ -28031,13 +28025,13 @@
 	            { style: { fontSize: ".8em", marginTop: "3em" } },
 	            React.createElement(
 	              _reactRouter.Link,
-	              { to: "login", style: style.link },
+	              { to: "login", className: "link-to" },
 	              "\u767B\u9646"
 	            ),
 	            "|",
 	            React.createElement(
 	              "a",
-	              { href: "#", style: style.link },
+	              { href: "#", className: "link-to" },
 	              "\u5FD8\u8BB0\u5BC6\u7801\uFF1F"
 	            )
 	          ),
@@ -28046,7 +28040,7 @@
 	            { style: { fontSize: ".8em" } },
 	            React.createElement(
 	              _reactRouter.Link,
-	              { to: "/blog", style: style.link },
+	              { to: "/blog", className: "link-to" },
 	              "\u2190\u56DE\u5230\u535A\u5BA2\u9996\u9875"
 	            )
 	          )
