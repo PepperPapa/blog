@@ -27542,6 +27542,7 @@
 	var React = __webpack_require__(4);
 
 
+	var ArticlesContainer = __webpack_require__(244);
 	var Main = React.createClass({
 	  displayName: "Main",
 
@@ -27549,170 +27550,7 @@
 	    return React.createElement(
 	      "main",
 	      null,
-	      React.createElement(
-	        "section",
-	        { className: "posts-container" },
-	        React.createElement(
-	          "article",
-	          null,
-	          React.createElement(
-	            "h3",
-	            { className: "post-title" },
-	            React.createElement(
-	              "a",
-	              { href: "#" },
-	              "22 Essential WordPress Plugins for Non-Profits in 2016 and Beyond"
-	            )
-	          ),
-	          React.createElement(
-	            "p",
-	            { className: "post-info" },
-	            "Posted on October 12, 2016 by Brenda Barron in Resources | 10 comments"
-	          ),
-	          React.createElement(
-	            "p",
-	            { className: "post-summary" },
-	            "It\u2019s a sad reality that many fantastic non-profits are underfunded, understaffed, and lacking in technical know-how. After all, a heart of gold doesn\u2019t come pre-packaged with vast resources and a degree in computer science. As a result, the quality and effectiveness of many non-profit websites...Node \u5F00\u53D1\u79BB \u4E0D\u5F00 npm\uFF0C\u800C\u811A\u672C\u529F\u80FD\u662F npm \u6700\u5F3A\u5927\u3001\u6700\u5E38\u7528\u7684\u529F\u80FD\u4E4B\u4E00\u3002 \u672C\u6587\u4ECB\u7ECD\u5982\u4F55\u4F7F\u7528 npm \u811A\u672C\uFF08npm scripts\uFF09\u3002"
-	          ),
-	          React.createElement(
-	            "p",
-	            { style: { marginTop: "2em" } },
-	            React.createElement(
-	              _reactRouter.Link,
-	              { to: "#", className: "link-expand" },
-	              "\u9605\u8BFB\u5168\u6587 \xBB"
-	            )
-	          )
-	        ),
-	        React.createElement(
-	          "article",
-	          null,
-	          React.createElement(
-	            "h3",
-	            { className: "post-title" },
-	            React.createElement(
-	              "a",
-	              { href: "#" },
-	              "22 Essential WordPress Plugins for Non-Profits in 2016 and Beyond"
-	            )
-	          ),
-	          React.createElement(
-	            "p",
-	            { className: "post-info" },
-	            "Posted on October 12, 2016 by Brenda Barron in Resources | 10 comments"
-	          ),
-	          React.createElement(
-	            "p",
-	            { className: "post-summary" },
-	            "It\u2019s a sad reality that many fantastic non-profits are underfunded, understaffed, and lacking in technical know-how. After all, a heart of gold doesn\u2019t come pre-packaged with vast resources and a degree in computer science. As a result, the quality and effectiveness of many non-profit websites...Node \u5F00\u53D1\u79BB \u4E0D\u5F00 npm\uFF0C\u800C\u811A\u672C\u529F\u80FD\u662F npm \u6700\u5F3A\u5927\u3001\u6700\u5E38\u7528\u7684\u529F\u80FD\u4E4B\u4E00\u3002 \u672C\u6587\u4ECB\u7ECD\u5982\u4F55\u4F7F\u7528 npm \u811A\u672C\uFF08npm scripts\uFF09\u3002"
-	          ),
-	          React.createElement(
-	            "p",
-	            { style: { marginTop: "1.6em" } },
-	            React.createElement(
-	              _reactRouter.Link,
-	              { to: "#", className: "link-expand" },
-	              "\u9605\u8BFB\u5168\u6587 \xBB"
-	            )
-	          )
-	        ),
-	        React.createElement(
-	          "article",
-	          null,
-	          React.createElement(
-	            "h3",
-	            { className: "post-title" },
-	            React.createElement(
-	              "a",
-	              { href: "#" },
-	              "22 Essential WordPress Plugins for Non-Profits in 2016 and Beyond"
-	            )
-	          ),
-	          React.createElement(
-	            "p",
-	            { className: "post-info" },
-	            "Posted on October 12, 2016 by Brenda Barron in Resources | 10 comments"
-	          ),
-	          React.createElement(
-	            "p",
-	            { className: "post-summary" },
-	            "It\u2019s a sad reality that many fantastic non-profits are underfunded, understaffed, and lacking in technical know-how. After all, a heart of gold doesn\u2019t come pre-packaged with vast resources and a degree in computer science. As a result, the quality and effectiveness of many non-profit websites...Node \u5F00\u53D1\u79BB \u4E0D\u5F00 npm\uFF0C\u800C\u811A\u672C\u529F\u80FD\u662F npm \u6700\u5F3A\u5927\u3001\u6700\u5E38\u7528\u7684\u529F\u80FD\u4E4B\u4E00\u3002 \u672C\u6587\u4ECB\u7ECD\u5982\u4F55\u4F7F\u7528 npm \u811A\u672C\uFF08npm scripts\uFF09\u3002"
-	          ),
-	          React.createElement(
-	            "p",
-	            { style: { marginTop: "1.6em" } },
-	            React.createElement(
-	              _reactRouter.Link,
-	              { to: "#", className: "link-expand" },
-	              "\u9605\u8BFB\u5168\u6587 \xBB"
-	            )
-	          )
-	        ),
-	        React.createElement(
-	          "article",
-	          null,
-	          React.createElement(
-	            "h3",
-	            { className: "post-title" },
-	            React.createElement(
-	              "a",
-	              { href: "#" },
-	              "22 Essential WordPress Plugins for Non-Profits in 2016 and Beyond"
-	            )
-	          ),
-	          React.createElement(
-	            "p",
-	            { className: "post-info" },
-	            "Posted on October 12, 2016 by Brenda Barron in Resources | 10 comments"
-	          ),
-	          React.createElement(
-	            "p",
-	            { className: "post-summary" },
-	            "It\u2019s a sad reality that many fantastic non-profits are underfunded, understaffed, and lacking in technical know-how. After all, a heart of gold doesn\u2019t come pre-packaged with vast resources and a degree in computer science. As a result, the quality and effectiveness of many non-profit websites...Node \u5F00\u53D1\u79BB \u4E0D\u5F00 npm\uFF0C\u800C\u811A\u672C\u529F\u80FD\u662F npm \u6700\u5F3A\u5927\u3001\u6700\u5E38\u7528\u7684\u529F\u80FD\u4E4B\u4E00\u3002 \u672C\u6587\u4ECB\u7ECD\u5982\u4F55\u4F7F\u7528 npm \u811A\u672C\uFF08npm scripts\uFF09\u3002"
-	          ),
-	          React.createElement(
-	            "p",
-	            { style: { marginTop: "1.6em" } },
-	            React.createElement(
-	              _reactRouter.Link,
-	              { to: "#", className: "link-expand" },
-	              "\u9605\u8BFB\u5168\u6587 \xBB"
-	            )
-	          )
-	        ),
-	        React.createElement(
-	          "article",
-	          null,
-	          React.createElement(
-	            "h3",
-	            { className: "post-title" },
-	            React.createElement(
-	              "a",
-	              { href: "#" },
-	              "22 Essential WordPress Plugins for Non-Profits in 2016 and Beyond"
-	            )
-	          ),
-	          React.createElement(
-	            "p",
-	            { className: "post-info" },
-	            "Posted on October 12, 2016 by Brenda Barron in Resources | 10 comments"
-	          ),
-	          React.createElement(
-	            "p",
-	            { className: "post-summary" },
-	            "It\u2019s a sad reality that many fantastic non-profits are underfunded, understaffed, and lacking in technical know-how. After all, a heart of gold doesn\u2019t come pre-packaged with vast resources and a degree in computer science. As a result, the quality and effectiveness of many non-profit websites...Node \u5F00\u53D1\u79BB \u4E0D\u5F00 npm\uFF0C\u800C\u811A\u672C\u529F\u80FD\u662F npm \u6700\u5F3A\u5927\u3001\u6700\u5E38\u7528\u7684\u529F\u80FD\u4E4B\u4E00\u3002 \u672C\u6587\u4ECB\u7ECD\u5982\u4F55\u4F7F\u7528 npm \u811A\u672C\uFF08npm scripts\uFF09\u3002"
-	          ),
-	          React.createElement(
-	            "p",
-	            { style: { marginTop: "1.6em" } },
-	            React.createElement(
-	              _reactRouter.Link,
-	              { to: "#", className: "link-expand" },
-	              "\u9605\u8BFB\u5168\u6587 \xBB"
-	            )
-	          )
-	        )
-	      ),
+	      React.createElement(ArticlesContainer, null),
 	      React.createElement(
 	        "aside",
 	        null,
@@ -28099,6 +27937,116 @@
 	});
 
 	module.exports = Signup;
+
+/***/ },
+/* 244 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(4);
+
+	var Articles = __webpack_require__(245);
+	var ArticlesContainer = React.createClass({
+	  displayName: "ArticlesContainer",
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      posts: [{
+	        id: 1,
+	        title: "test",
+	        date: "2016.10.17",
+	        summary: "test"
+	      }, {
+	        id: 2,
+	        title: "How to Create Your Own Font (In 6 Simple Steps)",
+	        date: "2016.10.17",
+	        summary: "With packages such as Google Fonts and Typekit collectively offering thousands of different fonts, there is almost a countless amount options for choosing the right font for your specific project. However, you’re still only limited to selecting a font that someone else has created. There are..."
+	      }, {
+	        id: 3,
+	        title: "test",
+	        date: "2016.10.17",
+	        summary: "test"
+	      }, {
+	        id: 4,
+	        title: "test",
+	        date: "2016.10.17",
+	        summary: "test"
+	      }]
+	    };
+	  },
+	  render: function render() {
+	    return React.createElement(Articles, { posts: this.state.posts });
+	  }
+	});
+
+	module.exports = ArticlesContainer;
+
+/***/ },
+/* 245 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _reactRouter = __webpack_require__(2);
+
+	var React = __webpack_require__(4);
+
+
+	var Articles = React.createClass({
+	  displayName: "Articles",
+
+	  componentDidMount: function componentDidMount() {
+	    this.props.posts.map(function (post) {
+	      console.log(post);
+	    });
+	  },
+
+	  render: function render() {
+	    return React.createElement(
+	      "section",
+	      { className: "posts-container" },
+	      this.props.posts.map(function (post) {
+	        return React.createElement(
+	          "article",
+	          { key: post.id },
+	          React.createElement(
+	            "h3",
+	            { className: "post-title" },
+	            React.createElement(
+	              _reactRouter.Link,
+	              { to: "#" },
+	              post.title
+	            )
+	          ),
+	          React.createElement(
+	            "p",
+	            { className: "post-info" },
+	            "Posted on ",
+	            post.date,
+	            " by PepperPapa"
+	          ),
+	          React.createElement(
+	            "p",
+	            { className: "post-summary" },
+	            post.summary
+	          ),
+	          React.createElement(
+	            "p",
+	            { style: { marginTop: "2em" } },
+	            React.createElement(
+	              _reactRouter.Link,
+	              { to: "#", className: "link-expand" },
+	              "\u9605\u8BFB\u5168\u6587 \xBB"
+	            )
+	          )
+	        );
+	      })
+	    );
+	  }
+	});
+
+	module.exports = Articles;
 
 /***/ }
 /******/ ]);
