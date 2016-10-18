@@ -63,10 +63,10 @@
 
 	var BlogApp = __webpack_require__(236);
 	var Main = __webpack_require__(239);
-	var NewPost = __webpack_require__(240);
-	var PostDetail = __webpack_require__(241);
-	var Login = __webpack_require__(242);
-	var Signup = __webpack_require__(243);
+	var NewPost = __webpack_require__(242);
+	var PostDetail = __webpack_require__(243);
+	var Login = __webpack_require__(244);
+	var Signup = __webpack_require__(245);
 
 	// you can't insert comments in first parameter for ReactDOM.render function
 	/*
@@ -27542,7 +27542,7 @@
 	var React = __webpack_require__(4);
 
 
-	var ArticlesContainer = __webpack_require__(244);
+	var ArticlesContainer = __webpack_require__(240);
 	var Main = React.createClass({
 	  displayName: "Main",
 
@@ -27637,6 +27637,116 @@
 
 	var React = __webpack_require__(4);
 
+	var Articles = __webpack_require__(241);
+	var ArticlesContainer = React.createClass({
+	  displayName: "ArticlesContainer",
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      posts: [{
+	        id: 1,
+	        title: "test",
+	        date: "2016.10.17",
+	        summary: "test"
+	      }, {
+	        id: 2,
+	        title: "How to Create Your Own Font (In 6 Simple Steps)",
+	        date: "2016.10.17",
+	        summary: "With packages such as Google Fonts and Typekit collectively offering thousands of different fonts, there is almost a countless amount options for choosing the right font for your specific project. However, you’re still only limited to selecting a font that someone else has created. There are..."
+	      }, {
+	        id: 3,
+	        title: "test",
+	        date: "2016.10.17",
+	        summary: "test"
+	      }, {
+	        id: 4,
+	        title: "test",
+	        date: "2016.10.17",
+	        summary: "test"
+	      }]
+	    };
+	  },
+	  render: function render() {
+	    return React.createElement(Articles, { posts: this.state.posts });
+	  }
+	});
+
+	module.exports = ArticlesContainer;
+
+/***/ },
+/* 241 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _reactRouter = __webpack_require__(2);
+
+	var React = __webpack_require__(4);
+
+
+	var Articles = React.createClass({
+	  displayName: "Articles",
+
+	  componentDidMount: function componentDidMount() {
+	    this.props.posts.map(function (post) {
+	      console.log(post);
+	    });
+	  },
+
+	  render: function render() {
+	    return React.createElement(
+	      "section",
+	      { className: "posts-container" },
+	      this.props.posts.map(function (post) {
+	        return React.createElement(
+	          "article",
+	          { key: post.id },
+	          React.createElement(
+	            "h3",
+	            { className: "post-title" },
+	            React.createElement(
+	              _reactRouter.Link,
+	              { to: "#" },
+	              post.title
+	            )
+	          ),
+	          React.createElement(
+	            "p",
+	            { className: "post-info" },
+	            "Posted on ",
+	            post.date,
+	            " by PepperPapa"
+	          ),
+	          React.createElement(
+	            "p",
+	            { className: "post-summary" },
+	            post.summary
+	          ),
+	          React.createElement(
+	            "p",
+	            { style: { marginTop: "2em" } },
+	            React.createElement(
+	              _reactRouter.Link,
+	              { to: "#", className: "link-expand" },
+	              "\u9605\u8BFB\u5168\u6587 \xBB"
+	            )
+	          )
+	        );
+	      })
+	    );
+	  }
+	});
+
+	module.exports = Articles;
+
+/***/ },
+/* 242 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(4);
+
 	var NewPost = React.createClass({
 	  displayName: "NewPost",
 
@@ -27659,7 +27769,7 @@
 	module.exports = NewPost;
 
 /***/ },
-/* 241 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27688,7 +27798,7 @@
 	module.exports = PostDetail;
 
 /***/ },
-/* 242 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27811,7 +27921,7 @@
 	module.exports = Login;
 
 /***/ },
-/* 243 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27937,116 +28047,6 @@
 	});
 
 	module.exports = Signup;
-
-/***/ },
-/* 244 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var React = __webpack_require__(4);
-
-	var Articles = __webpack_require__(245);
-	var ArticlesContainer = React.createClass({
-	  displayName: "ArticlesContainer",
-
-	  getInitialState: function getInitialState() {
-	    return {
-	      posts: [{
-	        id: 1,
-	        title: "test",
-	        date: "2016.10.17",
-	        summary: "test"
-	      }, {
-	        id: 2,
-	        title: "How to Create Your Own Font (In 6 Simple Steps)",
-	        date: "2016.10.17",
-	        summary: "With packages such as Google Fonts and Typekit collectively offering thousands of different fonts, there is almost a countless amount options for choosing the right font for your specific project. However, you’re still only limited to selecting a font that someone else has created. There are..."
-	      }, {
-	        id: 3,
-	        title: "test",
-	        date: "2016.10.17",
-	        summary: "test"
-	      }, {
-	        id: 4,
-	        title: "test",
-	        date: "2016.10.17",
-	        summary: "test"
-	      }]
-	    };
-	  },
-	  render: function render() {
-	    return React.createElement(Articles, { posts: this.state.posts });
-	  }
-	});
-
-	module.exports = ArticlesContainer;
-
-/***/ },
-/* 245 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _reactRouter = __webpack_require__(2);
-
-	var React = __webpack_require__(4);
-
-
-	var Articles = React.createClass({
-	  displayName: "Articles",
-
-	  componentDidMount: function componentDidMount() {
-	    this.props.posts.map(function (post) {
-	      console.log(post);
-	    });
-	  },
-
-	  render: function render() {
-	    return React.createElement(
-	      "section",
-	      { className: "posts-container" },
-	      this.props.posts.map(function (post) {
-	        return React.createElement(
-	          "article",
-	          { key: post.id },
-	          React.createElement(
-	            "h3",
-	            { className: "post-title" },
-	            React.createElement(
-	              _reactRouter.Link,
-	              { to: "#" },
-	              post.title
-	            )
-	          ),
-	          React.createElement(
-	            "p",
-	            { className: "post-info" },
-	            "Posted on ",
-	            post.date,
-	            " by PepperPapa"
-	          ),
-	          React.createElement(
-	            "p",
-	            { className: "post-summary" },
-	            post.summary
-	          ),
-	          React.createElement(
-	            "p",
-	            { style: { marginTop: "2em" } },
-	            React.createElement(
-	              _reactRouter.Link,
-	              { to: "#", className: "link-expand" },
-	              "\u9605\u8BFB\u5168\u6587 \xBB"
-	            )
-	          )
-	        );
-	      })
-	    );
-	  }
-	});
-
-	module.exports = Articles;
 
 /***/ }
 /******/ ]);
