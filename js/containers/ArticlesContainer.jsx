@@ -1,6 +1,6 @@
 var React = require("react");
 
-var Articles = require("./Articles");
+var Articles = require("../components/Articles");
 var ArticlesContainer = React.createClass({
   getInitialState: function() {
     return {

@@ -1,7 +1,7 @@
 var React = require("react");
 import { Link } from "react-router";
 
-var ArticlesContainer = require("./ArticlesContainer");
+var ArticlesContainer = require("../containers/ArticlesContainer");
 var Main = React.createClass({
   render: function() {
     return (

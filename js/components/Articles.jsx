@@ -2,12 +2,6 @@ var React = require("react");
 import { Link } from "react-router";
 
 var Articles = React.createClass({
-  componentDidMount: function() {
-      this.props.posts.map(function(post) {
-          console.log(post);
-      });
-  },
-
   render: function() {
     return (
       <section className="posts-container">

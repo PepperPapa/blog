@@ -3,6 +3,7 @@ var ReactDOM = require("react-dom");
 /* follow the Browser History topic in link
 "https://css-tricks.com/learning-react-router/" */
 import { Router, Route, IndexRoute, browserHistory } from "react-router";
+import { Provider } from "react-redux";
 
 var BlogApp = require("./components/BlogApp");
 var Main = require("./components/Main");
