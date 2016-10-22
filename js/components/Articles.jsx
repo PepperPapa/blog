@@ -8,13 +8,18 @@ var Articles = React.createClass({
         {this.props.posts.map(function(post) {
           return (
             <article key={post.id}>
-              <h3 className="post-title"><Link to="#">{post.title}</Link></h3>
+              <h3 className="post-title">
+                <Link
+                  to={`/blog/${post.id}`}>
+                  {post.subject}
+                </Link>
+              </h3>
               <p className="post-info">
-                Posted on {post.date} by PepperPapa
+                Posted on {post.created} by PepperPapa
               </p>
-              <p className="post-summary">{post.summary}</p>
+              <p className="post-summary">{post.content}</p>
               <p style={{marginTop: "2em"}}>
-                <Link to="#" className="link-expand">阅读全文 »</Link>
+                <Link to={`blog/${post.id}`} className="link-expand">阅读全文 »</Link>
               </p>
             </article>
           );
