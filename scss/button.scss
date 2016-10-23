@@ -1,24 +1,37 @@
 button {
   padding: .3em .8em;
-  border: 1px solid rgba(0,0,0,.1);
-  border-radius: .2em;
-  background: #58a linear-gradient(hsla(0,0%,100%,.2), transparent);
-  box-shadow: 0 .05em .25em rgba(0,0,0,.5);
-  color: white;
-  text-shadow: 0 -.05em .05em rgba(0,0,0,.5);
+  border: 1px solid rgba(0,0,0,.3);
+  border-radius: 1em / 50%;
+  color: #333;
   font-size: 100%;
   line-height: 1.5;
   outline: none;
+  background: transparent;
   &:hover {
-    background: #58a linear-gradient(hsla(0,0%,100%,.4),
-    hsla(0,0%,100%,.2));
+    border: 1px solid #333;
   }
 }
 
 button.error {
-  background-color: #c00;
+  border: 1px solid #bf162a;
+  color: #860918;
+  &:hover {
+    border: 1px solid #860918;
+  }
+}
+
+button.normal {
+  border: 1px solid #78d858;
+  color: #4a993e;
+  &:hover {
+    border: 1px solid #4a993e;
+  }
 }
 
 button.primary {
-  background-color: #006799;
+  border: 1px solid #58a;
+  color: #395d75;
+  &:hover {
+    border: 1px solid #395d75;
+  }
 }

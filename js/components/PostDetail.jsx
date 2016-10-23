@@ -12,7 +12,7 @@ var PostDetail = React.createClass({
 
   render: function() {
     var style = {
-      layout: {
+      container: {
         display: "flex",
         flexFlow: "column",
         flex: "1",
@@ -41,7 +41,7 @@ var PostDetail = React.createClass({
     }
     return (
       // return value require only one root element
-      <div style={style.layout}>
+      <div style={style.container}>
         <article
           key={this.props.posts.id}
           style={style.article}>

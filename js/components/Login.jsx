@@ -50,7 +50,7 @@ var Login = React.createClass({
             <label htmlFor="user-rember">
               <input type="checkbox" id="user-rember"/>
               记住我</label>
-            <button className="primary">登陆</button>
+            <button className="normal">登陆</button>
           </p>
           <p style={{fontSize: ".8em", marginTop: "3em"}}>
             <Link to="signup" className="link-to">注册</Link>|

@@ -1,21 +1,31 @@
 button {
   padding: .3em .8em;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: .2em;
-  background: #58a linear-gradient(rgba(255, 255, 255, 0.2), transparent);
-  box-shadow: 0 0.05em 0.25em rgba(0, 0, 0, 0.5);
-  color: white;
-  text-shadow: 0 -0.05em 0.05em rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 1em / 50%;
+  color: #333;
   font-size: 100%;
   line-height: 1.5;
-  outline: none; }
+  outline: none;
+  background: transparent; }
   button:hover {
-    background: #58a linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)); }
+    border: 1px solid #333; }
 
 button.error {
-  background-color: #c00; }
+  border: 1px solid #bf162a;
+  color: #860918; }
+  button.error:hover {
+    border: 1px solid #860918; }
+
+button.normal {
+  border: 1px solid #78d858;
+  color: #4a993e; }
+  button.normal:hover {
+    border: 1px solid #4a993e; }
 
 button.primary {
-  background-color: #006799; }
+  border: 1px solid #58a;
+  color: #395d75; }
+  button.primary:hover {
+    border: 1px solid #395d75; }
 
 /*# sourceMappingURL=button.css.map */

@@ -51,7 +51,7 @@ var Signup = React.createClass({
                      display: "flex",
                      alignItems: "center",
                      justifyContent: "flex-end"}}>
-            <button className="primary">注册</button>
+            <button className="normal">注册</button>
           </p>
           <p style={{fontSize: ".8em", marginTop: "3em"}}>
             <Link to="login" className="link-to">登陆</Link>|
