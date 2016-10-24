@@ -45,7 +45,7 @@ var NewPost = React.createClass({
     return (
       // return value require only one root element
       <div style={style.container}>
-        <form>
+        <form method="POST" action="/blog">
           <p style={style.p}>
             <label
               htmlFor="subject"

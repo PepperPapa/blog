@@ -4,12 +4,6 @@ import { connect } from "react-redux";
 import store from "../store/store";
 
 var PostDetail = React.createClass({
-  componentDidMount: function() {
-    store.dispatch({
-      type: "GET_POST_ID"
-    });
-  },
-
   render: function() {
     var style = {
       container: {
@@ -23,6 +17,7 @@ var PostDetail = React.createClass({
       article: {
         padding: "1em 2em",
         border: "1px solid #eee",
+        borderBottom: "1px solid #ddd",
         background: "white"
       },
       head: {
@@ -39,25 +34,27 @@ var PostDetail = React.createClass({
         fontFamily: "serif"
       }
     }
+    var postId = this.props.params.postId;
+    var post = this.props.posts[postId];
     return (
       // return value require only one root element
       <div style={style.container}>
         <article
-          key={this.props.posts.id}
+          key={post.id}
           style={style.article}>
           <h1
             className="post-subject"
             style={style.head}>
-            {this.props.posts.subject}
+            {post.subject}
           </h1>
           <p
             className="post-date"
             style={style.created}>
-            Posted on {this.props.posts.created} by PepperPapa
+            Posted on {post.created} by PepperPapa
           </p>
           <p
             className="post-content"
-            style={style.content}>{this.props.posts.content}</p>
+            style={style.content}>{post.content}</p>
         </article>
       </div>
     );

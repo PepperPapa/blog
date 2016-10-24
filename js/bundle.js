@@ -75,7 +75,7 @@
 	
 	var BlogApp = __webpack_require__(261);
 	var Main = __webpack_require__(264);
-	var NewPost = __webpack_require__(267);
+	var NewPostContainer = __webpack_require__(270);
 	
 	var Login = __webpack_require__(268);
 	var Signup = __webpack_require__(269);
@@ -105,7 +105,7 @@
 	      _reactRouter.Route,
 	      { path: "/blog", component: BlogApp },
 	      React.createElement(_reactRouter.IndexRoute, { component: Main }),
-	      React.createElement(_reactRouter.Route, { path: "newpost", component: NewPost }),
+	      React.createElement(_reactRouter.Route, { path: "newpost", component: NewPostContainer }),
 	      React.createElement(_reactRouter.Route, { path: ":postId", component: _PostDetail2.default })
 	    ),
 	    React.createElement(_reactRouter.Route, { path: "/login", component: Login }),
@@ -11802,12 +11802,6 @@
 	var PostDetail = React.createClass({
 	  displayName: "PostDetail",
 	
-	  componentDidMount: function componentDidMount() {
-	    _store2.default.dispatch({
-	      type: "GET_POST_ID"
-	    });
-	  },
-	
 	  render: function render() {
 	    var style = {
 	      container: {
@@ -11821,6 +11815,7 @@
 	      article: {
 	        padding: "1em 2em",
 	        border: "1px solid #eee",
+	        borderBottom: "1px solid #ddd",
 	        background: "white"
 	      },
 	      head: {
@@ -11837,6 +11832,8 @@
 	        fontFamily: "serif"
 	      }
 	    };
+	    var postId = this.props.params.postId;
+	    var post = this.props.posts[postId];
 	    return (
 	      // return value require only one root element
 	      React.createElement(
@@ -11845,14 +11842,14 @@
 	        React.createElement(
 	          "article",
 	          {
-	            key: this.props.posts.id,
+	            key: post.id,
 	            style: style.article },
 	          React.createElement(
 	            "h1",
 	            {
 	              className: "post-subject",
 	              style: style.head },
-	            this.props.posts.subject
+	            post.subject
 	          ),
 	          React.createElement(
 	            "p",
@@ -11860,7 +11857,7 @@
 	              className: "post-date",
 	              style: style.created },
 	            "Posted on ",
-	            this.props.posts.created,
+	            post.created,
 	            " by PepperPapa"
 	          ),
 	          React.createElement(
@@ -11868,7 +11865,7 @@
 	            {
 	              className: "post-content",
 	              style: style.content },
-	            this.props.posts.content
+	            post.content
 	          )
 	        )
 	      )
@@ -11916,12 +11913,12 @@
 	
 	var testState = {
 	  blogState: [{
-	    id: 1,
+	    id: 0,
 	    subject: "React Native with Apollo Server and Client — Part 1",
 	    created: "2016.10.17",
 	    content: "Redux 是 JavaScript 状态容器，提供可预测化的状态管理。" + "可以让你构建一致化的应用，运行于不同的环境（客户端、服务器、原生应用），并且易于测试。不仅于此，它还提供 超爽的开发体验，比如有一个时间旅行调试器可以编辑后实时预览。We will be using a combination of React Native, Apollo Client, Apollo Server, GraphQL, Express, and MongoDB to build a full stack mobile application."
 	  }, {
-	    id: 2,
+	    id: 1,
 	    subject: "SEO vs. React: Web Crawlers are Smarter Than You Think",
 	    created: "2016.10.17",
 	    content: "Many people still worry that if you build a websites using tools like React, Angular, or Ember, it will hurt your search engine ranking."
@@ -11934,6 +11931,7 @@
 	
 	  switch (action.type) {
 	    case "GET_POST_ID":
+	      console.log(action.id);
 	      return state[0];
 	      break;
 	    default:
@@ -29531,7 +29529,7 @@
 	        { style: style.container },
 	        React.createElement(
 	          "form",
-	          null,
+	          { method: "POST", action: "/blog" },
 	          React.createElement(
 	            "p",
 	            { style: style.p },
@@ -29834,6 +29832,32 @@
 	});
 	
 	module.exports = Signup;
+
+/***/ },
+/* 270 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _NewPost = __webpack_require__(267);
+	
+	var _NewPost2 = _interopRequireDefault(_NewPost);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var NewPostContainer = _react2.default.createClass({
+	  displayName: "NewPostContainer",
+	
+	  render: function render() {
+	    return _react2.default.createElement(_NewPost2.default, null);
+	  }
+	});
+	
+	module.exports = NewPostContainer;
 
 /***/ }
 /******/ ]);

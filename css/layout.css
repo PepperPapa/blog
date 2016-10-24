@@ -5,7 +5,10 @@
 
 header {
   font-family: "Microsoft Yahei",SimSun,sans-serif;
-  background-color: #463c3c;
+  background: #655;
+  background-image: radial-gradient(#655050 30%, transparent 0), radial-gradient(#655050 30%, transparent 0);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
   color: white; }
   header h1 {
     color: inherit;

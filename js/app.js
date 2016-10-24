@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 
 var BlogApp = require("./components/BlogApp");
 var Main = require("./components/Main");
-var NewPost = require("./components/NewPost");
+var NewPostContainer = require("./containers/NewPostContainer");
 import PostDetail from "./components/PostDetail";
 var Login = require("./components/Login");
 var Signup = require("./components/Signup");
@@ -33,7 +33,7 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/blog" component={BlogApp}>
         <IndexRoute component={Main} />
-        <Route path="newpost" component={NewPost} />
+        <Route path="newpost" component={NewPostContainer} />
         <Route path=":postId" component={PostDetail} />
       </Route>
       <Route path="/login" component={Login} />
