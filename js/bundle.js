@@ -11930,9 +11930,10 @@
 	  var action = arguments[1];
 	
 	  switch (action.type) {
-	    case "GET_POST_ID":
-	      console.log(action.id);
-	      return state[0];
+	    case "ADD_POST":
+	      var newState = state.concat(action.post);
+	      console.log(newState);
+	      return newState;
 	      break;
 	    default:
 	      return state;
@@ -29481,6 +29482,8 @@
 	  displayName: "NewPost",
 	
 	  render: function render() {
+	    var _this = this;
+	
 	    var style = {
 	      container: {
 	        display: "flex",
@@ -29528,7 +29531,7 @@
 	        { style: style.container },
 	        React.createElement(
 	          "form",
-	          { method: "POST", action: "/blog" },
+	          { method: "GET", action: "/blog" },
 	          React.createElement(
 	            "p",
 	            { style: style.p },
@@ -29569,7 +29572,10 @@
 	              "button",
 	              {
 	                className: "normal",
-	                style: style.button },
+	                style: style.button,
+	                onClick: function onClick(e) {
+	                  return _this.props.publishPost(e);
+	                } },
 	              "\u53D1\u5E03"
 	            )
 	          )
@@ -29850,12 +29856,22 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
+	var _action = __webpack_require__(271);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var NewPostContainer = _react2.default.createClass({
 	  displayName: "NewPostContainer",
 	
-	  publishPost: function publishPost() {},
+	  publishPost: function publishPost(event) {
+	    event.preventDefault();
+	    _store2.default.dispatch((0, _action.addPost)({
+	      id: 2,
+	      subject: "test subject",
+	      created: "2016.10.25",
+	      content: "test content"
+	    }));
+	  },
 	
 	  render: function render() {
 	    return _react2.default.createElement(_NewPost2.default, { publishPost: this.publishPost });
@@ -29863,6 +29879,34 @@
 	});
 	
 	module.exports = NewPostContainer;
+
+/***/ },
+/* 271 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var types = {
+	  "ADD_POST": "ADD_POST"
+	};
+	
+	/*  post format:
+	{
+	  id: xx,
+	  subject: "xx",
+	  created: "zz",
+	  content: "xxx"
+	}
+	*/
+	var addPost = exports.addPost = function addPost(post) {
+	  return {
+	    type: types.ADD_POST,
+	    post: post
+	  };
+	};
 
 /***/ }
 /******/ ]);

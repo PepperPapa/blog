@@ -45,7 +45,7 @@ var NewPost = React.createClass({
     return (
       // return value require only one root element
       <div style={style.container}>
-        <form method="POST" action="/blog">
+        <form method="GET" action="/blog">
           <p style={style.p}>
             <label
               htmlFor="subject"
@@ -70,7 +70,8 @@ var NewPost = React.createClass({
           <p>
             <button
               className="normal"
-              style={style.button}>发布</button>
+              style={style.button}
+              onClick={(e) => this.props.publishPost(e)}>发布</button>
           </p>
         </form>
       </div>

@@ -20,9 +20,10 @@ const testState = {
 
 function blogReducer(state = testState.blogState, action) {
   switch (action.type) {
-    case "GET_POST_ID":
-      console.log(action.id);
-      return state[0];
+    case "ADD_POST":
+      var newState = state.concat(action.post);
+      console.log(newState);
+      return newState;
       break;
     default:
       return state;
