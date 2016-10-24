@@ -1,11 +1,16 @@
 import React from "react";
 
 import NewPost from "../components/NewPost";
+import store from "../store/store";
 
 var NewPostContainer =  React.createClass({
+  publishPost: function() {
+
+  },
+
   render: function() {
     return (
-      <NewPost />
+      <NewPost publishPost={this.publishPost}/>
     );
   }
 });

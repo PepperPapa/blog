@@ -29396,8 +29396,7 @@
 	
 	  render: function render() {
 	    return React.createElement(Articles, {
-	      posts: this.props.posts,
-	      showPostDetail: this.showPostDetail });
+	      posts: this.props.posts });
 	  }
 	});
 	
@@ -29847,13 +29846,19 @@
 	
 	var _NewPost2 = _interopRequireDefault(_NewPost);
 	
+	var _store = __webpack_require__(121);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var NewPostContainer = _react2.default.createClass({
 	  displayName: "NewPostContainer",
 	
+	  publishPost: function publishPost() {},
+	
 	  render: function render() {
-	    return _react2.default.createElement(_NewPost2.default, null);
+	    return _react2.default.createElement(_NewPost2.default, { publishPost: this.publishPost });
 	  }
 	});
 	

@@ -7,8 +7,7 @@ var ArticlesContainer = React.createClass({
   render: function() {
     return (
       <Articles
-        posts={this.props.posts}
-        showPostDetail={this.showPostDetail} />
+        posts={this.props.posts} />
     );
   }
 });
