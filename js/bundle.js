@@ -75,10 +75,10 @@
 	
 	var BlogApp = __webpack_require__(261);
 	var Main = __webpack_require__(264);
-	var NewPostContainer = __webpack_require__(270);
+	var NewPostContainer = __webpack_require__(267);
 	
-	var Login = __webpack_require__(268);
-	var Signup = __webpack_require__(269);
+	var Login = __webpack_require__(270);
+	var Signup = __webpack_require__(271);
 	
 	
 	// you can't insert comments in first parameter for ReactDOM.render function
@@ -11912,17 +11912,18 @@
 	var _redux = __webpack_require__(105);
 	
 	var testState = {
-	  blogState: [{
-	    id: 0,
-	    subject: "React Native with Apollo Server and Client — Part 1",
-	    created: "2016.10.17",
-	    content: "Redux 是 JavaScript 状态容器，提供可预测化的状态管理。" + "可以让你构建一致化的应用，运行于不同的环境（客户端、服务器、原生应用），并且易于测试。不仅于此，它还提供 超爽的开发体验，比如有一个时间旅行调试器可以编辑后实时预览。We will be using a combination of React Native, Apollo Client, Apollo Server, GraphQL, Express, and MongoDB to build a full stack mobile application."
-	  }, {
-	    id: 1,
-	    subject: "SEO vs. React: Web Crawlers are Smarter Than You Think",
-	    created: "2016.10.17",
-	    content: "Many people still worry that if you build a websites using tools like React, Angular, or Ember, it will hurt your search engine ranking."
-	  }]
+	  blogState: {
+	    1: {
+	      subject: "React Native with Apollo Server and Client — Part 1",
+	      created: "2016.10.17",
+	      content: "Redux 是 JavaScript 状态容器，提供可预测化的状态管理。" + "可以让你构建一致化的应用，运行于不同的环境（客户端、服务器、原生应用），并且易于测试。不仅于此，它还提供 超爽的开发体验，比如有一个时间旅行调试器可以编辑后实时预览。We will be using a combination of React Native, Apollo Client, Apollo Server, GraphQL, Express, and MongoDB to build a full stack mobile application."
+	    },
+	    0: {
+	      subject: "SEO vs. React: Web Crawlers are Smarter Than You Think",
+	      created: "2016.10.17",
+	      content: "Many people still worry that if you build a websites using tools like React, Angular, or Ember, it will hurt your search engine ranking."
+	    }
+	  }
 	};
 	
 	function blogReducer() {
@@ -11931,7 +11932,7 @@
 	
 	  switch (action.type) {
 	    case "ADD_POST":
-	      var newState = state.concat(action.post);
+	      var newState = Object.assign({}, action.post, state);
 	      console.log(newState);
 	      return newState;
 	      break;
@@ -29424,41 +29425,46 @@
 	  displayName: "Articles",
 	
 	  render: function render() {
+	    var posts = this.props.posts;
+	    var post_index_list = Object.keys(posts);
+	    post_index_list.sort(function (a, b) {
+	      return a < b;
+	    });
 	    return React.createElement(
 	      "section",
 	      { className: "posts-container" },
-	      this.props.posts.map(function (post) {
+	      post_index_list.map(function (id) {
 	        return React.createElement(
 	          "article",
-	          { key: post.id },
+	          { key: id },
 	          React.createElement(
 	            "h3",
 	            { className: "post-title" },
 	            React.createElement(
 	              _reactRouter.Link,
 	              {
-	                to: "/blog/" + post.id },
-	              post.subject
+	                to: "/blog/" + id },
+	              posts[id].subject
 	            )
 	          ),
 	          React.createElement(
 	            "p",
 	            { className: "post-info" },
 	            "Posted on ",
-	            post.created,
+	            posts[id].created,
 	            " by PepperPapa"
 	          ),
 	          React.createElement(
 	            "p",
 	            { className: "post-summary" },
-	            post.content
+	            posts[id].content
 	          ),
 	          React.createElement(
 	            "p",
 	            { style: { marginTop: "2em" } },
 	            React.createElement(
 	              _reactRouter.Link,
-	              { to: "blog/" + post.id, className: "link-expand" },
+	              { to: "blog/" + id, className: "link-expand" },
 	              "\u9605\u8BFB\u5168\u6587 \xBB"
 	            )
 	          )
@@ -29472,6 +29478,57 @@
 
 /***/ },
 /* 267 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(2);
+	
+	var _NewPost = __webpack_require__(268);
+	
+	var _NewPost2 = _interopRequireDefault(_NewPost);
+	
+	var _store = __webpack_require__(121);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _action = __webpack_require__(269);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var NewPostContainer = _react2.default.createClass({
+	  displayName: "NewPostContainer",
+	
+	  publishPost: function publishPost(event) {
+	    event.preventDefault();
+	    /* Ajax post request to server
+	      1. if response OK, jump to index page;
+	      2. is failed, jump to error page;
+	    */
+	    _store2.default.dispatch((0, _action.addPost)({
+	      2: {
+	        subject: "test subject",
+	        created: "2016.10.25",
+	        content: "test content"
+	      }
+	    }));
+	    // jump to index page
+	    _reactRouter.browserHistory.push("/blog");
+	  },
+	
+	  render: function render() {
+	    return _react2.default.createElement(_NewPost2.default, { publishPost: this.publishPost });
+	  }
+	});
+	
+	module.exports = NewPostContainer;
+
+/***/ },
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29588,7 +29645,36 @@
 	module.exports = NewPost;
 
 /***/ },
-/* 268 */
+/* 269 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var types = {
+	  "ADD_POST": "ADD_POST"
+	};
+	
+	/*  post format:
+	{
+	  id: {
+	    subject: "xx",
+	    created: "zz",
+	    content: "xxx"
+	  }
+	}
+	*/
+	var addPost = exports.addPost = function addPost(post) {
+	  return {
+	    type: types.ADD_POST,
+	    post: post
+	  };
+	};
+
+/***/ },
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29711,7 +29797,7 @@
 	module.exports = Login;
 
 /***/ },
-/* 269 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29837,76 +29923,6 @@
 	});
 	
 	module.exports = Signup;
-
-/***/ },
-/* 270 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var _react = __webpack_require__(4);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _NewPost = __webpack_require__(267);
-	
-	var _NewPost2 = _interopRequireDefault(_NewPost);
-	
-	var _store = __webpack_require__(121);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _action = __webpack_require__(271);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var NewPostContainer = _react2.default.createClass({
-	  displayName: "NewPostContainer",
-	
-	  publishPost: function publishPost(event) {
-	    event.preventDefault();
-	    _store2.default.dispatch((0, _action.addPost)({
-	      id: 2,
-	      subject: "test subject",
-	      created: "2016.10.25",
-	      content: "test content"
-	    }));
-	  },
-	
-	  render: function render() {
-	    return _react2.default.createElement(_NewPost2.default, { publishPost: this.publishPost });
-	  }
-	});
-	
-	module.exports = NewPostContainer;
-
-/***/ },
-/* 271 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var types = {
-	  "ADD_POST": "ADD_POST"
-	};
-	
-	/*  post format:
-	{
-	  id: xx,
-	  subject: "xx",
-	  created: "zz",
-	  content: "xxx"
-	}
-	*/
-	var addPost = exports.addPost = function addPost(post) {
-	  return {
-	    type: types.ADD_POST,
-	    post: post
-	  };
-	};
 
 /***/ }
 /******/ ]);

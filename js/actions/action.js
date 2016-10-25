@@ -4,10 +4,11 @@ const types = {
 
 /*  post format:
 {
-  id: xx,
-  subject: "xx",
-  created: "zz",
-  content: "xxx"
+  id: {
+    subject: "xx",
+    created: "zz",
+    content: "xxx"
+  }
 }
 */
 export const addPost = post => ({

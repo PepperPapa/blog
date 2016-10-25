@@ -2,11 +2,22 @@
 # -*- coding: utf-8 -*-
 import re
 
+if __name__ == '__main__':
+    from blog import blogFront, newPost, postPage
+    from sign import signup, login, logout
+else:
+    from server.blog import blogFront, newPost, postPage
+    from server.sign import register, login, logout
 # 使用uwsgi server，必须使用application作为方法名或类名
-# every request will restart application
 class application:
     urls = (
-        ("/blog/?", "hello"),
+        ("/(:?\.json$)?/?(\?.*)?$", blogFront),
+        ("/flush/?", blogFront),
+        ("/newpost/?$", newPost),
+        ("/signup/?(\?.*)?$", register),
+        ("/login/?(\?.*)?$", login),
+        ("/logout/?$", logout),
+        ("/(\d+)(:?\.json)?$", postPage),
     )
 
     def __init__(self, environ, start_response):
@@ -30,7 +41,7 @@ class application:
             return iter(result)
 
     def delegate(self):
-        # path format: host/blog/*
+        # path format: /myblog/*
         path = self.environ['PATH_INFO']
         method = self.environ['REQUEST_METHOD']
 
@@ -41,25 +52,33 @@ class application:
                 args = m.groups()
                 handler = name
                 funcname = method.lower()
-                return self.hello()
                 if hasattr(handler, funcname):
-                    func = getattr(self, funcname)
+                    func = getattr(handler, funcname)
                     return func(self, *args)
         return self.notfound()
 
     def header(self, name, value):
         self._headers.append((name, value))
 
-    def hello(self):
-        # the file path is the as the path of file "uwsgi-blog.ini"
-        f = open("index.html")
-        content = f.read()
-        f.close()
-        self.status = "200 OK"
-        self.header('Content-type', 'text/html')
-        return content.encode('utf-8')
-
     def notfound(self):
         self.status = "404 Not Found"
         self.header('Content-type', 'text/html')
-        return "404 Not Found\n".encode('utf-8')
+        return "404 Not Found by zx\n".encode('utf-8')
+
+    def serverError(self):
+        self.status = "500 Internal Server Error"
+        self.header('Content-type', 'text/html')
+        return "500 Internal Server Error".encode('utf-8')
+
+    def redirect(self, path):
+        self.status = "301 OK"
+        self.header('Location', path)
+        return "".encode("utf-8")
+
+    def getBody(self):
+        content_length = int(self.environ['CONTENT_LENGTH'])
+        content = self.environ['wsgi.input'].read(content_length).decode('utf-8')
+        return content
+
+    def readCookie(self):
+        return dict([self.environ["HTTP_COOKIE"].split("=")])
