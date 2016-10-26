@@ -18,6 +18,8 @@ class application:
         ("/login/?(\?.*)?$", login),
         ("/logout/?$", logout),
         ("/(\d+)(:?\.json)?$", postPage),
+
+        ("/blog/newpost.py", newPost),
     )
 
     def __init__(self, environ, start_response):
@@ -41,7 +43,6 @@ class application:
             return iter(result)
 
     def delegate(self):
-        # path format: /myblog/*
         path = self.environ['PATH_INFO']
         method = self.environ['REQUEST_METHOD']
 
@@ -62,12 +63,12 @@ class application:
 
     def notfound(self):
         self.status = "404 Not Found"
-        self.header('Content-type', 'text/html')
-        return "404 Not Found by zx\n".encode('utf-8')
+        self.header('Content-type', 'application/json')
+        return "404 Not Found".encode('utf-8')
 
     def serverError(self):
         self.status = "500 Internal Server Error"
-        self.header('Content-type', 'text/html')
+        self.header('Content-type', 'application/json')
         return "500 Internal Server Error".encode('utf-8')
 
     def redirect(self, path):
@@ -75,7 +76,7 @@ class application:
         self.header('Location', path)
         return "".encode("utf-8")
 
-    def getBody(self):
+    def getRequestContext(self):
         content_length = int(self.environ['CONTENT_LENGTH'])
         content = self.environ['wsgi.input'].read(content_length).decode('utf-8')
         return content

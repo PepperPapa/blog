@@ -62,7 +62,7 @@ class Signup:
     def post(self, app, *args):
         have_error = False
         # get username, password, verify from the request body
-        user = app.getBody()
+        user = app.getRequestContext()
         user = re.match(r'(.*)=(.*)&(.*)=(.*)&(.*)=(.*)', user).groups()
         user = dict([user[0:2], user[2:4], user[4::]])
 
@@ -107,7 +107,7 @@ class Login:
     def post(self, app, *args):
         login_error = False
         # get username, password from the request body
-        user = app.getBody()
+        user = app.getRequestContext()
         user = re.match(r'(.*)=(.*)&(.*)=(.*)', user).groups()
         user = dict([user[0:2], user[2:4]])
 

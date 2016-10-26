@@ -4,25 +4,26 @@ import { Link } from "react-router";
 var Articles = React.createClass({
   render: function() {
     var posts = this.props.posts;
-    var post_index_list = Object.keys(posts);
-    post_index_list.sort(function(a, b) {return a < b;});
     return (
       <section className="posts-container">
-        {post_index_list.map(function(id) {
+        {posts.map(function(post) {
+          /*  post format:
+          [id, subject, content, created, last_modified]
+          */
           return (
-            <article key={id}>
+            <article key={post[0]}>
               <h3 className="post-title">
                 <Link
-                  to={`/blog/${id}`}>
-                  {posts[id].subject}
+                  to={`/blog/${post[0]}`}>
+                  {post[1]}
                 </Link>
               </h3>
               <p className="post-info">
-                Posted on {posts[id].created} by PepperPapa
+                Posted on {post[2]} by PepperPapa
               </p>
-              <p className="post-summary">{posts[id].content}</p>
+              <p className="post-summary">{post[3]}</p>
               <p style={{marginTop: "2em"}}>
-                <Link to={`blog/${id}`} className="link-expand">阅读全文 »</Link>
+                <Link to={`blog/${post[0]}`} className="link-expand">阅读全文 »</Link>
               </p>
             </article>
           );

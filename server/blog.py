@@ -66,7 +66,6 @@ def get_posts(update = False):
 
         posts = db.blog.getAllPosts()
         age_set(mc_key, posts)
-
     return posts, age
 
 class BlogFront:
@@ -156,40 +155,29 @@ class NewPost:
     def __init__(self):
         self.id = db.blog.newpostID()
 
-    def get(self, app, *args):
-        f = open("newpost.html")
-        content = f.read()
-        f.close()
-        app.header('Content-type', 'text/html; charset=UTF-8')
-        return content.encode("utf-8")
-
     def post(self, app, *args):
-        new_post = app.getBody()
-        new_post_list = self.add_post(new_post)
-        app.header('Content-type', 'text/html; charset=UTF-8')
+        postContext = app.getRequestContext()
+        new_post_list = self.add_post(postContext)
+        app.header('Content-type', 'application/json; charset=UTF-8')
         if db.blog.newpost(new_post_list):
             # update BLOGS_CACHE
             get_posts(update = True)
-            return app.redirect("/myblog/%s" % new_post_list[0])
+            return json.dumps(new_post_list).encode("utf-8")
         else:
             return app.serverError()
 
-    def add_post(self, new_post):
-        # id, subject, content, created, last_modified
-        rule = r'.+=(.+)&.+=(.+)'
-        match = re.match(rule, new_post)
+    def add_post(self, postContext):
+        # [id, subject, content, created, last_modified]
+        post = json.loads(postContext)
         new_post = []
         new_post.append(self.id)
         self.id += 1    # self.id始终记录最新的post id
-        subject = urllib.parse.unquote(match.groups()[0])
-        subject = subject.replace("+", " ").replace("\r\n", "<br>")
-        new_post.append(subject)
-        content = urllib.parse.unquote(match.groups()[1])
-        content = content.replace("+", " ").replace("\r\n", "<br>")
-        new_post.append(content)
+        new_post.append(post["subject"])
+        new_post.append(post["content"])
         day = time.strftime("%b %d, %Y", time.localtime())
         new_post.append(day)
         new_post.append(day)
+        print("\n %s \n" % new_post)
         return new_post
 
 blogFront = BlogFront()

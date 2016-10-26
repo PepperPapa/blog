@@ -4,6 +4,7 @@ import { browserHistory } from "react-router";
 import NewPost from "../components/NewPost";
 import store from "../store/store";
 import { addPost } from "../actions/action";
+import $ from "../lib/XHR";
 
 var NewPostContainer =  React.createClass({
   publishPost: function(event) {
@@ -12,15 +13,22 @@ var NewPostContainer =  React.createClass({
       1. if response OK, jump to index page;
       2. is failed, jump to error page;
     */
-    store.dispatch(
-      addPost({
-        2: {
-          subject: "test subject",
-          created: "2016.10.25",
-          content: "test content"
-        }
-      })
-    );
+    $.ajax({
+      type: "post",
+      url: "newpost.py",
+      async: true,
+      context: JSON.stringify({
+        subject: "new subject",
+        content: "new content"
+      }),
+      success: function(xhr) {
+        console.log(xhr.responseText);
+        store.dispatch(
+          addPost(JSON.parse(xhr.responseText))
+        );
+      },
+      error: function(xhr) {console.log(xhr.responseText);}
+    });
     // jump to index page
     browserHistory.push("/blog");
   },

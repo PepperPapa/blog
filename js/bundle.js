@@ -11802,6 +11802,17 @@
 	var PostDetail = React.createClass({
 	  displayName: "PostDetail",
 	
+	  getPostBypostId: function getPostBypostId() {
+	    var postId = this.props.params.postId;
+	    var posts = this.props.posts;
+	    console.log(posts);
+	    for (var index in posts) {
+	      if (postId == posts[index][0]) {
+	        return posts[index];
+	      }
+	    }
+	  },
+	
 	  render: function render() {
 	    var style = {
 	      container: {
@@ -11832,8 +11843,7 @@
 	        fontFamily: "serif"
 	      }
 	    };
-	    var postId = this.props.params.postId;
-	    var post = this.props.posts[postId];
+	    var post = this.getPostBypostId();
 	    return (
 	      // return value require only one root element
 	      React.createElement(
@@ -11842,14 +11852,14 @@
 	        React.createElement(
 	          "article",
 	          {
-	            key: post.id,
+	            key: post[0],
 	            style: style.article },
 	          React.createElement(
 	            "h1",
 	            {
 	              className: "post-subject",
 	              style: style.head },
-	            post.subject
+	            post[1]
 	          ),
 	          React.createElement(
 	            "p",
@@ -11857,7 +11867,7 @@
 	              className: "post-date",
 	              style: style.created },
 	            "Posted on ",
-	            post.created,
+	            post[3],
 	            " by PepperPapa"
 	          ),
 	          React.createElement(
@@ -11865,7 +11875,7 @@
 	            {
 	              className: "post-content",
 	              style: style.content },
-	            post.content
+	            post[2]
 	          )
 	        )
 	      )
@@ -11912,18 +11922,7 @@
 	var _redux = __webpack_require__(105);
 	
 	var testState = {
-	  blogState: {
-	    1: {
-	      subject: "React Native with Apollo Server and Client — Part 1",
-	      created: "2016.10.17",
-	      content: "Redux 是 JavaScript 状态容器，提供可预测化的状态管理。" + "可以让你构建一致化的应用，运行于不同的环境（客户端、服务器、原生应用），并且易于测试。不仅于此，它还提供 超爽的开发体验，比如有一个时间旅行调试器可以编辑后实时预览。We will be using a combination of React Native, Apollo Client, Apollo Server, GraphQL, Express, and MongoDB to build a full stack mobile application."
-	    },
-	    0: {
-	      subject: "SEO vs. React: Web Crawlers are Smarter Than You Think",
-	      created: "2016.10.17",
-	      content: "Many people still worry that if you build a websites using tools like React, Angular, or Ember, it will hurt your search engine ranking."
-	    }
-	  }
+	  blogState: [[4, "test subject", "test content", "Oct 26, 2016", "Oct 26, 2016"], [3, "test subject", "test content", "Oct 26, 2016", "Oct 26, 2016"]]
 	};
 	
 	function blogReducer() {
@@ -11932,7 +11931,7 @@
 	
 	  switch (action.type) {
 	    case "ADD_POST":
-	      var newState = Object.assign({}, action.post, state);
+	      var newState = [].concat([action.post], state);
 	      console.log(newState);
 	      return newState;
 	      break;
@@ -29426,45 +29425,44 @@
 	
 	  render: function render() {
 	    var posts = this.props.posts;
-	    var post_index_list = Object.keys(posts);
-	    post_index_list.sort(function (a, b) {
-	      return a < b;
-	    });
 	    return React.createElement(
 	      "section",
 	      { className: "posts-container" },
-	      post_index_list.map(function (id) {
+	      posts.map(function (post) {
+	        /*  post format:
+	        [id, subject, content, created, last_modified]
+	        */
 	        return React.createElement(
 	          "article",
-	          { key: id },
+	          { key: post[0] },
 	          React.createElement(
 	            "h3",
 	            { className: "post-title" },
 	            React.createElement(
 	              _reactRouter.Link,
 	              {
-	                to: "/blog/" + id },
-	              posts[id].subject
+	                to: "/blog/" + post[0] },
+	              post[1]
 	            )
 	          ),
 	          React.createElement(
 	            "p",
 	            { className: "post-info" },
 	            "Posted on ",
-	            posts[id].created,
+	            post[2],
 	            " by PepperPapa"
 	          ),
 	          React.createElement(
 	            "p",
 	            { className: "post-summary" },
-	            posts[id].content
+	            post[3]
 	          ),
 	          React.createElement(
 	            "p",
 	            { style: { marginTop: "2em" } },
 	            React.createElement(
 	              _reactRouter.Link,
-	              { to: "blog/" + id, className: "link-expand" },
+	              { to: "blog/" + post[0], className: "link-expand" },
 	              "\u9605\u8BFB\u5168\u6587 \xBB"
 	            )
 	          )
@@ -29498,6 +29496,10 @@
 	
 	var _action = __webpack_require__(269);
 	
+	var _XHR = __webpack_require__(272);
+	
+	var _XHR2 = _interopRequireDefault(_XHR);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var NewPostContainer = _react2.default.createClass({
@@ -29509,13 +29511,22 @@
 	      1. if response OK, jump to index page;
 	      2. is failed, jump to error page;
 	    */
-	    _store2.default.dispatch((0, _action.addPost)({
-	      2: {
-	        subject: "test subject",
-	        created: "2016.10.25",
-	        content: "test content"
+	    _XHR2.default.ajax({
+	      type: "post",
+	      url: "newpost.py",
+	      async: true,
+	      context: JSON.stringify({
+	        subject: "new subject",
+	        content: "new content"
+	      }),
+	      success: function success(xhr) {
+	        console.log(xhr.responseText);
+	        _store2.default.dispatch((0, _action.addPost)(JSON.parse(xhr.responseText)));
+	      },
+	      error: function error(xhr) {
+	        console.log(xhr.responseText);
 	      }
-	    }));
+	    });
 	    // jump to index page
 	    _reactRouter.browserHistory.push("/blog");
 	  },
@@ -29658,13 +29669,7 @@
 	};
 	
 	/*  post format:
-	{
-	  id: {
-	    subject: "xx",
-	    created: "zz",
-	    content: "xxx"
-	  }
-	}
+	[id, subject, content, created, last_modified]
 	*/
 	var addPost = exports.addPost = function addPost(post) {
 	  return {
@@ -29923,6 +29928,59 @@
 	});
 	
 	module.exports = Signup;
+
+/***/ },
+/* 272 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/*
+	simple Ajax function
+	*/
+	
+	function createXHR() {
+	  if (typeof XMLHttpRequest != "undefined") {
+	    return new XMLHttpRequest();
+	  }
+	}
+	
+	var xhr = createXHR();
+	
+	var $ = {
+	  ajax: function ajax() {
+	    /*
+	     arguments[0] format:
+	     {
+	      type: "get",
+	      url: "getposts.py",
+	      async: true,
+	      context: "xxx",
+	      success: callback,
+	      error: callback
+	      }
+	    */
+	    var para = arguments[0];
+	    xhr.onreadystatechange = function () {
+	      if (xhr.readyState == 4) {
+	        if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+	          para.success(xhr);
+	        } else {
+	          para.error(xhr);
+	        }
+	      }
+	    };
+	
+	    xhr.open(para.type, para.url, para.async);
+	    xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+	    xhr.send(para.context);
+	  }
+	};
+	
+	exports.default = $;
 
 /***/ }
 /******/ ]);

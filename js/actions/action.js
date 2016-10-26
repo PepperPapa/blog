@@ -3,13 +3,7 @@ const types = {
 };
 
 /*  post format:
-{
-  id: {
-    subject: "xx",
-    created: "zz",
-    content: "xxx"
-  }
-}
+[id, subject, content, created, last_modified]
 */
 export const addPost = post => ({
   type: types.ADD_POST,
