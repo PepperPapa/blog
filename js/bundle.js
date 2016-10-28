@@ -77,8 +77,8 @@
 	var Main = __webpack_require__(264);
 	var NewPostContainer = __webpack_require__(267);
 	
-	var Login = __webpack_require__(270);
-	var Signup = __webpack_require__(271);
+	var Login = __webpack_require__(271);
+	var Signup = __webpack_require__(272);
 	
 	
 	// you can't insert comments in first parameter for ReactDOM.render function
@@ -11921,12 +11921,12 @@
 	
 	var _redux = __webpack_require__(105);
 	
-	var testState = {
+	var rootState = {
 	  blogState: [[4, "test subject", "test content", "Oct 26, 2016", "Oct 26, 2016"], [3, "test subject", "test content", "Oct 26, 2016", "Oct 26, 2016"]]
 	};
 	
 	function blogReducer() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : testState.blogState;
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : rootState.blogState;
 	  var action = arguments[1];
 	
 	  switch (action.type) {
@@ -29215,7 +29215,11 @@
 	        React.createElement(
 	          "h1",
 	          null,
-	          "Pepperpapa's Blog"
+	          React.createElement(
+	            _reactRouter.Link,
+	            { to: "/blog" },
+	            "Pepperpapa's Blog"
+	          )
 	        ),
 	        React.createElement(
 	          "nav",
@@ -29496,7 +29500,7 @@
 	
 	var _action = __webpack_require__(269);
 	
-	var _XHR = __webpack_require__(272);
+	var _XHR = __webpack_require__(270);
 	
 	var _XHR2 = _interopRequireDefault(_XHR);
 	
@@ -29680,6 +29684,59 @@
 
 /***/ },
 /* 270 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/*
+	simple Ajax function
+	*/
+	
+	function createXHR() {
+	  if (typeof XMLHttpRequest != "undefined") {
+	    return new XMLHttpRequest();
+	  }
+	}
+	
+	var xhr = createXHR();
+	
+	var $ = {
+	  ajax: function ajax() {
+	    /*
+	     arguments[0] format:
+	     {
+	      type: "get",
+	      url: "getposts.py",
+	      async: true,
+	      context: "xxx",
+	      success: callback,
+	      error: callback
+	      }
+	    */
+	    var para = arguments[0];
+	    xhr.onreadystatechange = function () {
+	      if (xhr.readyState == 4) {
+	        if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+	          para.success(xhr);
+	        } else {
+	          para.error(xhr);
+	        }
+	      }
+	    };
+	
+	    xhr.open(para.type, para.url, para.async);
+	    xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+	    xhr.send(para.context);
+	  }
+	};
+	
+	exports.default = $;
+
+/***/ },
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29802,7 +29859,7 @@
 	module.exports = Login;
 
 /***/ },
-/* 271 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29928,59 +29985,6 @@
 	});
 	
 	module.exports = Signup;
-
-/***/ },
-/* 272 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	/*
-	simple Ajax function
-	*/
-	
-	function createXHR() {
-	  if (typeof XMLHttpRequest != "undefined") {
-	    return new XMLHttpRequest();
-	  }
-	}
-	
-	var xhr = createXHR();
-	
-	var $ = {
-	  ajax: function ajax() {
-	    /*
-	     arguments[0] format:
-	     {
-	      type: "get",
-	      url: "getposts.py",
-	      async: true,
-	      context: "xxx",
-	      success: callback,
-	      error: callback
-	      }
-	    */
-	    var para = arguments[0];
-	    xhr.onreadystatechange = function () {
-	      if (xhr.readyState == 4) {
-	        if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
-	          para.success(xhr);
-	        } else {
-	          para.error(xhr);
-	        }
-	      }
-	    };
-	
-	    xhr.open(para.type, para.url, para.async);
-	    xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-	    xhr.send(para.context);
-	  }
-	};
-	
-	exports.default = $;
 
 /***/ }
 /******/ ]);

@@ -6,7 +6,7 @@ var Header = React.createClass({
     return (
       <header>
         <div>
-          <h1>Pepperpapa's Blog</h1>
+          <h1><Link to="/blog">Pepperpapa's Blog</Link></h1>
           <nav>
             <ul>
               <li><Link to="/login" className="link-header">登陆</Link></li>

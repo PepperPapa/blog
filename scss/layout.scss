@@ -13,10 +13,12 @@ header {
   background-position: 0 0, 15px 15px;
   color: white;
   h1 {
-    color: inherit;
     padding-left: 1.6em;
     background: url("../images/logo.png") no-repeat center left;
     background-size: auto 100%;
+    a {
+      color: white;
+    }
   }
   div {
     display: flex;

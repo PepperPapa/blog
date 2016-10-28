@@ -1,13 +1,13 @@
 import { combineReducers } from "redux";
 
-const testState = {
+const rootState = {
   blogState: [
     [4, "test subject", "test content", "Oct 26, 2016", "Oct 26, 2016"],
     [3, "test subject", "test content", "Oct 26, 2016", "Oct 26, 2016"]
   ]
 };
 
-function blogReducer(state = testState.blogState, action) {
+function blogReducer(state = rootState.blogState, action) {
   switch (action.type) {
     case "ADD_POST":
       var newState = [].concat([action.post], state);
