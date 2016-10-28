@@ -11948,8 +11948,11 @@
 	
 	  switch (action.type) {
 	    case "FETCH_POSTS":
-	      return state;
-	      break;
+	      return { posts: [], loading: true, error: null };
+	    case "FETCH_POSTS_SUCCESS":
+	      return { posts: action.payload, loading: false, error: null };
+	    case "FETCH_POSTS_FAILURE":
+	      return { posts: [], loading: false, error: { message: action.payload } };
 	    default:
 	      return state;
 	  }
@@ -29426,13 +29429,20 @@
 	
 	var _reactRedux = __webpack_require__(98);
 	
+	var _action = __webpack_require__(269);
+	
 	var React = __webpack_require__(4);
 	
 	
 	var Articles = __webpack_require__(266);
 	
+	
 	var ArticlesContainer = React.createClass({
 	  displayName: "ArticlesContainer",
+	
+	  componentDidMount: function componentDidMount() {
+	    this.props.fetchPosts();
+	  },
 	
 	  render: function render() {
 	    return React.createElement(Articles, {
@@ -29446,7 +29456,15 @@
 	  };
 	};
 	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(ArticlesContainer);
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    fetchPosts: function fetchPosts() {
+	      return dispatch((0, _action.fetchPosts)());
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ArticlesContainer);
 
 /***/ },
 /* 266 */
@@ -29731,13 +29749,28 @@
 
 /***/ },
 /* 269 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.addPost = undefined;
+	exports.fetchPosts = fetchPosts;
+	exports.fetchPostsSuccess = fetchPostsSuccess;
+	exports.fetchPostsFailure = fetchPostsFailure;
+	
+	var _XHR = __webpack_require__(270);
+	
+	var _XHR2 = _interopRequireDefault(_XHR);
+	
+	var _store = __webpack_require__(121);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	var types = {
 	  // for page "/blog"
 	  "FETCH_POSTS": "FETCH_POSTS",
@@ -29747,9 +29780,37 @@
 	  "ADD_POST": "ADD_POST"
 	};
 	
-	var fetchPosts = exports.fetchPosts = function fetchPosts() {
-	  type: types.FETCH_POSTS;
+	function fetchPosts() {
+	  _XHR2.default.ajax({
+	    type: "get",
+	    url: "/blog/posts.py",
+	    async: true,
+	    context: null,
+	    success: function success(xhr) {
+	      _store2.default.dispatch(fetchPostsSuccess(JSON.parse(xhr.responseText)));
+	    },
+	    error: function error(xhr) {
+	      _store2.default.dispatch(fetchPostsFailure(JSON.parse(xhr.responseText)));
+	    }
+	  });
+	  return {
+	    type: types.FETCH_POSTS
+	  };
 	};
+	
+	function fetchPostsSuccess(posts) {
+	  return {
+	    type: types.FETCH_POSTS_SUCCESS,
+	    payload: posts
+	  };
+	};
+	
+	function fetchPostsFailure(error) {
+	  return {
+	    type: types.FETCH_POSTS_FAILURE,
+	    payload: error
+	  };
+	}
 	
 	/*  post format:
 	[id, subject, content, created, last_modified]

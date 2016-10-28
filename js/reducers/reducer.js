@@ -30,8 +30,11 @@ const rootState = {
 function postsListReducer(state = rootState.postsList, action) {
   switch (action.type) {
     case "FETCH_POSTS":
-      return state;
-      break;
+      return {posts:[], loading: true, error: null};
+    case "FETCH_POSTS_SUCCESS":
+      return {posts: action.payload, loading: false, error: null};
+    case "FETCH_POSTS_FAILURE":
+      return {posts: [], loading: false, error: {message: action.payload}}
     default:
       return state;
   }

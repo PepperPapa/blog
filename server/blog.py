@@ -76,45 +76,16 @@ class BlogFront:
             BLOGS_CACHE.clear()
 
         posts, age = get_posts()
+
         if posts:
-            if app.format == "html":
-                post_html = []
-                for post in posts:
-                    # id, subject, content, created, last_modified
-                    post_info = {"subject": post[1],
-                                 "date": post[4],
-                                 "content": post[2],
-                                 "link": "/myblog/%s" % post[0]}
-                    post_block = POST_TEMPLATE.format(**post_info)
-                    post_html.append(post_block)
-                post_html = "\n".join(post_html)
-                f = open("index.html")
-                index_html = f.read()
-                f.close()
-                index_html = index_html.replace("{{posts}}", post_html)
-                # login-area
-                if login.user:
-                    login_area = """
-                    <a href="/myblog/newpost">Write a Story</a>
-                    <a class="like-btn" href="#">{}</a>
-                    <a class="like-btn" href="/myblog/logout">logout</a>
-                    """.format(login.user)
-                else:
-                    login_area = """
-                    <a class="like-btn" href="/myblog/login">login</a>
-                    <a class="like-btn" href="/myblog/signup">signup</a>
-                    """
-                index_html = index_html.replace("{{login-area}}", login_area)
+            json_posts = json.dumps([post_as_dict(post) for post in posts])
+            app.header('Content-type', 'application/json; charset=UF-8')
+            return json_posts.encode("utf-8")
+        else:
+            app.status = "404 Posts Not Found"
+            app.header('Content-type', 'application/json; charset=UF-8')
+            return json.dumps("404 Posts Not Found").encode("utf-8")
 
-                # debug code
-                index_html = index_html.replace("{{age}}", age_str(age))
-
-                app.header('Content-type', 'text/html; charset=UTF-8')
-                return index_html.encode("utf-8")
-            else:
-                json_posts = json.dumps([post_as_dict(post) for post in posts])
-                app.header('Content-type', 'application/json; charset=UF-8')
-                return json_posts.encode("utf-8")
 
 class PostPage:
     def get(self, app, *args):
