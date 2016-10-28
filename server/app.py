@@ -19,6 +19,7 @@ class application:
         ("/logout/?$", logout),
         ("/(\d+)(:?\.json)?$", postPage),
 
+        ("/blog/posts.py", blogFront),
         ("/blog/newpost.py", newPost),
     )
 

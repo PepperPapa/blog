@@ -11922,8 +11922,38 @@
 	var _redux = __webpack_require__(105);
 	
 	var rootState = {
-	  blogState: [[4, "test subject", "test content", "Oct 26, 2016", "Oct 26, 2016"], [3, "test subject", "test content", "Oct 26, 2016", "Oct 26, 2016"]]
+	  blogState: [[4, "test subject", "test content", "Oct 26, 2016", "Oct 26, 2016"], [3, "test subject", "test content", "Oct 26, 2016", "Oct 26, 2016"]],
+	  postsList: {
+	    posts: [{
+	      id: 0,
+	      subject: "test0",
+	      content: "text0",
+	      created: "Oct 26, 2016",
+	      last_modified: "Oct 26, 2016"
+	    }, {
+	      id: 1,
+	      subject: "test1",
+	      content: "text1",
+	      created: "Oct 26, 2016",
+	      last_modified: "Oct 26, 2016"
+	    }],
+	    error: null,
+	    loading: false
+	  }
 	};
+	
+	function postsListReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : rootState.postsList;
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case "FETCH_POSTS":
+	      return state;
+	      break;
+	    default:
+	      return state;
+	  }
+	}
 	
 	function blogReducer() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : rootState.blogState;
@@ -11940,9 +11970,14 @@
 	  }
 	}
 	
-	/* TODO: must using export, if not the browser will report error below
-	 bundle.js:10988 Uncaught Error: Expected the reducer to be a function.(…) */
+	/*
+	 TODO: must using export, if not the browser will report error below
+	 bundle.js:10988 Uncaught Error: Expected the reducer to be a function.(…)
+	
+	 all reducers's states make up the full state
+	 */
 	var reducer = exports.reducer = (0, _redux.combineReducers)({
+	  postsList: postsListReducer,
 	  blogState: blogReducer
 	});
 	
@@ -29401,13 +29436,13 @@
 	
 	  render: function render() {
 	    return React.createElement(Articles, {
-	      posts: this.props.posts });
+	      postsList: this.props.postsList });
 	  }
 	});
 	
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    posts: state.blogState
+	    postsList: state.postsList
 	  };
 	};
 	
@@ -29428,7 +29463,42 @@
 	  displayName: "Articles",
 	
 	  render: function render() {
-	    var posts = this.props.posts;
+	    var _props$postsList = this.props.postsList;
+	    var posts = _props$postsList.posts;
+	    var loading = _props$postsList.loading;
+	    var error = _props$postsList.error;
+	
+	    if (loading) {
+	      return React.createElement(
+	        "section",
+	        { className: "posts-container" },
+	        React.createElement(
+	          "article",
+	          null,
+	          React.createElement(
+	            "span",
+	            null,
+	            "\u6B63\u5728\u52A0\u8F7D..."
+	          )
+	        )
+	      );
+	    } else if (error) {
+	      return React.createElement(
+	        "section",
+	        { className: "posts-container" },
+	        React.createElement(
+	          "article",
+	          null,
+	          React.createElement(
+	            "span",
+	            null,
+	            "\u52A0\u8F7D\u51FA\u9519\uFF1A",
+	            error.message
+	          )
+	        )
+	      );
+	    }
+	
 	    return React.createElement(
 	      "section",
 	      { className: "posts-container" },
@@ -29438,35 +29508,35 @@
 	        */
 	        return React.createElement(
 	          "article",
-	          { key: post[0] },
+	          { key: post.id },
 	          React.createElement(
 	            "h3",
 	            { className: "post-title" },
 	            React.createElement(
 	              _reactRouter.Link,
 	              {
-	                to: "/blog/" + post[0] },
-	              post[1]
+	                to: "/blog/" + post.id },
+	              post.subject
 	            )
 	          ),
 	          React.createElement(
 	            "p",
 	            { className: "post-info" },
 	            "Posted on ",
-	            post[2],
+	            post.created,
 	            " by PepperPapa"
 	          ),
 	          React.createElement(
 	            "p",
 	            { className: "post-summary" },
-	            post[3]
+	            post.content
 	          ),
 	          React.createElement(
 	            "p",
 	            { style: { marginTop: "2em" } },
 	            React.createElement(
 	              _reactRouter.Link,
-	              { to: "blog/" + post[0], className: "link-expand" },
+	              { to: "blog/" + post.id, className: "link-expand" },
 	              "\u9605\u8BFB\u5168\u6587 \xBB"
 	            )
 	          )
@@ -29669,7 +29739,16 @@
 	  value: true
 	});
 	var types = {
+	  // for page "/blog"
+	  "FETCH_POSTS": "FETCH_POSTS",
+	  "FETCH_POSTS_SUCCESS": "FETCH_POSTS_SUCCESS",
+	  "FETCH_POSTS_FAILURE": "FETCH_POSTS_FAILURE",
+	
 	  "ADD_POST": "ADD_POST"
+	};
+	
+	var fetchPosts = exports.fetchPosts = function fetchPosts() {
+	  type: types.FETCH_POSTS;
 	};
 	
 	/*  post format:

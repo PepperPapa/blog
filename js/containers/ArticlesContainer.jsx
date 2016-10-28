@@ -7,14 +7,14 @@ var ArticlesContainer = React.createClass({
   render: function() {
     return (
       <Articles
-        posts={this.props.posts} />
+        postsList={this.props.postsList} />
     );
   }
 });
 
 const mapStateToProps = function(state) {
   return {
-    posts: state.blogState
+    postsList: state.postsList
   }
 };
 
