@@ -32,17 +32,23 @@ const rootState = {
     },
     error: null,
     loading: false
+  },
+
+  newPost: {
+    post: null,
+    error: null,
+    loading: false
   }
 };
 
 function postsListReducer(state = rootState.postsList, action) {
   switch (action.type) {
     case "FETCH_POSTS":
-      return {posts:[], loading: true, error: null};
+      return {posts: null, loading: true, error: null};
     case "FETCH_POSTS_SUCCESS":
       return {posts: action.payload, loading: false, error: null};
     case "FETCH_POSTS_FAILURE":
-      return {posts: [], loading: false, error: {message: action.payload}}
+      return {posts: null, loading: false, error: {message: action.payload}}
     default:
       return state;
   }
@@ -51,11 +57,24 @@ function postsListReducer(state = rootState.postsList, action) {
 function activePostReducer(state = rootState.activePost, action) {
   switch (action.type) {
     case "FETCH_POST":
-      return {post:{}, loading: true, error: null};
+      return {post: null, loading: true, error: null};
     case "FETCH_POST_SUCCESS":
       return {post: action.payload, loading: false, error: null};
     case "FETCH_POST_FAILURE":
-      return {post: [], loading: false, error: {message: action.payload}}
+      return {post: null, loading: false, error: {message: action.payload}}
+    default:
+      return state;
+  }
+}
+
+function newPostReducer(state = rootState.newPost, action) {
+  switch (action.type) {
+    case "CREATE_POST":
+      return {post: null, loading: true, error: null};
+    case "CREATE_POST_SUCCESS":
+      return {post: action.payload, loading: false, error: null};
+    case "CREATE_POST_FAILURE":
+      return {post: null, loading: false, error: {message: action.payload}}
     default:
       return state;
   }
@@ -69,7 +88,8 @@ function activePostReducer(state = rootState.activePost, action) {
  */
 export const reducer = combineReducers({
   postsList: postsListReducer,
-  activePost: activePostReducer
+  activePost: activePostReducer,
+  newPost: newPostReducer,
 });
 
 export default reducer;

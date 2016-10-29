@@ -13,6 +13,12 @@ const types = {
   "FETCH_POST_FAILURE": "FETCH_POST_FAILURE",
   "RESET_ACTIVE_POST": "RESET_ACTIVE_POST",
 
+  // for page "/blog/newpost"
+  "CREATE_POST": "CREATE_POST",
+  "CREATE_POST_SUCCESS": "CREATE_POST_SUCCESS",
+  "CREATE_POST_FAILURE": "CREATE_POST_FAILURE",
+  "NEW_POST_RESET": "NEW_POST_RESET",
+
   "ADD_POST": "ADD_POST",
 };
 
@@ -91,10 +97,36 @@ export function fetchPostFailure(error) {
   };
 }
 
-/*  post format:
-[id, subject, content, created, last_modified]
-*/
-export const addPost = post => ({
-  type: types.ADD_POST,
-  post: post
-});
+// action creater for newpost
+export function createPost(props) {
+  $.ajax({
+    type: "post",
+    url: "/blog/newpost.py",
+    async: true,
+    context: props,
+    success: function(xhr) {
+      store.dispatch(createPostSuccess(JSON.parse(xhr.responseText)));
+    },
+    error: function(xhr) {
+      store.dispatch(createPostFailure(JSON.parse(xhr.responseText)));
+    }
+  });
+
+  return {
+    type: types.CREATE_POST
+  }
+}
+
+export function createPostSuccess(newPost) {
+  return {
+    type: types.CREATE_POST_SUCCESS,
+    payload: newPost
+  };
+}
+
+export function createPostFailure(error) {
+  return {
+    type: types.CREATE_POST_FAILURE,
+    payload: error
+  };
+}

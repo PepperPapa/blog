@@ -57,6 +57,10 @@
 	
 	var _reactRedux = __webpack_require__(98);
 	
+	var _NewPostContainer = __webpack_require__(270);
+	
+	var _NewPostContainer2 = _interopRequireDefault(_NewPostContainer);
+	
 	var _PostDetailContainer = __webpack_require__(120);
 	
 	var _PostDetailContainer2 = _interopRequireDefault(_PostDetailContainer);
@@ -75,7 +79,6 @@
 	
 	var BlogApp = __webpack_require__(264);
 	var Main = __webpack_require__(267);
-	var NewPostContainer = __webpack_require__(270);
 	
 	var Login = __webpack_require__(272);
 	var Signup = __webpack_require__(273);
@@ -105,7 +108,7 @@
 	      _reactRouter.Route,
 	      { path: "/blog", component: BlogApp },
 	      React.createElement(_reactRouter.IndexRoute, { component: Main }),
-	      React.createElement(_reactRouter.Route, { path: "newpost", component: NewPostContainer }),
+	      React.createElement(_reactRouter.Route, { path: "newpost", component: _NewPostContainer2.default }),
 	      React.createElement(_reactRouter.Route, { path: ":postId", component: _PostDetailContainer2.default })
 	    ),
 	    React.createElement(_reactRouter.Route, { path: "/login", component: Login }),
@@ -11835,13 +11838,15 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.addPost = undefined;
 	exports.fetchPosts = fetchPosts;
 	exports.fetchPostsSuccess = fetchPostsSuccess;
 	exports.fetchPostsFailure = fetchPostsFailure;
 	exports.fetchPost = fetchPost;
 	exports.fetchPostSuccess = fetchPostSuccess;
 	exports.fetchPostFailure = fetchPostFailure;
+	exports.createPost = createPost;
+	exports.createPostSuccess = createPostSuccess;
+	exports.createPostFailure = createPostFailure;
 	
 	var _XHR = __webpack_require__(122);
 	
@@ -11864,6 +11869,12 @@
 	  "FETCH_POST_SUCCESS": "FETCH_POST_SUCCESS",
 	  "FETCH_POST_FAILURE": "FETCH_POST_FAILURE",
 	  "RESET_ACTIVE_POST": "RESET_ACTIVE_POST",
+	
+	  // for page "/blog/newpost"
+	  "CREATE_POST": "CREATE_POST",
+	  "CREATE_POST_SUCCESS": "CREATE_POST_SUCCESS",
+	  "CREATE_POST_FAILURE": "CREATE_POST_FAILURE",
+	  "NEW_POST_RESET": "NEW_POST_RESET",
 	
 	  "ADD_POST": "ADD_POST"
 	};
@@ -11935,15 +11946,39 @@
 	  };
 	}
 	
-	/*  post format:
-	[id, subject, content, created, last_modified]
-	*/
-	var addPost = exports.addPost = function addPost(post) {
+	// action creater for newpost
+	function createPost(props) {
+	  _XHR2.default.ajax({
+	    type: "post",
+	    url: "/blog/newpost.py",
+	    async: true,
+	    context: props,
+	    success: function success(xhr) {
+	      _store2.default.dispatch(createPostSuccess(JSON.parse(xhr.responseText)));
+	    },
+	    error: function error(xhr) {
+	      _store2.default.dispatch(createPostFailure(JSON.parse(xhr.responseText)));
+	    }
+	  });
+	
 	  return {
-	    type: types.ADD_POST,
-	    post: post
+	    type: types.CREATE_POST
 	  };
-	};
+	}
+	
+	function createPostSuccess(newPost) {
+	  return {
+	    type: types.CREATE_POST_SUCCESS,
+	    payload: newPost
+	  };
+	}
+	
+	function createPostFailure(error) {
+	  return {
+	    type: types.CREATE_POST_FAILURE,
+	    payload: error
+	  };
+	}
 
 /***/ },
 /* 122 */
@@ -12057,6 +12092,12 @@
 	    },
 	    error: null,
 	    loading: false
+	  },
+	
+	  newPost: {
+	    post: null,
+	    error: null,
+	    loading: false
 	  }
 	};
 	
@@ -12066,11 +12107,11 @@
 	
 	  switch (action.type) {
 	    case "FETCH_POSTS":
-	      return { posts: [], loading: true, error: null };
+	      return { posts: null, loading: true, error: null };
 	    case "FETCH_POSTS_SUCCESS":
 	      return { posts: action.payload, loading: false, error: null };
 	    case "FETCH_POSTS_FAILURE":
-	      return { posts: [], loading: false, error: { message: action.payload } };
+	      return { posts: null, loading: false, error: { message: action.payload } };
 	    default:
 	      return state;
 	  }
@@ -12082,11 +12123,27 @@
 	
 	  switch (action.type) {
 	    case "FETCH_POST":
-	      return { post: {}, loading: true, error: null };
+	      return { post: null, loading: true, error: null };
 	    case "FETCH_POST_SUCCESS":
 	      return { post: action.payload, loading: false, error: null };
 	    case "FETCH_POST_FAILURE":
-	      return { post: [], loading: false, error: { message: action.payload } };
+	      return { post: null, loading: false, error: { message: action.payload } };
+	    default:
+	      return state;
+	  }
+	}
+	
+	function newPostReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : rootState.newPost;
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case "CREATE_POST":
+	      return { post: null, loading: true, error: null };
+	    case "CREATE_POST_SUCCESS":
+	      return { post: action.payload, loading: false, error: null };
+	    case "CREATE_POST_FAILURE":
+	      return { post: null, loading: false, error: { message: action.payload } };
 	    default:
 	      return state;
 	  }
@@ -12100,7 +12157,8 @@
 	 */
 	var reducer = exports.reducer = (0, _redux.combineReducers)({
 	  postsList: postsListReducer,
-	  activePost: activePostReducer
+	  activePost: activePostReducer,
+	  newPost: newPostReducer
 	});
 	
 	exports.default = reducer;
@@ -29810,11 +29868,17 @@
 
 	"use strict";
 	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
 	var _react = __webpack_require__(4);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
 	var _reactRouter = __webpack_require__(2);
+	
+	var _reactRedux = __webpack_require__(98);
 	
 	var _NewPost = __webpack_require__(271);
 	
@@ -29835,38 +29899,58 @@
 	var NewPostContainer = _react2.default.createClass({
 	  displayName: "NewPostContainer",
 	
+	  getInitialState: function getInitialState() {
+	    return {
+	      subject: "",
+	      content: ""
+	    };
+	  },
+	
+	  handleSubjectChange: function handleSubjectChange(event) {
+	    this.setState({ subject: event.target.value });
+	  },
+	
+	  handleContentChange: function handleContentChange(event) {
+	    this.setState({ content: event.target.value });
+	  },
+	
 	  publishPost: function publishPost(event) {
 	    event.preventDefault();
 	    /* Ajax post request to server
 	      1. if response OK, jump to index page;
 	      2. is failed, jump to error page;
 	    */
-	    _XHR2.default.ajax({
-	      type: "post",
-	      url: "newpost.py",
-	      async: true,
-	      context: JSON.stringify({
-	        subject: "new subject",
-	        content: "new content"
-	      }),
-	      success: function success(xhr) {
-	        console.log(xhr.responseText);
-	        _store2.default.dispatch((0, _action.addPost)(JSON.parse(xhr.responseText)));
-	      },
-	      error: function error(xhr) {
-	        console.log(xhr.responseText);
-	      }
-	    });
-	    // jump to index page
-	    _reactRouter.browserHistory.push("/blog");
+	    this.props.createPost(JSON.stringify(this.state));
 	  },
 	
 	  render: function render() {
-	    return _react2.default.createElement(_NewPost2.default, { publishPost: this.publishPost });
+	    if (!this.props.newPost.post) {
+	      return _react2.default.createElement(_NewPost2.default, {
+	        newPost: this.props.newPost,
+	        publishPost: this.publishPost,
+	        handleSubjectChange: this.handleSubjectChange,
+	        handleContentChange: this.handleContentChange });
+	    } else {
+	      _reactRouter.browserHistory.push("/blog");
+	    }
 	  }
 	});
 	
-	module.exports = NewPostContainer;
+	function mapStateToProps(state) {
+	  return {
+	    newPost: state.newPost
+	  };
+	}
+	
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    createPost: function createPost(props) {
+	      return dispatch((0, _action.createPost)(props));
+	    }
+	  };
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(NewPostContainer);
 
 /***/ },
 /* 271 */
@@ -29922,6 +30006,28 @@
 	        float: "right"
 	      }
 	    };
+	    var _props$newPost = this.props.newPost;
+	    var post = _props$newPost.post;
+	    var loading = _props$newPost.loading;
+	    var error = _props$newPost.error;
+	
+	
+	    if (error) {
+	      return (
+	        // return value require only one root element
+	        React.createElement(
+	          "div",
+	          { style: style.container },
+	          React.createElement(
+	            "span",
+	            null,
+	            "\u6587\u7AE0\u53D1\u5E03\u5931\u8D25\uFF1A",
+	            error.message
+	          )
+	        )
+	      );
+	    }
+	
 	    return (
 	      // return value require only one root element
 	      React.createElement(
@@ -29945,7 +30051,8 @@
 	              type: "text",
 	              name: "subject",
 	              placeholder: "\u6807\u9898",
-	              style: style.input })
+	              style: style.input,
+	              onChange: this.props.handleSubjectChange })
 	          ),
 	          React.createElement(
 	            "p",
@@ -29961,14 +30068,15 @@
 	              id: "content",
 	              name: "content",
 	              placeholder: "\u4E3B\u4F53",
-	              style: style.textarea })
+	              style: style.textarea,
+	              onChange: this.props.handleContentChange })
 	          ),
 	          React.createElement(
 	            "p",
 	            null,
 	            React.createElement(
 	              "button",
-	              {
+	              { type: "submit",
 	                className: "normal",
 	                style: style.button,
 	                onClick: function onClick(e) {

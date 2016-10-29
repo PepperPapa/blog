@@ -14,15 +14,6 @@ else:
     from server import db
     from server.sign import login
 
-
-POST_TEMPLATE = """
-    <article>
-        <h2><a href="{link}">{subject}</a></h2>
-        <div>{date}</div>
-        <div>{content}</div>
-    </article>
-"""
-
 # memory cache
 BLOGS_CACHE = {}
 
@@ -128,7 +119,6 @@ class NewPost:
         day = time.strftime("%b %d, %Y", time.localtime())
         new_post.append(day)
         new_post.append(day)
-        print("\n %s \n" % new_post)
         return new_post
 
 blogFront = BlogFront()

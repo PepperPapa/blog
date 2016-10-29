@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 
 var BlogApp = require("./components/BlogApp");
 var Main = require("./components/Main");
-var NewPostContainer = require("./containers/NewPostContainer");
+import NewPostContainer from "./containers/NewPostContainer";
 import PostDetailContainer from "./containers/PostDetailContainer";
 var Login = require("./components/Login");
 var Signup = require("./components/Signup");

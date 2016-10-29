@@ -42,6 +42,17 @@ var NewPost = React.createClass({
         float: "right"
       }
     }
+    const {post, loading, error} = this.props.newPost;
+
+    if (error) {
+      return (
+        // return value require only one root element
+        <div style={style.container}>
+          <span>文章发布失败：{error.message}</span>
+        </div>
+      );
+    }
+
     return (
       // return value require only one root element
       <div style={style.container}>
@@ -55,7 +66,8 @@ var NewPost = React.createClass({
               type="text"
               name="subject"
               placeholder="标题"
-              style={style.input} />
+              style={style.input}
+              onChange={this.props.handleSubjectChange} />
           </p>
           <p style={style.p}>
             <label
@@ -65,10 +77,11 @@ var NewPost = React.createClass({
               id="content"
               name="content"
               placeholder="主体"
-              style={style.textarea}></textarea>
+              style={style.textarea}
+              onChange={this.props.handleContentChange}></textarea>
           </p>
           <p>
-            <button
+            <button type="submit"
               className="normal"
               style={style.button}
               onClick={(e) => this.props.publishPost(e)}>发布</button>
