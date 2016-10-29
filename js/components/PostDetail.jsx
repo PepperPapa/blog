@@ -1,20 +1,6 @@
 var React = require("react");
-import { connect } from "react-redux";
-
-import store from "../store/store";
 
 var PostDetail = React.createClass({
-  getPostBypostId: function() {
-    let postId = this.props.params.postId;
-    let posts = this.props.posts;
-    console.log(posts);
-    for (var index in posts) {
-      if (postId == posts[index][0]) {
-        return posts[index];
-      }
-    }
-  },
-
   render: function() {
     var style = {
       container: {
@@ -45,36 +31,49 @@ var PostDetail = React.createClass({
         fontFamily: "serif"
       }
     }
-    let post = this.getPostBypostId();
+    const {post, loading, error} = this.props.activePost;
+
+    if (loading) {
+      return (
+        <div style={style.container}>
+          <article style={style.article}>
+            <span>正在加载...</span>
+          </article>
+        </div>
+      );
+    } else if (error) {
+      return (
+        <div style={style.container}>
+          <article style={style.article}>
+            <span>加载出错：{error.message}</span>
+          </article>
+        </div>
+      );
+    }
+
     return (
       // return value require only one root element
       <div style={style.container}>
         <article
-          key={post[0]}
+          key={post.id}
           style={style.article}>
           <h1
             className="post-subject"
             style={style.head}>
-            {post[1]}
+            {post.subject}
           </h1>
           <p
             className="post-date"
             style={style.created}>
-            Posted on {post[3]} by PepperPapa
+            Posted on {post.created} by PepperPapa
           </p>
           <p
             className="post-content"
-            style={style.content}>{post[2]}</p>
+            style={style.content}>{post.content}</p>
         </article>
       </div>
     );
   }
 });
 
-const mapStateToProps = function(state) {
-  return {
-    posts: state.blogState
-  }
-};
-
-export default connect(mapStateToProps)(PostDetail);
+module.exports = PostDetail;

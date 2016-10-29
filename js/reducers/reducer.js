@@ -1,10 +1,6 @@
 import { combineReducers } from "redux";
 
 const rootState = {
-  blogState: [
-    [4, "test subject", "test content", "Oct 26, 2016", "Oct 26, 2016"],
-    [3, "test subject", "test content", "Oct 26, 2016", "Oct 26, 2016"]
-  ],
   postsList: {
     posts: [
       {
@@ -24,6 +20,18 @@ const rootState = {
     ],
     error: null,
     loading: false
+  },
+
+  activePost: {
+    post: {
+      id: 0,
+      subject: "test0",
+      content: "text0",
+      created: "Oct 26, 2018",
+      last_modified: "Oct 26, 2016"
+    },
+    error: null,
+    loading: false
   }
 };
 
@@ -40,13 +48,14 @@ function postsListReducer(state = rootState.postsList, action) {
   }
 }
 
-function blogReducer(state = rootState.blogState, action) {
+function activePostReducer(state = rootState.activePost, action) {
   switch (action.type) {
-    case "ADD_POST":
-      var newState = [].concat([action.post], state);
-      console.log(newState);
-      return newState;
-      break;
+    case "FETCH_POST":
+      return {post:{}, loading: true, error: null};
+    case "FETCH_POST_SUCCESS":
+      return {post: action.payload, loading: false, error: null};
+    case "FETCH_POST_FAILURE":
+      return {post: [], loading: false, error: {message: action.payload}}
     default:
       return state;
   }
@@ -60,7 +69,7 @@ function blogReducer(state = rootState.blogState, action) {
  */
 export const reducer = combineReducers({
   postsList: postsListReducer,
-  blogState: blogReducer
+  activePost: activePostReducer
 });
 
 export default reducer;

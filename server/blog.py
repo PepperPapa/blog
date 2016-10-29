@@ -82,9 +82,7 @@ class BlogFront:
             app.header('Content-type', 'application/json; charset=UF-8')
             return json_posts.encode("utf-8")
         else:
-            app.status = "404 Posts Not Found"
-            app.header('Content-type', 'application/json; charset=UF-8')
-            return json.dumps("404 Posts Not Found").encode("utf-8")
+            return app.notfound()
 
 
 class PostPage:
@@ -98,27 +96,9 @@ class PostPage:
             age = 0
 
         if post:
-            if app.format == "html":
-                f = open("post.html")
-                post_html = f.read()
-                f.close()
-                # id, subject, content, created, last_modified
-                post_info = {"subject": post[1],
-                             "date": post[4],
-                             "content": post[2],
-                             "link": "#"}
-                post_block = POST_TEMPLATE.format(**post_info)
-
-                post_html = post_html.format(**{"subject": post[1],
-                                                "post": post_block,
-                                                "age": age_str(age)})
-
-                app.header('Content-type', 'text/html; charset=UTF-8')
-                return post_html.encode("utf-8")
-            else:
-                json_post = json.dumps(post_as_dict(post))
-                app.header('Content-type', 'application/json; charset=UF-8')
-                return json_post.encode("utf-8")
+            json_post = json.dumps(post_as_dict(post))
+            app.header('Content-type', 'application/json; charset=UF-8')
+            return json_post.encode("utf-8")
         else:
             return app.notfound()
 

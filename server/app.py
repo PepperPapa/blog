@@ -1,6 +1,7 @@
 # python3.5
 # -*- coding: utf-8 -*-
 import re
+import json
 
 if __name__ == '__main__':
     from blog import blogFront, newPost, postPage
@@ -20,6 +21,7 @@ class application:
         ("/(\d+)(:?\.json)?$", postPage),
 
         ("/blog/posts.py", blogFront),
+        ("/blog/(\d+).py", postPage),
         ("/blog/newpost.py", newPost),
     )
 
