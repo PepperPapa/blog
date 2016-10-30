@@ -52,6 +52,7 @@ a.link-expand {
     border: 1px solid #eee;
     border-bottom: 1px solid #ddd;
     background: white;
+    white-space: pre-wrap;
     h3 {
       margin: .5em 0;
       font-size: 1.8em;
@@ -60,6 +61,11 @@ a.link-expand {
       font-family: Georgia, serif;
       font-style: italic;
       color: #aeaeae;
+    }
+    .post-summary {
+      line-height: 1.2em;
+      max-height: 6em;
+      overflow: hidden;
     }
   }
 }

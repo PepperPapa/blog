@@ -41,7 +41,8 @@ a.link-expand {
     padding: 1em;
     border: 1px solid #eee;
     border-bottom: 1px solid #ddd;
-    background: white; }
+    background: white;
+    white-space: pre-wrap; }
     .posts-container article h3 {
       margin: .5em 0;
       font-size: 1.8em; }
@@ -49,6 +50,10 @@ a.link-expand {
       font-family: Georgia, serif;
       font-style: italic;
       color: #aeaeae; }
+    .posts-container article .post-summary {
+      line-height: 1.2em;
+      max-height: 6em;
+      overflow: hidden; }
 
 aside {
   margin: .2em;

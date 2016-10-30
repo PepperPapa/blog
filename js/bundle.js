@@ -12412,7 +12412,8 @@
 	        padding: "1em 2em",
 	        border: "1px solid #eee",
 	        borderBottom: "1px solid #ddd",
-	        background: "white"
+	        background: "white",
+	        whiteSpace: "pre-wrap"
 	      },
 	      head: {
 	        margin: ".5em 0",
@@ -12491,13 +12492,10 @@
 	            post.created,
 	            " by PepperPapa"
 	          ),
-	          React.createElement(
-	            "p",
-	            {
-	              className: "post-content",
-	              style: style.content },
-	            post.content
-	          )
+	          React.createElement("p", {
+	            className: "post-content",
+	            style: style.content,
+	            dangerouslySetInnerHTML: { __html: post.content } })
 	        )
 	      )
 	    );
@@ -30064,11 +30062,8 @@
 	            post.created,
 	            " by PepperPapa"
 	          ),
-	          React.createElement(
-	            "p",
-	            { className: "post-summary" },
-	            post.content
-	          ),
+	          React.createElement("p", { className: "post-summary",
+	            dangerouslySetInnerHTML: { __html: post.content } }),
 	          React.createElement(
 	            "p",
 	            { style: { marginTop: "2em" } },

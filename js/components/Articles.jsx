@@ -39,7 +39,9 @@ var Articles = React.createClass({
               <p className="post-info">
                 Posted on {post.created} by PepperPapa
               </p>
-              <p className="post-summary">{post.content}</p>
+              <p className="post-summary"
+                 dangerouslySetInnerHTML={{__html: post.content}}>
+              </p>
               <p style={{marginTop: "2em"}}>
                 <Link to={`blog/${post.id}`} className="link-expand">阅读全文 »</Link>
               </p>
