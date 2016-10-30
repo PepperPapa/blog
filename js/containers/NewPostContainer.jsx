@@ -1,5 +1,4 @@
 import React from "react";
-import { browserHistory } from "react-router";
 import { connect } from "react-redux";
 
 import NewPost from "../components/NewPost";
@@ -24,7 +23,6 @@ var NewPostContainer =  React.createClass({
   },
 
   publishPost: function(event) {
-    event.preventDefault();
     /* Ajax post request to server
       1. if response OK, jump to index page;
       2. is failed, jump to error page;
@@ -33,17 +31,13 @@ var NewPostContainer =  React.createClass({
   },
 
   render: function() {
-    if (!this.props.newPost.post) {
-      return (
-        <NewPost
-          newPost={this.props.newPost}
-          publishPost={this.publishPost}
-          handleSubjectChange={this.handleSubjectChange}
-          handleContentChange={this.handleContentChange} />
-      );
-    } else {
-      browserHistory.push("/blog");
-    }
+    return (
+      <NewPost
+        newPost={this.props.newPost}
+        publishPost={this.publishPost}
+        handleSubjectChange={this.handleSubjectChange}
+        handleContentChange={this.handleContentChange} />
+    );
   }
 });
 
