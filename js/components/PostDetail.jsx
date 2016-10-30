@@ -1,4 +1,5 @@
 var React = require("react");
+var markdown = require("markdown").markdown;
 
 var PostDetail = React.createClass({
   render: function() {
@@ -16,7 +17,7 @@ var PostDetail = React.createClass({
         border: "1px solid #eee",
         borderBottom: "1px solid #ddd",
         background: "white",
-        whiteSpace: "pre-wrap"
+        // whiteSpace: "pre-wrap"
       },
       head: {
         margin: ".5em 0",
@@ -71,7 +72,7 @@ var PostDetail = React.createClass({
           <p
             className="post-content"
             style={style.content}
-            dangerouslySetInnerHTML={{__html: post.content}}>
+            dangerouslySetInnerHTML={{__html: markdown.toHTML(post.content)}}>
           </p>
         </article>
       </div>

@@ -41,8 +41,7 @@ a.link-expand {
     padding: 1em;
     border: 1px solid #eee;
     border-bottom: 1px solid #ddd;
-    background: white;
-    white-space: pre-wrap; }
+    background: white; }
     .posts-container article h3 {
       margin: .5em 0;
       font-size: 1.8em; }

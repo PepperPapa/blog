@@ -1,4 +1,5 @@
 var React = require("react");
+var markdown = require("markdown").markdown;
 import { Link } from "react-router";
 
 var Articles = React.createClass({
@@ -40,7 +41,7 @@ var Articles = React.createClass({
                 Posted on {post.created} by PepperPapa
               </p>
               <p className="post-summary"
-                 dangerouslySetInnerHTML={{__html: post.content}}>
+                 dangerouslySetInnerHTML={{__html: markdown.toHTML(post.content)}}>
               </p>
               <p style={{marginTop: "2em"}}>
                 <Link to={`blog/${post.id}`} className="link-expand">阅读全文 »</Link>
