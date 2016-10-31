@@ -38,6 +38,12 @@ const rootState = {
     post: null,
     error: null,
     loading: false
+  },
+
+  newUser: {
+    user: null,
+    error: null,
+    registering: false
   }
 };
 
@@ -80,6 +86,19 @@ function newPostReducer(state = rootState.newPost, action) {
   }
 }
 
+function newUserReducer(state = rootState.newUser, action) {
+  switch (action.type) {
+    case "CREATE_USER":
+      return {user: null, registering: true, error: null};
+    case "CREATE_USER_SUCCESS":
+      return {user: action.payload, registering: false, error: null};
+    case "CREATE_USER_FAILURE":
+      return {user: null, registering: false, error: {message: action.payload}}
+    default:
+      return state;
+  }
+}
+
 /*
  TODO: must using export, if not the browser will report error below
  bundle.js:10988 Uncaught Error: Expected the reducer to be a function.(…)
@@ -90,6 +109,7 @@ export const reducer = combineReducers({
   postsList: postsListReducer,
   activePost: activePostReducer,
   newPost: newPostReducer,
+  newUser: newUserReducer,
 });
 
 export default reducer;

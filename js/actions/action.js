@@ -19,7 +19,10 @@ const types = {
   "CREATE_POST_FAILURE": "CREATE_POST_FAILURE",
   "NEW_POST_RESET": "NEW_POST_RESET",
 
-  "ADD_POST": "ADD_POST",
+  // for page "/signup"
+  "CREATE_USER": "CREATE_USER",
+  "CREATE_USER_SUCCESS": "CREATE_USER_SUCCESS",
+  "CREATE_USER_FAILURE": "CREATE_USER_FAILURE",
 };
 
 // action creater for postsList
@@ -127,6 +130,35 @@ export function createPostSuccess(newPost) {
 export function createPostFailure(error) {
   return {
     type: types.CREATE_POST_FAILURE,
+    payload: error
+  };
+}
+
+export function createUser(props) {
+  $.ajax({
+    type: "post",
+    url: "/signup.py",
+    async: true,
+    context: props,
+    success: function(xhr) {
+      store.dispatch(createUserSuccess(JSON.parse(xhr.responseText)));
+    },
+    error: function(xhr) {
+      store.dispatch(createUserFailure(JSON.parse(xhr.responseText)));
+    }
+  });
+}
+
+export function createUserSuccess(newUser) {
+  return {
+    type: types.CREATE_USER_SUCCESS,
+    payload: newUser
+  };
+}
+
+export function createUserFailure(error) {
+  return {
+    type: types.CREATE_USER_FAILURE,
     payload: error
   };
 }

@@ -23,6 +23,7 @@ class application:
         ("/blog/posts.py", blogFront),
         ("/blog/(\d+).py", postPage),
         ("/blog/newpost.py", newPost),
+        ("/signup.py", register),
     )
 
     def __init__(self, environ, start_response):
