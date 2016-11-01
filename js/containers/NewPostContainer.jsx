@@ -3,9 +3,7 @@ import { browserHistory } from "react-router";
 import { connect } from "react-redux";
 
 import NewPost from "../components/NewPost";
-import store from "../store/store";
-import { createPost, addPost } from "../actions/action";
-import $ from "../lib/XHR";
+import { createPost } from "../actions/action";
 
 var NewPostContainer =  React.createClass({
   getInitialState: function() {

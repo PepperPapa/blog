@@ -141,12 +141,18 @@ export function createUser(props) {
     async: true,
     context: props,
     success: function(xhr) {
+      console.log("success" + xhr.responseText);
       store.dispatch(createUserSuccess(JSON.parse(xhr.responseText)));
     },
     error: function(xhr) {
+      console.log("error" + xhr.responseText);
       store.dispatch(createUserFailure(JSON.parse(xhr.responseText)));
     }
   });
+
+  return {
+    type: types.CREATE_USER
+  };
 }
 
 export function createUserSuccess(newUser) {

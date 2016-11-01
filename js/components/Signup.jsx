@@ -37,21 +37,36 @@ var Signup = React.createClass({
         <div className="login-area" style={style.login_area}>
           <p style={{margin: "0"}}>
             <label htmlFor="user-name">用户名</label><br />
-            <input type="text" id="user-name" style={style.input} />
+            <input
+              type="text"
+              id="user-name"
+              style={style.input}
+              onChange={this.props.handleUserNameChange} />
           </p>
           <p style={{margin: "0"}}>
             <label htmlFor="user-password">密码</label><br />
-            <input type="password" id="user-password" style={style.input} />
+            <input
+              type="password"
+              id="user-password"
+              style={style.input}
+              onChange={this.props.handlePasswordChange} />
           </p>
           <p style={{margin: "0"}}>
             <label htmlFor="user-verify">再次输入密码</label><br />
-            <input type="password" id="user-verify" style={style.input} />
+            <input
+              type="password"
+              id="user-verify"
+              style={style.input}
+              onChange={this.props.handleVerifyChange} />
           </p>
           <p style={{margin: "0",
                      display: "flex",
                      alignItems: "center",
                      justifyContent: "flex-end"}}>
-            <button className="normal">注册</button>
+            <button
+              type="submit"
+              className="normal"
+              onClick={this.props.registerNewUser}>注册</button>
           </p>
           <p style={{fontSize: ".8em", marginTop: "3em"}}>
             <Link to="login" className="link-to">登陆</Link>|

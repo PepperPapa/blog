@@ -63,8 +63,7 @@ class Signup:
         have_error = False
         # get username, password, verify from the request body
         user = app.getRequestContext()
-        user = re.match(r'(.*)=(.*)&(.*)=(.*)&(.*)=(.*)', user).groups()
-        user = dict([user[0:2], user[2:4], user[4::]])
+        user = json.loads(user)
 
         # validate username, password, verify
         if (not checkUserName(user["username"]) or
@@ -74,8 +73,9 @@ class Signup:
 
         if have_error:
             # 注册失败通过url传递错误信息
-            return app.redirect('/myblog/signup?error=' +
-                    'username or password have some error.')
+            app.status = "406 Not Acceptable"
+            app.header("Content-Type", "application/json; charset=UTF-8")
+            return json.dumps("username or password have some error.").encode("utf-8")
         else:
             user["password"] = make_pw_hash(user["username"], user["password"])
             user["verify"] = make_pw_hash(user["username"], user["verify"])
@@ -83,14 +83,15 @@ class Signup:
                                           user["password"],
                                           user["verify"])
 
-            app.header('Content-type', 'text/html; charset=UTF-8')
+            app.header('Content-type', 'application/json; charset=UTF-8')
             if new_user:
-                # 注册成功通过url传递用户名信息
-                return app.redirect('/myblog?username=%s' % new_user["username"])
+                # 注册成功
+                return json.dumps(new_user).encode("utf-8")
             else:
                 # user already exists.
-                return app.redirect('/myblog/signup?error=' +
-                        'user %s already exits.' % user["username"])
+                app.status = "409 Conflict"
+                app.header("Content-Type", "application/json; charset=UTF-8")
+                return json.dumps("user already exist.").encode("utf-8")
 
 class Login:
     def __init__(self):

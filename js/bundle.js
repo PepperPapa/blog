@@ -11806,15 +11806,7 @@
 	
 	var _NewPost2 = _interopRequireDefault(_NewPost);
 	
-	var _store = __webpack_require__(122);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
 	var _action = __webpack_require__(124);
-	
-	var _XHR = __webpack_require__(125);
-	
-	var _XHR2 = _interopRequireDefault(_XHR);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -12119,11 +12111,11 @@
 	
 	  switch (action.type) {
 	    case "FETCH_POST":
-	      return { post: null, loading: true, error: null };
+	      return { post: null, registering: true, error: null };
 	    case "FETCH_POST_SUCCESS":
-	      return { post: action.payload, loading: false, error: null };
+	      return { post: action.payload, registering: false, error: null };
 	    case "FETCH_POST_FAILURE":
-	      return { post: null, loading: false, error: { message: action.payload } };
+	      return { post: null, registering: false, error: { message: action.payload } };
 	    default:
 	      return state;
 	  }
@@ -12340,12 +12332,18 @@
 	    async: true,
 	    context: props,
 	    success: function success(xhr) {
+	      console.log("success" + xhr.responseText);
 	      _store2.default.dispatch(createUserSuccess(JSON.parse(xhr.responseText)));
 	    },
 	    error: function error(xhr) {
+	      console.log("error" + xhr.responseText);
 	      _store2.default.dispatch(createUserFailure(JSON.parse(xhr.responseText)));
 	    }
 	  });
+	
+	  return {
+	    type: types.CREATE_USER
+	  };
 	}
 	
 	function createUserSuccess(newUser) {
@@ -14853,6 +14851,8 @@
 	
 	var _Signup2 = _interopRequireDefault(_Signup);
 	
+	var _action = __webpack_require__(124);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var React = __webpack_require__(4);
@@ -14861,12 +14861,55 @@
 	var SignupContainer = React.createClass({
 	  displayName: "SignupContainer",
 	
+	  getInitialState: function getInitialState() {
+	    return {
+	      username: "",
+	      password: "",
+	      verify: ""
+	    };
+	  },
+	
+	  handleUserNameChange: function handleUserNameChange(event) {
+	    this.setState({ username: event.target.value });
+	  },
+	
+	  handlePasswordChange: function handlePasswordChange(event) {
+	    this.setState({ password: event.target.value });
+	  },
+	
+	  handleVerifyChange: function handleVerifyChange(event) {
+	    this.setState({ verify: event.target.value });
+	  },
+	
+	  registerNewUser: function registerNewUser() {
+	    this.props.createUser(JSON.stringify(this.state));
+	  },
+	
 	  render: function render() {
-	    return React.createElement(_Signup2.default, null);
+	    return React.createElement(_Signup2.default, {
+	      newUser: this.props.newUser,
+	      handleUserNameChange: this.handleUserNameChange,
+	      handlePasswordChange: this.handlePasswordChange,
+	      handleVerifyChange: this.handleVerifyChange,
+	      registerNewUser: this.registerNewUser });
 	  }
 	});
 	
-	exports.default = (0, _reactRedux.connect)()(SignupContainer);
+	function mapStateToProps(state) {
+	  return {
+	    newUser: state.newUser
+	  };
+	}
+	
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    createUser: function createUser(props) {
+	      return dispatch((0, _action.createUser)(props));
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SignupContainer);
 
 /***/ },
 /* 134 */
@@ -14928,7 +14971,11 @@
 	              "\u7528\u6237\u540D"
 	            ),
 	            React.createElement("br", null),
-	            React.createElement("input", { type: "text", id: "user-name", style: style.input })
+	            React.createElement("input", {
+	              type: "text",
+	              id: "user-name",
+	              style: style.input,
+	              onChange: this.props.handleUserNameChange })
 	          ),
 	          React.createElement(
 	            "p",
@@ -14939,7 +14986,11 @@
 	              "\u5BC6\u7801"
 	            ),
 	            React.createElement("br", null),
-	            React.createElement("input", { type: "password", id: "user-password", style: style.input })
+	            React.createElement("input", {
+	              type: "password",
+	              id: "user-password",
+	              style: style.input,
+	              onChange: this.props.handlePasswordChange })
 	          ),
 	          React.createElement(
 	            "p",
@@ -14950,7 +15001,11 @@
 	              "\u518D\u6B21\u8F93\u5165\u5BC6\u7801"
 	            ),
 	            React.createElement("br", null),
-	            React.createElement("input", { type: "password", id: "user-verify", style: style.input })
+	            React.createElement("input", {
+	              type: "password",
+	              id: "user-verify",
+	              style: style.input,
+	              onChange: this.props.handleVerifyChange })
 	          ),
 	          React.createElement(
 	            "p",
@@ -14960,7 +15015,10 @@
 	                justifyContent: "flex-end" } },
 	            React.createElement(
 	              "button",
-	              { className: "normal" },
+	              {
+	                type: "submit",
+	                className: "normal",
+	                onClick: this.props.registerNewUser },
 	              "\u6CE8\u518C"
 	            )
 	          ),
