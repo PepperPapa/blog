@@ -69,7 +69,7 @@
 	
 	var _SignupContainer2 = _interopRequireDefault(_SignupContainer);
 	
-	var _store = __webpack_require__(122);
+	var _store = __webpack_require__(124);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -11806,7 +11806,7 @@
 	
 	var _NewPost2 = _interopRequireDefault(_NewPost);
 	
-	var _action = __webpack_require__(124);
+	var _action = __webpack_require__(122);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -11851,9 +11851,7 @@
 	      publishPost: this.publishPost,
 	      handleSubjectChange: this.handleSubjectChange,
 	      handleContentChange: this.handleContentChange });
-	    // if (this.props.newPost.post) {
-	    //   page = browserHistory.push("/blog");
-	    // }
+	
 	    return page;
 	  }
 	});
@@ -12024,159 +12022,6 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
-	var _redux = __webpack_require__(105);
-	
-	var _reducer = __webpack_require__(123);
-	
-	var store = (0, _redux.createStore)(_reducer.reducer);
-	exports.default = store;
-
-/***/ },
-/* 123 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.reducer = undefined;
-	
-	var _redux = __webpack_require__(105);
-	
-	var rootState = {
-	  postsList: {
-	    posts: [{
-	      id: 0,
-	      subject: "test0",
-	      content: "text0",
-	      created: "Oct 26, 2016",
-	      last_modified: "Oct 26, 2016"
-	    }, {
-	      id: 1,
-	      subject: "test1",
-	      content: "text1",
-	      created: "Oct 26, 2016",
-	      last_modified: "Oct 26, 2016"
-	    }],
-	    error: null,
-	    loading: false
-	  },
-	
-	  activePost: {
-	    post: {
-	      id: 0,
-	      subject: "test0",
-	      content: "text0",
-	      created: "Oct 26, 2018",
-	      last_modified: "Oct 26, 2016"
-	    },
-	    error: null,
-	    loading: false
-	  },
-	
-	  newPost: {
-	    post: null,
-	    error: null,
-	    loading: false
-	  },
-	
-	  newUser: {
-	    user: null,
-	    error: null,
-	    registering: false
-	  }
-	};
-	
-	function postsListReducer() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : rootState.postsList;
-	  var action = arguments[1];
-	
-	  switch (action.type) {
-	    case "FETCH_POSTS":
-	      return { posts: null, loading: true, error: null };
-	    case "FETCH_POSTS_SUCCESS":
-	      return { posts: action.payload, loading: false, error: null };
-	    case "FETCH_POSTS_FAILURE":
-	      return { posts: null, loading: false, error: { message: action.payload } };
-	    default:
-	      return state;
-	  }
-	}
-	
-	function activePostReducer() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : rootState.activePost;
-	  var action = arguments[1];
-	
-	  switch (action.type) {
-	    case "FETCH_POST":
-	      return { post: null, registering: true, error: null };
-	    case "FETCH_POST_SUCCESS":
-	      return { post: action.payload, registering: false, error: null };
-	    case "FETCH_POST_FAILURE":
-	      return { post: null, registering: false, error: { message: action.payload } };
-	    default:
-	      return state;
-	  }
-	}
-	
-	function newPostReducer() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : rootState.newPost;
-	  var action = arguments[1];
-	
-	  switch (action.type) {
-	    case "CREATE_POST":
-	      return { post: null, loading: true, error: null };
-	    case "CREATE_POST_SUCCESS":
-	      return { post: action.payload, loading: false, error: null };
-	    case "CREATE_POST_FAILURE":
-	      return { post: null, loading: false, error: { message: action.payload } };
-	    default:
-	      return state;
-	  }
-	}
-	
-	function newUserReducer() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : rootState.newUser;
-	  var action = arguments[1];
-	
-	  switch (action.type) {
-	    case "CREATE_USER":
-	      return { user: null, registering: true, error: null };
-	    case "CREATE_USER_SUCCESS":
-	      return { user: action.payload, registering: false, error: null };
-	    case "CREATE_USER_FAILURE":
-	      return { user: null, registering: false, error: { message: action.payload } };
-	    default:
-	      return state;
-	  }
-	}
-	
-	/*
-	 TODO: must using export, if not the browser will report error below
-	 bundle.js:10988 Uncaught Error: Expected the reducer to be a function.(…)
-	
-	 all reducers's states make up the full state
-	 */
-	var reducer = exports.reducer = (0, _redux.combineReducers)({
-	  postsList: postsListReducer,
-	  activePost: activePostReducer,
-	  newPost: newPostReducer,
-	  newUser: newUserReducer
-	});
-	
-	exports.default = reducer;
-
-/***/ },
-/* 124 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
 	exports.fetchPosts = fetchPosts;
 	exports.fetchPostsSuccess = fetchPostsSuccess;
 	exports.fetchPostsFailure = fetchPostsFailure;
@@ -12190,11 +12035,11 @@
 	exports.createUserSuccess = createUserSuccess;
 	exports.createUserFailure = createUserFailure;
 	
-	var _XHR = __webpack_require__(125);
+	var _XHR = __webpack_require__(123);
 	
 	var _XHR2 = _interopRequireDefault(_XHR);
 	
-	var _store = __webpack_require__(122);
+	var _store = __webpack_require__(124);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -12332,11 +12177,9 @@
 	    async: true,
 	    context: props,
 	    success: function success(xhr) {
-	      console.log("success" + xhr.responseText);
 	      _store2.default.dispatch(createUserSuccess(JSON.parse(xhr.responseText)));
 	    },
 	    error: function error(xhr) {
-	      console.log("error" + xhr.responseText);
 	      _store2.default.dispatch(createUserFailure(JSON.parse(xhr.responseText)));
 	    }
 	  });
@@ -12361,7 +12204,7 @@
 	}
 
 /***/ },
-/* 125 */
+/* 123 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -12414,6 +12257,159 @@
 	exports.default = $;
 
 /***/ },
+/* 124 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _redux = __webpack_require__(105);
+	
+	var _reducer = __webpack_require__(125);
+	
+	var store = (0, _redux.createStore)(_reducer.reducer);
+	exports.default = store;
+
+/***/ },
+/* 125 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.reducer = undefined;
+	
+	var _redux = __webpack_require__(105);
+	
+	var rootState = {
+	  postsList: {
+	    posts: [{
+	      id: 0,
+	      subject: "test0",
+	      content: "text0",
+	      created: "Oct 26, 2016",
+	      last_modified: "Oct 26, 2016"
+	    }, {
+	      id: 1,
+	      subject: "test1",
+	      content: "text1",
+	      created: "Oct 26, 2016",
+	      last_modified: "Oct 26, 2016"
+	    }],
+	    error: null,
+	    loading: false
+	  },
+	
+	  activePost: {
+	    post: {
+	      id: 0,
+	      subject: "test0",
+	      content: "text0",
+	      created: "Oct 26, 2018",
+	      last_modified: "Oct 26, 2016"
+	    },
+	    error: null,
+	    loading: false
+	  },
+	
+	  newPost: {
+	    post: null,
+	    error: null,
+	    loading: false
+	  },
+	
+	  newUser: {
+	    user: null,
+	    error: null,
+	    registering: false
+	  }
+	};
+	
+	function postsListReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : rootState.postsList;
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case "FETCH_POSTS":
+	      return { posts: null, loading: true, error: null };
+	    case "FETCH_POSTS_SUCCESS":
+	      return { posts: action.payload, loading: false, error: null };
+	    case "FETCH_POSTS_FAILURE":
+	      return { posts: null, loading: false, error: { message: action.payload } };
+	    default:
+	      return state;
+	  }
+	}
+	
+	function activePostReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : rootState.activePost;
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case "FETCH_POST":
+	      return { post: null, registering: true, error: null };
+	    case "FETCH_POST_SUCCESS":
+	      return { post: action.payload, registering: false, error: null };
+	    case "FETCH_POST_FAILURE":
+	      return { post: null, registering: false, error: { message: action.payload } };
+	    default:
+	      return state;
+	  }
+	}
+	
+	function newPostReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : rootState.newPost;
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case "CREATE_POST":
+	      return { post: null, loading: true, error: null };
+	    case "CREATE_POST_SUCCESS":
+	      return { post: action.payload, loading: false, error: null };
+	    case "CREATE_POST_FAILURE":
+	      return { post: null, loading: false, error: { message: action.payload } };
+	    default:
+	      return state;
+	  }
+	}
+	
+	function newUserReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : rootState.newUser;
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case "CREATE_USER":
+	      return { user: null, registering: true, error: null };
+	    case "CREATE_USER_SUCCESS":
+	      return { user: action.payload, registering: false, error: null };
+	    case "CREATE_USER_FAILURE":
+	      return { user: null, registering: false, error: { message: action.payload } };
+	    default:
+	      return state;
+	  }
+	}
+	
+	/*
+	 TODO: must using export, if not the browser will report error below
+	 bundle.js:10988 Uncaught Error: Expected the reducer to be a function.(…)
+	
+	 all reducers's states make up the full state
+	 */
+	var reducer = exports.reducer = (0, _redux.combineReducers)({
+	  postsList: postsListReducer,
+	  activePost: activePostReducer,
+	  newPost: newPostReducer,
+	  newUser: newUserReducer
+	});
+	
+	exports.default = reducer;
+
+/***/ },
 /* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -12425,7 +12421,7 @@
 	
 	var _reactRedux = __webpack_require__(98);
 	
-	var _action = __webpack_require__(124);
+	var _action = __webpack_require__(122);
 	
 	var React = __webpack_require__(4);
 	
@@ -14845,13 +14841,15 @@
 	  value: true
 	});
 	
+	var _reactRouter = __webpack_require__(2);
+	
 	var _reactRedux = __webpack_require__(98);
 	
 	var _Signup = __webpack_require__(134);
 	
 	var _Signup2 = _interopRequireDefault(_Signup);
 	
-	var _action = __webpack_require__(124);
+	var _action = __webpack_require__(122);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -14883,6 +14881,12 @@
 	
 	  registerNewUser: function registerNewUser() {
 	    this.props.createUser(JSON.stringify(this.state));
+	  },
+	
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    if (nextProps.newUser.user) {
+	      _reactRouter.browserHistory.push("/login");
+	    }
 	  },
 	
 	  render: function render() {
@@ -14922,6 +14926,16 @@
 	var React = __webpack_require__(4);
 	
 	
+	var RegisterTip = function RegisterTip(props) {
+	  return React.createElement(
+	    "span",
+	    { style: { fontSize: ".9em",
+	        fontStyle: "italic",
+	        color: props.color } },
+	    props.info
+	  );
+	};
+	
 	var Signup = React.createClass({
 	  displayName: "Signup",
 	
@@ -14954,6 +14968,23 @@
 	        color: "#32373c"
 	      }
 	    };
+	    var _props$newUser = this.props.newUser;
+	    var user = _props$newUser.user;
+	    var registering = _props$newUser.registering;
+	    var error = _props$newUser.error;
+	
+	    var tip_info = {};
+	    if (registering) {
+	      tip_info.info = "正在注册请稍后... ";
+	      tip_info.color = "blue";
+	    } else if (error) {
+	      tip_info.info = error.message;
+	      tip_info.color = "red";
+	    } else if (user) {
+	      tip_info.info = "注册成功请登陆";
+	      tip_info.color = "yellowgreen";
+	    }
+	
 	    return (
 	      // return value require only one root element
 	      React.createElement(
@@ -15012,7 +15043,8 @@
 	            { style: { margin: "0",
 	                display: "flex",
 	                alignItems: "center",
-	                justifyContent: "flex-end" } },
+	                justifyContent: "space-between" } },
+	            React.createElement(RegisterTip, { info: tip_info.info, color: tip_info.color }),
 	            React.createElement(
 	              "button",
 	              {
@@ -32497,7 +32529,7 @@
 	
 	var _reactRedux = __webpack_require__(98);
 	
-	var _action = __webpack_require__(124);
+	var _action = __webpack_require__(122);
 	
 	var React = __webpack_require__(4);
 	

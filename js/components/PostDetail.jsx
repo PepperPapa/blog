@@ -17,7 +17,6 @@ var PostDetail = React.createClass({
         border: "1px solid #eee",
         borderBottom: "1px solid #ddd",
         background: "white",
-        // whiteSpace: "pre-wrap"
       },
       head: {
         margin: ".5em 0",

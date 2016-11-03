@@ -1,6 +1,14 @@
 var React = require("react");
 import { Link } from "react-router";
 
+var RegisterTip = function(props) {
+    return (
+      <span style={{fontSize: ".9em",
+                    fontStyle: "italic",
+                    color: props.color}}>{props.info}</span>
+    );
+}
+
 var Signup = React.createClass({
   render: function() {
     var style = {
@@ -31,6 +39,19 @@ var Signup = React.createClass({
         color: "#32373c",
       }
     }
+    let { user, registering, error } = this.props.newUser;
+    var tip_info = {};
+    if (registering) {
+      tip_info.info = "正在注册请稍后... ";
+      tip_info.color = "blue";
+    } else if (error) {
+      tip_info.info = error.message;
+      tip_info.color = "red";
+    } else if (user) {
+      tip_info.info = "注册成功请登陆";
+      tip_info.color = "yellowgreen";
+    }
+
     return (
       // return value require only one root element
       <div style={style.container}>
@@ -62,7 +83,8 @@ var Signup = React.createClass({
           <p style={{margin: "0",
                      display: "flex",
                      alignItems: "center",
-                     justifyContent: "flex-end"}}>
+                     justifyContent: "space-between"}}>
+            <RegisterTip info={tip_info.info} color={tip_info.color} />
             <button
               type="submit"
               className="normal"

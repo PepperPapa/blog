@@ -1,4 +1,5 @@
 var React = require("react");
+import { browserHistory } from "react-router";
 import { connect } from "react-redux";
 
 import Signup from "../components/Signup";
@@ -27,6 +28,12 @@ var SignupContainer = React.createClass({
 
   registerNewUser: function() {
     this.props.createUser(JSON.stringify(this.state));
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    if (nextProps.newUser.user) {
+      browserHistory.push("/login");
+    }
   },
 
   render: function() {

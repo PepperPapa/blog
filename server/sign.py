@@ -52,13 +52,6 @@ def expires(days):
     return time.strftime("%A, %d-%b-%y %H:%M:%S GMT", time.localtime(t))
 
 class Signup:
-    def get(self, app, *args):
-        f = open("signup.html")
-        content = f.read()
-        f.close()
-        app.header('Content-type', 'text/html; charset=UTF-8')
-        return content.encode("utf-8")
-
     def post(self, app, *args):
         have_error = False
         # get username, password, verify from the request body
@@ -72,10 +65,9 @@ class Signup:
            have_error = True
 
         if have_error:
-            # 注册失败通过url传递错误信息
             app.status = "406 Not Acceptable"
             app.header("Content-Type", "application/json; charset=UTF-8")
-            return json.dumps("username or password have some error.").encode("utf-8")
+            return json.dumps("用户名或密码校验错误").encode("utf-8")
         else:
             user["password"] = make_pw_hash(user["username"], user["password"])
             user["verify"] = make_pw_hash(user["username"], user["verify"])
@@ -86,12 +78,12 @@ class Signup:
             app.header('Content-type', 'application/json; charset=UTF-8')
             if new_user:
                 # 注册成功
-                return json.dumps(new_user).encode("utf-8")
+                return json.dumps("用户注册成功").encode("utf-8")
             else:
                 # user already exists.
                 app.status = "409 Conflict"
                 app.header("Content-Type", "application/json; charset=UTF-8")
-                return json.dumps("user already exist.").encode("utf-8")
+                return json.dumps("用户名已存在").encode("utf-8")
 
 class Login:
     def __init__(self):

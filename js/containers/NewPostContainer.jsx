@@ -44,9 +44,7 @@ var NewPostContainer =  React.createClass({
       publishPost={this.publishPost}
       handleSubjectChange={this.handleSubjectChange}
       handleContentChange={this.handleContentChange} />;
-    // if (this.props.newPost.post) {
-    //   page = browserHistory.push("/blog");
-    // }
+
     return page;
   }
 });
