@@ -50,33 +50,33 @@ var PostDetail = React.createClass({
           </article>
         </div>
       );
-    }
-
-    return (
-      // return value require only one root element
-      <div style={style.container}>
-        <article
-          key={post.id}
-          style={style.article}>
-          <h1
-            className="post-subject"
-            style={style.head}>
-            {post.subject}
-          </h1>
-          <p
-            className="post-date"
-            style={style.created}>
-            Posted on {post.created} by PepperPapa
-          </p>
-          <p
-            className="post-content"
-            style={style.content}
-            dangerouslySetInnerHTML={{__html: markdown.toHTML(post.content)}}>
-          </p>
-        </article>
-      </div>
-    );
-  }
+    } else if (post) {
+      return (
+        // return value require only one root element
+        <div style={style.container}>
+          <article
+            key={post.id}
+            style={style.article}>
+            <h1
+              className="post-subject"
+              style={style.head}>
+              {post.subject}
+            </h1>
+            <p
+              className="post-date"
+              style={style.created}>
+              Posted on {post.created} by PepperPapa
+            </p>
+            <p
+              className="post-content"
+              style={style.content}
+              dangerouslySetInnerHTML={{__html: markdown.toHTML(post.content)}}>
+            </p>
+          </article>
+        </div>
+      );
+    } // end of if (post)
+  } // end of render
 });
 
 module.exports = PostDetail;

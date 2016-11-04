@@ -26,7 +26,8 @@ var SignupContainer = React.createClass({
     this.setState({verify: event.target.value});
   },
 
-  registerNewUser: function() {
+  registerNewUser: function(event) {
+    event.preventDefault();
     this.props.createUser(JSON.stringify(this.state));
   },
 

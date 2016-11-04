@@ -12290,16 +12290,10 @@
 	  postsList: {
 	    posts: [{
 	      id: 0,
-	      subject: "test0",
-	      content: "text0",
-	      created: "Oct 26, 2016",
-	      last_modified: "Oct 26, 2016"
-	    }, {
-	      id: 1,
-	      subject: "test1",
-	      content: "text1",
-	      created: "Oct 26, 2016",
-	      last_modified: "Oct 26, 2016"
+	      subject: "",
+	      content: "",
+	      created: "",
+	      last_modified: ""
 	    }],
 	    error: null,
 	    loading: false
@@ -12308,10 +12302,10 @@
 	  activePost: {
 	    post: {
 	      id: 0,
-	      subject: "test0",
-	      content: "text0",
-	      created: "Oct 26, 2018",
-	      last_modified: "Oct 26, 2016"
+	      subject: "",
+	      content: "",
+	      created: "",
+	      last_modified: ""
 	    },
 	    error: null,
 	    loading: false
@@ -12352,11 +12346,11 @@
 	
 	  switch (action.type) {
 	    case "FETCH_POST":
-	      return { post: null, registering: true, error: null };
+	      return { post: null, loading: true, error: null };
 	    case "FETCH_POST_SUCCESS":
-	      return { post: action.payload, registering: false, error: null };
+	      return { post: action.payload, loading: false, error: null };
 	    case "FETCH_POST_FAILURE":
-	      return { post: null, registering: false, error: { message: action.payload } };
+	      return { post: null, loading: false, error: { message: action.payload } };
 	    default:
 	      return state;
 	  }
@@ -12534,42 +12528,42 @@
 	          )
 	        )
 	      );
-	    }
-	
-	    return (
-	      // return value require only one root element
-	      React.createElement(
-	        "div",
-	        { style: style.container },
+	    } else if (post) {
+	      return (
+	        // return value require only one root element
 	        React.createElement(
-	          "article",
-	          {
-	            key: post.id,
-	            style: style.article },
+	          "div",
+	          { style: style.container },
 	          React.createElement(
-	            "h1",
+	            "article",
 	            {
-	              className: "post-subject",
-	              style: style.head },
-	            post.subject
-	          ),
-	          React.createElement(
-	            "p",
-	            {
-	              className: "post-date",
-	              style: style.created },
-	            "Posted on ",
-	            post.created,
-	            " by PepperPapa"
-	          ),
-	          React.createElement("p", {
-	            className: "post-content",
-	            style: style.content,
-	            dangerouslySetInnerHTML: { __html: markdown.toHTML(post.content) } })
+	              key: post.id,
+	              style: style.article },
+	            React.createElement(
+	              "h1",
+	              {
+	                className: "post-subject",
+	                style: style.head },
+	              post.subject
+	            ),
+	            React.createElement(
+	              "p",
+	              {
+	                className: "post-date",
+	                style: style.created },
+	              "Posted on ",
+	              post.created,
+	              " by PepperPapa"
+	            ),
+	            React.createElement("p", {
+	              className: "post-content",
+	              style: style.content,
+	              dangerouslySetInnerHTML: { __html: markdown.toHTML(post.content) } })
+	          )
 	        )
-	      )
-	    );
-	  }
+	      );
+	    } // end of if (post)
+	  } // end of render
 	});
 	
 	module.exports = PostDetail;
@@ -14879,7 +14873,8 @@
 	    this.setState({ verify: event.target.value });
 	  },
 	
-	  registerNewUser: function registerNewUser() {
+	  registerNewUser: function registerNewUser(event) {
+	    event.preventDefault();
 	    this.props.createUser(JSON.stringify(this.state));
 	  },
 	
@@ -14920,6 +14915,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	
+	var _react = __webpack_require__(4);
 	
 	var _reactRouter = __webpack_require__(2);
 	
@@ -14991,8 +14988,12 @@
 	        "div",
 	        { style: style.container },
 	        React.createElement(
-	          "div",
-	          { className: "login-area", style: style.login_area },
+	          "form",
+	          {
+	            method: "post",
+	            action: "#",
+	            className: "login-area",
+	            style: style.login_area },
 	          React.createElement(
 	            "p",
 	            { style: { margin: "0" } },
@@ -15006,6 +15007,8 @@
 	              type: "text",
 	              id: "user-name",
 	              style: style.input,
+	              pattern: "[a-zA-Z_][a-zA-Z0-9_]{5,15}",
+	              required: true,
 	              onChange: this.props.handleUserNameChange })
 	          ),
 	          React.createElement(

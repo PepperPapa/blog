@@ -1,4 +1,5 @@
 var React = require("react");
+import { PropTypes } from  "react";
 import { Link } from "react-router";
 
 var RegisterTip = function(props) {
@@ -55,13 +56,19 @@ var Signup = React.createClass({
     return (
       // return value require only one root element
       <div style={style.container}>
-        <div className="login-area" style={style.login_area}>
+        <form
+          method="post"
+          action="#"
+          className="login-area"
+          style={style.login_area}>
           <p style={{margin: "0"}}>
             <label htmlFor="user-name">用户名</label><br />
             <input
               type="text"
               id="user-name"
               style={style.input}
+              pattern="[a-zA-Z_][a-zA-Z0-9_]{5,15}"
+              required
               onChange={this.props.handleUserNameChange} />
           </p>
           <p style={{margin: "0"}}>
@@ -97,7 +104,7 @@ var Signup = React.createClass({
           <p style={{fontSize: ".8em"}}>
             <Link to="/blog" className="link-to">←回到博客首页</Link>
           </p>
-        </div>
+        </form>
       </div>
     );
   }
