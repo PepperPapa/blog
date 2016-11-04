@@ -40,6 +40,7 @@ var LoginContainer = React.createClass({
   render: function() {
     return (
       <Login
+        currentUser={this.props.currentUser}
         handleUserNameChange={this.handleUserNameChange}
         handlePasswordChange={this.handlePasswordChange}
         handleRememberMe={this.handleRememberMe}

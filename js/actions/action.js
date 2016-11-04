@@ -181,11 +181,9 @@ export function userLogin(props) {
     async: true,
     context: props,
     success: function(xhr) {
-      console.log(xhr.responseText);
       store.dispatch(userLoginSuccess(JSON.parse(xhr.responseText)));
     },
     error: function(xhr) {
-      console.log(xhr.responseText);
       store.dispatch(userLoginFailure(JSON.parse(xhr.responseText)));
     }
   });

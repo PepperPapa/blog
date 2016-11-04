@@ -99,7 +99,7 @@ class Login:
         if not user_query:
             app.status = "406 Not Acceptable"
             app.header("Content-Type", "application/json; charset=UTF-8")
-            return json.dumps("user not exists.用户不存在").encode("utf-8")
+            return json.dumps("用户不存在").encode("utf-8")
         else:
             if valid_pw(user["username"],
                             user["password"],
@@ -110,13 +110,13 @@ class Login:
                     expires_days = 0
                 app.header("Set-Cookie", "user_id={};Expires={}"
                             .format(user_query[0], expires(expires_days)))
-                            
+
                 app.header("Content-Type", "application/json; charset=UTF-8")
                 return json.dumps(user["username"]).encode("utf-8")
             else:
                 app.status = "406 Not Acceptable"
                 app.header("Content-Type", "application/json; charset=UTF-8")
-                return json.dumps("password error.密码不正确").encode("utf-8")
+                return json.dumps("密码不正确").encode("utf-8")
 
 class Logout:
     def get(self, app, *args):

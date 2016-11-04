@@ -12222,11 +12222,9 @@
 	    async: true,
 	    context: props,
 	    success: function success(xhr) {
-	      console.log(xhr.responseText);
 	      _store2.default.dispatch(userLoginSuccess(JSON.parse(xhr.responseText)));
 	    },
 	    error: function error(xhr) {
-	      console.log(xhr.responseText);
 	      _store2.default.dispatch(userLoginFailure(JSON.parse(xhr.responseText)));
 	    }
 	  });
@@ -32757,6 +32755,15 @@
 	var React = __webpack_require__(4);
 	
 	
+	var LoginTip = function LoginTip(props) {
+	  return React.createElement(
+	    "span",
+	    { style: { fontSize: ".9em",
+	        color: props.color } },
+	    props.info
+	  );
+	};
+	
 	var Login = React.createClass({
 	  displayName: "Login",
 	
@@ -32789,6 +32796,23 @@
 	        color: "#32373c"
 	      }
 	    };
+	
+	    var _props$currentUser = this.props.currentUser;
+	    var user = _props$currentUser.user;
+	    var error = _props$currentUser.error;
+	    var logging_in = _props$currentUser.logging_in;
+	
+	    var tip_info = {};
+	    if (logging_in) {
+	      tip_info.info = "正在登陆请稍后 ";
+	      tip_info.color = "blue";
+	    } else if (error) {
+	      tip_info.info = error.message;
+	      tip_info.color = "red";
+	    } else if (user) {
+	      tip_info.info = "登陆成功";
+	      tip_info.color = "green";
+	    }
 	    return (
 	      // return value require only one root element
 	      React.createElement(
@@ -32813,6 +32837,9 @@
 	              id: "user-name",
 	              type: "text",
 	              style: style.input,
+	              pattern: "[a-zA-Z_][a-zA-Z0-9_]{5,15}",
+	              title: "\u957F\u5EA65-15\u7684\u5927\u5199\u5B57\u6BCD\u3001\u5C0F\u5199\u5B57\u6BCD\u3001\u6570\u5B57\u3001\u4E0B\u5212\u7EBF\u7EC4\u5408",
+	              required: true,
 	              onChange: this.props.handleUserNameChange })
 	          ),
 	          React.createElement(
@@ -32828,6 +32855,9 @@
 	              id: "user-password",
 	              type: "password",
 	              style: style.input,
+	              pattern: "\\S{6,26}",
+	              title: "\u957F\u5EA66-26\u7684\u975E\u7A7A\u5B57\u7B26",
+	              required: true,
 	              onChange: this.props.handlePasswordChange })
 	          ),
 	          React.createElement(
@@ -32846,6 +32876,7 @@
 	                onChange: this.props.handleRememberMe }),
 	              "\u8BB0\u4F4F\u6211"
 	            ),
+	            React.createElement(LoginTip, { info: tip_info.info, color: tip_info.color }),
 	            React.createElement(
 	              "button",
 	              { type: "submit", className: "normal" },
@@ -32902,6 +32933,8 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
 	var React = __webpack_require__(4);
 	
 	
@@ -32940,12 +32973,14 @@
 	  },
 	
 	  render: function render() {
-	    return React.createElement(_Login2.default, {
+	    var _React$createElement;
+	
+	    return React.createElement(_Login2.default, (_React$createElement = {
+	      currentUser: this.props.currentUser,
 	      handleUserNameChange: this.handleUserNameChange,
 	      handlePasswordChange: this.handlePasswordChange,
-	      handleRememberMe: this.handleRememberMe,
-	      currentUser: this.props.currentUser,
-	      userLogin: this.userLogin });
+	      handleRememberMe: this.handleRememberMe
+	    }, _defineProperty(_React$createElement, "currentUser", this.props.currentUser), _defineProperty(_React$createElement, "userLogin", this.userLogin), _React$createElement));
 	  }
 	});
 	

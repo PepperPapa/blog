@@ -1,6 +1,13 @@
 var React = require("react");
 import { Link } from "react-router";
 
+var LoginTip = function(props) {
+    return (
+      <span style={{fontSize: ".9em",
+                    color: props.color}}>{props.info}</span>
+    );
+}
+
 var Login = React.createClass({
   render: function() {
     var style = {
@@ -31,6 +38,19 @@ var Login = React.createClass({
         color: "#32373c",
       }
     }
+
+    let {user, error, logging_in} = this.props.currentUser;
+    var tip_info = {};
+    if (logging_in) {
+      tip_info.info = "正在登陆请稍后 ";
+      tip_info.color = "blue";
+    } else if (error) {
+      tip_info.info = error.message;
+      tip_info.color = "red";
+    } else if (user) {
+      tip_info.info = "登陆成功";
+      tip_info.color = "green";
+    }
     return (
       // return value require only one root element
       <div style={style.container}>
@@ -44,6 +64,9 @@ var Login = React.createClass({
               id="user-name"
               type="text"
               style={style.input}
+              pattern="[a-zA-Z_][a-zA-Z0-9_]{5,15}"
+              title="长度5-15的大写字母、小写字母、数字、下划线组合"
+              required
               onChange={this.props.handleUserNameChange} />
           </div>
           <div style={{margin: "0"}}>
@@ -52,6 +75,9 @@ var Login = React.createClass({
               id="user-password"
               type="password"
               style={style.input}
+              pattern="\S{6,26}"
+              title="长度6-26的非空字符"
+              required
               onChange={this.props.handlePasswordChange} />
           </div>
           <div style={{margin: "0",
@@ -63,7 +89,10 @@ var Login = React.createClass({
                 id="user-rember"
                 type="checkbox"
                 defaultChecked
-                onChange={this.props.handleRememberMe} />记住我</label>
+                onChange={this.props.handleRememberMe} />
+              记住我
+            </label>
+            <LoginTip info={tip_info.info} color={tip_info.color} />
             <button type="submit" className="normal">登陆</button>
           </div>
           <div style={{fontSize: ".8em", marginTop: "3em"}}>
