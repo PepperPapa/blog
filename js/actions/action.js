@@ -23,6 +23,11 @@ const types = {
   "CREATE_USER": "CREATE_USER",
   "CREATE_USER_SUCCESS": "CREATE_USER_SUCCESS",
   "CREATE_USER_FAILURE": "CREATE_USER_FAILURE",
+
+  // for page "/login"
+  "USER_LOGIN": "USER_LOGIN",
+  "USER_LOGIN_SUCCESS": "USER_LOGIN_SUCCESS",
+  "USER_LOGIN_FAILURE": "USER_LOGIN_FAILURE",
 };
 
 // action creater for postsList
@@ -134,6 +139,7 @@ export function createPostFailure(error) {
   };
 }
 
+// action creater for signup
 export function createUser(props) {
   $.ajax({
     type: "post",
@@ -163,6 +169,42 @@ export function createUserSuccess(newUser) {
 export function createUserFailure(error) {
   return {
     type: types.CREATE_USER_FAILURE,
+    payload: error
+  };
+}
+
+// action creater for login
+export function userLogin(props) {
+  $.ajax({
+    type: "post",
+    url: "/login.py",
+    async: true,
+    context: props,
+    success: function(xhr) {
+      console.log(xhr.responseText);
+      store.dispatch(userLoginSuccess(JSON.parse(xhr.responseText)));
+    },
+    error: function(xhr) {
+      console.log(xhr.responseText);
+      store.dispatch(userLoginFailure(JSON.parse(xhr.responseText)));
+    }
+  });
+
+  return {
+    type: types.USER_LOGIN
+  };
+}
+
+export function userLoginSuccess(user) {
+  return {
+    type: types.USER_LOGIN_SUCCESS,
+    payload: user
+  };
+}
+
+export function userLoginFailure(error) {
+  return {
+    type: types.USER_LOGIN_FAILURE,
     payload: error
   };
 }

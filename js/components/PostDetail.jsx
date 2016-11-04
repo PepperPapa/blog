@@ -53,7 +53,9 @@ var PostDetail = React.createClass({
     } else if (post) {
       return (
         // return value require only one root element
-        <div style={style.container}>
+        <div
+          className="post-detail"
+          style={style.container}>
           <article
             key={post.id}
             style={style.article}>

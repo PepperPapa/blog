@@ -9,7 +9,7 @@ var BlogApp = require("./components/BlogApp");
 var Main = require("./components/Main");
 import NewPostContainer from "./containers/NewPostContainer";
 import PostDetailContainer from "./containers/PostDetailContainer";
-var Login = require("./components/Login");
+import LoginContainer from "./containers/LoginContainer";
 import SignupContainer from "./containers/SignupContainer";
 import store from "./store/store";
 
@@ -36,7 +36,7 @@ ReactDOM.render(
         <Route path="newpost" component={NewPostContainer} />
         <Route path=":postId" component={PostDetailContainer} />
       </Route>
-      <Route path="/login" component={Login} />
+      <Route path="/login" component={LoginContainer} />
       <Route path="/signup" component={SignupContainer} />
     </Router>
   </Provider>,

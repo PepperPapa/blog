@@ -24,6 +24,7 @@ class application:
         ("/blog/(\d+).py", postPage),
         ("/blog/newpost.py", newPost),
         ("/signup.py", register),
+        ("/login.py", login),
     )
 
     def __init__(self, environ, start_response):

@@ -86,4 +86,7 @@ aside {
     aside ul li {
       padding: .2em 0; }
 
+.post-detail img {
+  max-width: 100%; }
+
 /*# sourceMappingURL=base.css.map */

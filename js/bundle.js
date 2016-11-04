@@ -65,6 +65,10 @@
 	
 	var _PostDetailContainer2 = _interopRequireDefault(_PostDetailContainer);
 	
+	var _LoginContainer = __webpack_require__(280);
+	
+	var _LoginContainer2 = _interopRequireDefault(_LoginContainer);
+	
 	var _SignupContainer = __webpack_require__(133);
 	
 	var _SignupContainer2 = _interopRequireDefault(_SignupContainer);
@@ -83,8 +87,6 @@
 	
 	var BlogApp = __webpack_require__(273);
 	var Main = __webpack_require__(276);
-	
-	var Login = __webpack_require__(279);
 	
 	
 	// you can't insert comments in first parameter for ReactDOM.render function
@@ -114,7 +116,7 @@
 	      React.createElement(_reactRouter.Route, { path: "newpost", component: _NewPostContainer2.default }),
 	      React.createElement(_reactRouter.Route, { path: ":postId", component: _PostDetailContainer2.default })
 	    ),
-	    React.createElement(_reactRouter.Route, { path: "/login", component: Login }),
+	    React.createElement(_reactRouter.Route, { path: "/login", component: _LoginContainer2.default }),
 	    React.createElement(_reactRouter.Route, { path: "/signup", component: _SignupContainer2.default })
 	  )
 	), document.getElementById("root"));
@@ -12034,6 +12036,9 @@
 	exports.createUser = createUser;
 	exports.createUserSuccess = createUserSuccess;
 	exports.createUserFailure = createUserFailure;
+	exports.userLogin = userLogin;
+	exports.userLoginSuccess = userLoginSuccess;
+	exports.userLoginFailure = userLoginFailure;
 	
 	var _XHR = __webpack_require__(123);
 	
@@ -12066,7 +12071,12 @@
 	  // for page "/signup"
 	  "CREATE_USER": "CREATE_USER",
 	  "CREATE_USER_SUCCESS": "CREATE_USER_SUCCESS",
-	  "CREATE_USER_FAILURE": "CREATE_USER_FAILURE"
+	  "CREATE_USER_FAILURE": "CREATE_USER_FAILURE",
+	
+	  // for page "/login"
+	  "USER_LOGIN": "USER_LOGIN",
+	  "USER_LOGIN_SUCCESS": "USER_LOGIN_SUCCESS",
+	  "USER_LOGIN_FAILURE": "USER_LOGIN_FAILURE"
 	};
 	
 	// action creater for postsList
@@ -12170,6 +12180,7 @@
 	  };
 	}
 	
+	// action creater for signup
 	function createUser(props) {
 	  _XHR2.default.ajax({
 	    type: "post",
@@ -12199,6 +12210,42 @@
 	function createUserFailure(error) {
 	  return {
 	    type: types.CREATE_USER_FAILURE,
+	    payload: error
+	  };
+	}
+	
+	// action creater for login
+	function userLogin(props) {
+	  _XHR2.default.ajax({
+	    type: "post",
+	    url: "/login.py",
+	    async: true,
+	    context: props,
+	    success: function success(xhr) {
+	      console.log(xhr.responseText);
+	      _store2.default.dispatch(userLoginSuccess(JSON.parse(xhr.responseText)));
+	    },
+	    error: function error(xhr) {
+	      console.log(xhr.responseText);
+	      _store2.default.dispatch(userLoginFailure(JSON.parse(xhr.responseText)));
+	    }
+	  });
+	
+	  return {
+	    type: types.USER_LOGIN
+	  };
+	}
+	
+	function userLoginSuccess(user) {
+	  return {
+	    type: types.USER_LOGIN_SUCCESS,
+	    payload: user
+	  };
+	}
+	
+	function userLoginFailure(error) {
+	  return {
+	    type: types.USER_LOGIN_FAILURE,
 	    payload: error
 	  };
 	}
@@ -12321,6 +12368,12 @@
 	    user: null,
 	    error: null,
 	    registering: false
+	  },
+	
+	  currentUser: {
+	    user: null,
+	    error: null,
+	    logging_in: false
 	  }
 	};
 	
@@ -12388,6 +12441,22 @@
 	  }
 	}
 	
+	function userLoginReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : rootState.currentUser;
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case "USER_LOGIN":
+	      return { user: null, logging_in: true, error: null };
+	    case "USER_LOGIN_SUCCESS":
+	      return { user: action.payload, logging_in: false, error: null };
+	    case "USER_LOGIN_FAILURE":
+	      return { user: null, logging_in: false, error: { message: action.payload } };
+	    default:
+	      return state;
+	  }
+	}
+	
 	/*
 	 TODO: must using export, if not the browser will report error below
 	 bundle.js:10988 Uncaught Error: Expected the reducer to be a function.(…)
@@ -12398,7 +12467,8 @@
 	  postsList: postsListReducer,
 	  activePost: activePostReducer,
 	  newPost: newPostReducer,
-	  newUser: newUserReducer
+	  newUser: newUserReducer,
+	  currentUser: userLoginReducer
 	});
 	
 	exports.default = reducer;
@@ -12533,7 +12603,9 @@
 	        // return value require only one root element
 	        React.createElement(
 	          "div",
-	          { style: style.container },
+	          {
+	            className: "post-detail",
+	            style: style.container },
 	          React.createElement(
 	            "article",
 	            {
@@ -14996,7 +15068,7 @@
 	            style: style.login_area,
 	            onSubmit: this.props.registerNewUser },
 	          React.createElement(
-	            "p",
+	            "div",
 	            { style: { margin: "0" } },
 	            React.createElement(
 	              "label",
@@ -15014,7 +15086,7 @@
 	              onChange: this.props.handleUserNameChange })
 	          ),
 	          React.createElement(
-	            "p",
+	            "div",
 	            { style: { margin: "0" } },
 	            React.createElement(
 	              "label",
@@ -15032,7 +15104,7 @@
 	              onChange: this.props.handlePasswordChange })
 	          ),
 	          React.createElement(
-	            "p",
+	            "div",
 	            { style: { margin: "0" } },
 	            React.createElement(
 	              "label",
@@ -15050,7 +15122,7 @@
 	              onChange: this.props.handleVerifyChange })
 	          ),
 	          React.createElement(
-	            "p",
+	            "div",
 	            { style: { margin: "0",
 	                display: "flex",
 	                alignItems: "center",
@@ -15065,7 +15137,7 @@
 	            )
 	          ),
 	          React.createElement(
-	            "p",
+	            "div",
 	            { style: { fontSize: ".8em", marginTop: "3em" } },
 	            React.createElement(
 	              _reactRouter.Link,
@@ -15080,7 +15152,7 @@
 	            )
 	          ),
 	          React.createElement(
-	            "p",
+	            "div",
 	            { style: { fontSize: ".8em" } },
 	            React.createElement(
 	              _reactRouter.Link,
@@ -32455,12 +32527,12 @@
 	        React.createElement(
 	          "section",
 	          { className: "search-posts" },
-	          React.createElement("input", { type: "text", placeholder: "search ariticle" }),
+	          React.createElement("input", { type: "text", placeholder: "\u641C\u7D22\u6587\u7AE0" }),
 	          React.createElement("input", { type: "image", src: "./images/search_btn.png" })
 	        ),
 	        React.createElement(
 	          "section",
-	          null,
+	          { style: { display: "none" } },
 	          React.createElement(
 	            "h2",
 	            null,
@@ -32723,10 +32795,13 @@
 	        "div",
 	        { style: style.container },
 	        React.createElement(
-	          "div",
-	          { className: "login-area", style: style.login_area },
+	          "form",
+	          {
+	            className: "login-area",
+	            style: style.login_area,
+	            onSubmit: this.props.userLogin },
 	          React.createElement(
-	            "p",
+	            "div",
 	            { style: { margin: "0" } },
 	            React.createElement(
 	              "label",
@@ -32734,10 +32809,14 @@
 	              "\u7528\u6237\u540D"
 	            ),
 	            React.createElement("br", null),
-	            React.createElement("input", { type: "text", id: "user-name", style: style.input })
+	            React.createElement("input", {
+	              id: "user-name",
+	              type: "text",
+	              style: style.input,
+	              onChange: this.props.handleUserNameChange })
 	          ),
 	          React.createElement(
-	            "p",
+	            "div",
 	            { style: { margin: "0" } },
 	            React.createElement(
 	              "label",
@@ -32745,10 +32824,14 @@
 	              "\u5BC6\u7801"
 	            ),
 	            React.createElement("br", null),
-	            React.createElement("input", { type: "password", id: "user-password", style: style.input })
+	            React.createElement("input", {
+	              id: "user-password",
+	              type: "password",
+	              style: style.input,
+	              onChange: this.props.handlePasswordChange })
 	          ),
 	          React.createElement(
-	            "p",
+	            "div",
 	            { style: { margin: "0",
 	                display: "flex",
 	                alignItems: "center",
@@ -32756,17 +32839,21 @@
 	            React.createElement(
 	              "label",
 	              { htmlFor: "user-rember" },
-	              React.createElement("input", { type: "checkbox", id: "user-rember" }),
+	              React.createElement("input", {
+	                id: "user-rember",
+	                type: "checkbox",
+	                defaultChecked: true,
+	                onChange: this.props.handleRememberMe }),
 	              "\u8BB0\u4F4F\u6211"
 	            ),
 	            React.createElement(
 	              "button",
-	              { className: "normal" },
+	              { type: "submit", className: "normal" },
 	              "\u767B\u9646"
 	            )
 	          ),
 	          React.createElement(
-	            "p",
+	            "div",
 	            { style: { fontSize: ".8em", marginTop: "3em" } },
 	            React.createElement(
 	              _reactRouter.Link,
@@ -32781,7 +32868,7 @@
 	            )
 	          ),
 	          React.createElement(
-	            "p",
+	            "div",
 	            { style: { fontSize: ".8em" } },
 	            React.createElement(
 	              _reactRouter.Link,
@@ -32796,6 +32883,87 @@
 	});
 	
 	module.exports = Login;
+
+/***/ },
+/* 280 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _reactRouter = __webpack_require__(2);
+	
+	var _reactRedux = __webpack_require__(98);
+	
+	var _Login = __webpack_require__(279);
+	
+	var _Login2 = _interopRequireDefault(_Login);
+	
+	var _action = __webpack_require__(122);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var React = __webpack_require__(4);
+	
+	
+	var LoginContainer = React.createClass({
+	  displayName: "LoginContainer",
+	
+	  getInitialState: function getInitialState() {
+	    return {
+	      username: "",
+	      password: "",
+	      remember_me: true
+	    };
+	  },
+	
+	  handleUserNameChange: function handleUserNameChange(event) {
+	    this.setState({ username: event.target.value });
+	  },
+	
+	  handlePasswordChange: function handlePasswordChange(event) {
+	    this.setState({ password: event.target.value });
+	  },
+	
+	  handleRememberMe: function handleRememberMe(event) {
+	    this.setState({ remember_me: event.target.checked });
+	  },
+	
+	  userLogin: function userLogin(event) {
+	    event.preventDefault();
+	    this.props.userLogin(JSON.stringify(this.state));
+	  },
+	
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    if (nextProps.currentUser.user) {
+	      _reactRouter.browserHistory.push("/blog");
+	    }
+	  },
+	
+	  render: function render() {
+	    return React.createElement(_Login2.default, {
+	      handleUserNameChange: this.handleUserNameChange,
+	      handlePasswordChange: this.handlePasswordChange,
+	      handleRememberMe: this.handleRememberMe,
+	      currentUser: this.props.currentUser,
+	      userLogin: this.userLogin });
+	  }
+	});
+	
+	function mapStateToProps(state) {
+	  return {
+	    currentUser: state.currentUser
+	  };
+	}
+	
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    userLogin: function userLogin(props) {
+	      return dispatch((0, _action.userLogin)(props));
+	    }
+	  };
+	}
+	
+	module.exports = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(LoginContainer);
 
 /***/ }
 /******/ ]);

@@ -10,16 +10,17 @@ var Main = React.createClass({
         <ArticlesContainer />
         <aside>
           <section className="search-posts">
-            <input type="text" placeholder="search ariticle" />
+            <input type="text" placeholder="搜索文章" />
             <input type="image" src="./images/search_btn.png" />
           </section>
-          <section>
+          <section style={{display: "none"}}>
             <h2>分类</h2>
             <ul>
               <li><a href="#">web frontend</a></li>
               <li><a href="#">math</a></li>
             </ul>
           </section>
+
           <section>
             <h2>最近文章</h2>
             <ul>

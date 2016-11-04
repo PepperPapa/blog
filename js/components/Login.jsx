@@ -34,32 +34,46 @@ var Login = React.createClass({
     return (
       // return value require only one root element
       <div style={style.container}>
-        <div className="login-area" style={style.login_area}>
-          <p style={{margin: "0"}}>
+        <form
+          className="login-area"
+          style={style.login_area}
+          onSubmit={this.props.userLogin}>
+          <div style={{margin: "0"}}>
             <label htmlFor="user-name">用户名</label><br />
-            <input type="text" id="user-name" style={style.input} />
-          </p>
-          <p style={{margin: "0"}}>
+            <input
+              id="user-name"
+              type="text"
+              style={style.input}
+              onChange={this.props.handleUserNameChange} />
+          </div>
+          <div style={{margin: "0"}}>
             <label htmlFor="user-password">密码</label><br />
-            <input type="password" id="user-password" style={style.input} />
-          </p>
-          <p style={{margin: "0",
+            <input
+              id="user-password"
+              type="password"
+              style={style.input}
+              onChange={this.props.handlePasswordChange} />
+          </div>
+          <div style={{margin: "0",
                      display: "flex",
                      alignItems: "center",
                      justifyContent: "space-between"}}>
             <label htmlFor="user-rember">
-              <input type="checkbox" id="user-rember"/>
-              记住我</label>
-            <button className="normal">登陆</button>
-          </p>
-          <p style={{fontSize: ".8em", marginTop: "3em"}}>
+              <input
+                id="user-rember"
+                type="checkbox"
+                defaultChecked
+                onChange={this.props.handleRememberMe} />记住我</label>
+            <button type="submit" className="normal">登陆</button>
+          </div>
+          <div style={{fontSize: ".8em", marginTop: "3em"}}>
             <Link to="signup" className="link-to">注册</Link>|
             <a href="#" className="link-to">忘记密码？</a>
-          </p>
-          <p style={{fontSize: ".8em"}}>
+          </div>
+          <div style={{fontSize: ".8em"}}>
             <Link to="/blog" className="link-to">←回到博客首页</Link>
-          </p>
-        </div>
+          </div>
+        </form>
       </div>
     );
   }

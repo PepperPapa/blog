@@ -48,8 +48,11 @@ def valid_pw(name, password, h):
     return h == make_pw_hash(name, password, salt)
 
 def expires(days):
-    t = time.time() + days * 24 * 60 * 60
-    return time.strftime("%A, %d-%b-%y %H:%M:%S GMT", time.localtime(t))
+    if days > 0:
+        t = time.time() + days * 24 * 60 * 60
+        return time.strftime("%A, %d-%b-%y %H:%M:%S GMT", time.localtime(t))
+    else:
+        return "/"
 
 class Signup:
     def post(self, app, *args):
@@ -78,7 +81,7 @@ class Signup:
             app.header('Content-type', 'application/json; charset=UTF-8')
             if new_user:
                 # 注册成功
-                return json.dumps("用户注册成功").encode("utf-8")
+                return json.dumps(user["username"]).encode("utf-8")
             else:
                 # user already exists.
                 app.status = "409 Conflict"
@@ -86,43 +89,34 @@ class Signup:
                 return json.dumps("用户名已存在").encode("utf-8")
 
 class Login:
-    def __init__(self):
-        # login sucessfully, self.user equal username
-        self.user = None
-
-    def get(self, app, *args):
-        f = open("login.html")
-        content = f.read()
-        f.close()
-        app.header('Content-type', 'text/html; charset=UTF-8')
-        return content.encode("utf-8")
-
     def post(self, app, *args):
-        login_error = False
         # get username, password from the request body
         user = app.getRequestContext()
-        user = re.match(r'(.*)=(.*)&(.*)=(.*)', user).groups()
-        user = dict([user[0:2], user[2:4]])
+        user = json.loads(user)
 
         # validate username, password
         user_query = db.user.userByName(user["username"])
         if not user_query:
-            login_error = True
-            return app.redirect('/myblog/login?error=' +
-                        'invalid username or password.')
+            app.status = "406 Not Acceptable"
+            app.header("Content-Type", "application/json; charset=UTF-8")
+            return json.dumps("user not exists.用户不存在").encode("utf-8")
         else:
             if valid_pw(user["username"],
                             user["password"],
                             user_query[2]):
-                app.header("Set-Cookie",
-                    "user_id={};Expires={}".format(user_query[0], expires(60)))
-                # login sucessfully, self.user equal username
-                self.user = user["username"]
-
-                return app.redirect('/myblog')
+                # set cookie
+                expires_days = 60
+                if not user["remember_me"]:
+                    expires_days = 0
+                app.header("Set-Cookie", "user_id={};Expires={}"
+                            .format(user_query[0], expires(expires_days)))
+                            
+                app.header("Content-Type", "application/json; charset=UTF-8")
+                return json.dumps(user["username"]).encode("utf-8")
             else:
-                return app.redirect('/myblog/login?error=' +
-                            'invalid username or password.')
+                app.status = "406 Not Acceptable"
+                app.header("Content-Type", "application/json; charset=UTF-8")
+                return json.dumps("password error.密码不正确").encode("utf-8")
 
 class Logout:
     def get(self, app, *args):

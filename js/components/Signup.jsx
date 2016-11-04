@@ -61,7 +61,7 @@ var Signup = React.createClass({
           className="login-area"
           style={style.login_area}
           onSubmit={this.props.registerNewUser}>
-          <p style={{margin: "0"}}>
+          <div style={{margin: "0"}}>
             <label htmlFor="user-name">用户名</label><br />
             <input
               type="text"
@@ -71,8 +71,8 @@ var Signup = React.createClass({
               title="长度5-15的大写字母、小写字母、数字、下划线组合"
               required
               onChange={this.props.handleUserNameChange} />
-          </p>
-          <p style={{margin: "0"}}>
+          </div>
+          <div style={{margin: "0"}}>
             <label htmlFor="user-password">密码</label><br />
             <input
               type="password"
@@ -82,8 +82,8 @@ var Signup = React.createClass({
               title="长度6-26的非空字符"
               required
               onChange={this.props.handlePasswordChange} />
-          </p>
-          <p style={{margin: "0"}}>
+          </div>
+          <div style={{margin: "0"}}>
             <label htmlFor="user-verify">再次输入密码</label><br />
             <input
               type="password"
@@ -93,8 +93,8 @@ var Signup = React.createClass({
               title="长度6-26的非空字符"
               required
               onChange={this.props.handleVerifyChange} />
-          </p>
-          <p style={{margin: "0",
+          </div>
+          <div style={{margin: "0",
                      display: "flex",
                      alignItems: "center",
                      justifyContent: "space-between"}}>
@@ -102,14 +102,14 @@ var Signup = React.createClass({
             <button
               type="submit"
               className="normal">注册</button>
-          </p>
-          <p style={{fontSize: ".8em", marginTop: "3em"}}>
+          </div>
+          <div style={{fontSize: ".8em", marginTop: "3em"}}>
             <Link to="login" className="link-to">登陆</Link>|
             <a href="#" className="link-to">忘记密码？</a>
-          </p>
-          <p style={{fontSize: ".8em"}}>
+          </div>
+          <div style={{fontSize: ".8em"}}>
             <Link to="/blog" className="link-to">←回到博客首页</Link>
-          </p>
+          </div>
         </form>
       </div>
     );
