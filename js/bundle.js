@@ -11837,8 +11837,6 @@
 	  },
 	
 	  publishPost: function publishPost(event) {
-	    // prevent default behaviour, otherwise may report URI too large when content
-	    // is too big
 	    event.preventDefault();
 	    /* Ajax post request to server
 	      1. if response OK, jump to index page;
@@ -11886,8 +11884,6 @@
 	  displayName: "NewPost",
 	
 	  render: function render() {
-	    var _this = this;
-	
 	    var style = {
 	      container: {
 	        display: "flex",
@@ -11957,7 +11953,10 @@
 	        { style: style.container },
 	        React.createElement(
 	          "form",
-	          { method: "POST", action: "#" },
+	          {
+	            method: "POST",
+	            action: "/newPost",
+	            onSubmit: this.props.publishPost },
 	          React.createElement(
 	            "p",
 	            { style: style.p },
@@ -11973,6 +11972,7 @@
 	              type: "text",
 	              name: "subject",
 	              placeholder: "\u6807\u9898",
+	              required: true,
 	              style: style.input,
 	              onChange: this.props.handleSubjectChange })
 	          ),
@@ -11990,6 +11990,7 @@
 	              id: "content",
 	              name: "content",
 	              placeholder: "\u4E3B\u4F53",
+	              required: true,
 	              style: style.textarea,
 	              onChange: this.props.handleContentChange })
 	          ),
@@ -12000,10 +12001,7 @@
 	              "button",
 	              { type: "submit",
 	                className: "normal",
-	                style: style.button,
-	                onClick: function onClick(e) {
-	                  return _this.props.publishPost(e);
-	                } },
+	                style: style.button },
 	              "\u53D1\u5E03"
 	            )
 	          )
@@ -12039,6 +12037,9 @@
 	exports.userLogin = userLogin;
 	exports.userLoginSuccess = userLoginSuccess;
 	exports.userLoginFailure = userLoginFailure;
+	exports.verifyUserID = verifyUserID;
+	exports.verifyUserIDSuccess = verifyUserIDSuccess;
+	exports.verifyUserIDFailure = verifyUserIDFailure;
 	
 	var _XHR = __webpack_require__(123);
 	
@@ -12076,7 +12077,12 @@
 	  // for page "/login"
 	  "USER_LOGIN": "USER_LOGIN",
 	  "USER_LOGIN_SUCCESS": "USER_LOGIN_SUCCESS",
-	  "USER_LOGIN_FAILURE": "USER_LOGIN_FAILURE"
+	  "USER_LOGIN_FAILURE": "USER_LOGIN_FAILURE",
+	
+	  // check cookie for remember login status
+	  "VERIFY_USER_ID": "VERIFY_USER_ID",
+	  "VERIFY_USER_ID_SUCCESS": "VERIFY_USER_ID_SUCCESS",
+	  "VERIFY_USER_ID_FAILURE": "VERIFY_USER_ID_FAILURE"
 	};
 	
 	// action creater for postsList
@@ -12244,6 +12250,40 @@
 	function userLoginFailure(error) {
 	  return {
 	    type: types.USER_LOGIN_FAILURE,
+	    payload: error
+	  };
+	}
+	
+	// action creater for verify cookie for remember login status
+	function verifyUserID(props) {
+	  _XHR2.default.ajax({
+	    type: "get",
+	    url: "/login.py",
+	    async: true,
+	    context: props,
+	    success: function success(xhr) {
+	      _store2.default.dispatch(userLoginSuccess(JSON.parse(xhr.responseText)));
+	    },
+	    error: function error(xhr) {
+	      _store2.default.dispatch(userLoginFailure(JSON.parse(xhr.responseText)));
+	    }
+	  });
+	
+	  return {
+	    type: types.VERIFY_USER_ID
+	  };
+	}
+	
+	function verifyUserIDSuccess(user) {
+	  return {
+	    type: types.VERIFY_USER_ID_SUCCESS,
+	    payload: user
+	  };
+	}
+	
+	function verifyUserIDFailure(error) {
+	  return {
+	    type: types.VERIFY_USER_ID_FAILURE,
 	    payload: error
 	  };
 	}
@@ -12455,6 +12495,22 @@
 	  }
 	}
 	
+	function verifyUserIDReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : rootState.currentUser;
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case "VERIFY_USER_ID":
+	      return { user: null, logging_in: true, error: null };
+	    case "VERIFY_USER_ID_SUCCESS":
+	      return { user: action.payload, logging_in: false, error: null };
+	    case "VERIFY_USER_ID_FAILURE":
+	      return { user: null, logging_in: false, error: { message: action.payload } };
+	    default:
+	      return state;
+	  }
+	}
+	
 	/*
 	 TODO: must using export, if not the browser will report error below
 	 bundle.js:10988 Uncaught Error: Expected the reducer to be a function.(…)
@@ -12466,7 +12522,8 @@
 	  activePost: activePostReducer,
 	  newPost: newPostReducer,
 	  newUser: newUserReducer,
-	  currentUser: userLoginReducer
+	  currentUser: userLoginReducer,
+	  verifyUserID: verifyUserIDReducer
 	});
 	
 	exports.default = reducer;
@@ -32385,9 +32442,14 @@
 
 	"use strict";
 	
+	var _HeaderContainer = __webpack_require__(281);
+	
+	var _HeaderContainer2 = _interopRequireDefault(_HeaderContainer);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	var React = __webpack_require__(4);
 	
-	var Header = __webpack_require__(274);
 	var Footer = __webpack_require__(275);
 	
 	var BlogApp = React.createClass({
@@ -32399,7 +32461,7 @@
 	      React.createElement(
 	        "div",
 	        { id: "app-container" },
-	        React.createElement(Header, null),
+	        React.createElement(_HeaderContainer2.default, null),
 	        this.props.children,
 	        React.createElement(Footer, null)
 	      )
@@ -32921,6 +32983,10 @@
 
 	"use strict";
 	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
 	var _reactRouter = __webpack_require__(2);
 	
 	var _reactRedux = __webpack_require__(98);
@@ -32998,7 +33064,70 @@
 	  };
 	}
 	
-	module.exports = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(LoginContainer);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(LoginContainer);
+
+/***/ },
+/* 281 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(98);
+	
+	var _Header = __webpack_require__(274);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
+	var _action = __webpack_require__(122);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var React = __webpack_require__(4);
+	
+	
+	var HeaderContainer = React.createClass({
+	  displayName: "HeaderContainer",
+	
+	  getInitialState: function getInitialState() {
+	    var pattern = /user_id=(\d+)/;
+	    var cookie = document.cookie;
+	    var match = pattern.exec(cookie);
+	    return {
+	      user_id: match[1]
+	    };
+	  },
+	
+	  verifyUserID: function verifyUserID() {
+	    // if cookie has user_id
+	    if (this.state.user_id) {
+	      this.props.verifyUserID((0, _action.verifyUserID)(JSON.stringify(this.state)));
+	    }
+	  },
+	
+	  render: function render() {
+	    return React.createElement(_Header2.default, null);
+	  }
+	});
+	
+	function mapStateToProps(state) {
+	  return {
+	    currentUser: state.currentUser
+	  };
+	}
+	
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    verifyUserID: function verifyUserID(props) {
+	      return dispatch((0, _action.verifyUserID)(props));
+	    }
+	  };
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(HeaderContainer);
 
 /***/ }
 /******/ ]);

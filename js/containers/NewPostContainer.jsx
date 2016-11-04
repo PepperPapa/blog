@@ -28,8 +28,6 @@ var NewPostContainer =  React.createClass({
   },
 
   publishPost: function(event) {
-    // prevent default behaviour, otherwise may report URI too large when content
-    // is too big
     event.preventDefault();
     /* Ajax post request to server
       1. if response OK, jump to index page;

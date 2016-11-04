@@ -1,6 +1,6 @@
 var React = require("react");
 
-var Header = require("./Header");
+import HeaderContainer from "../containers/HeaderContainer";
 var Footer = require("./Footer");
 
 var BlogApp = React.createClass({
@@ -8,7 +8,7 @@ var BlogApp = React.createClass({
     return (
       // return value require only one root element
       <div id="app-container">
-        <Header />
+        <HeaderContainer />
         {this.props.children}
         <Footer />
       </div>

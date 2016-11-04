@@ -111,6 +111,19 @@ function userLoginReducer(state = rootState.currentUser, action) {
   }
 }
 
+function verifyUserIDReducer(state = rootState.currentUser, action) {
+  switch (action.type) {
+    case "VERIFY_USER_ID":
+      return {user: null, logging_in: true, error: null};
+    case "VERIFY_USER_ID_SUCCESS":
+      return {user: action.payload, logging_in: false, error: null};
+    case "VERIFY_USER_ID_FAILURE":
+      return {user: null, logging_in: false, error: {message: action.payload}}
+    default:
+      return state;
+  }
+}
+
 /*
  TODO: must using export, if not the browser will report error below
  bundle.js:10988 Uncaught Error: Expected the reducer to be a function.(…)
@@ -123,6 +136,7 @@ export const reducer = combineReducers({
   newPost: newPostReducer,
   newUser: newUserReducer,
   currentUser: userLoginReducer,
+  verifyUserID: verifyUserIDReducer,
 });
 
 export default reducer;

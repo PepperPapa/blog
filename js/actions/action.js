@@ -28,6 +28,11 @@ const types = {
   "USER_LOGIN": "USER_LOGIN",
   "USER_LOGIN_SUCCESS": "USER_LOGIN_SUCCESS",
   "USER_LOGIN_FAILURE": "USER_LOGIN_FAILURE",
+
+  // check cookie for remember login status
+  "VERIFY_USER_ID": "VERIFY_USER_ID",
+  "VERIFY_USER_ID_SUCCESS": "VERIFY_USER_ID_SUCCESS",
+  "VERIFY_USER_ID_FAILURE": "VERIFY_USER_ID_FAILURE",
 };
 
 // action creater for postsList
@@ -203,6 +208,40 @@ export function userLoginSuccess(user) {
 export function userLoginFailure(error) {
   return {
     type: types.USER_LOGIN_FAILURE,
+    payload: error
+  };
+}
+
+// action creater for verify cookie for remember login status
+export function verifyUserID(props) {
+  $.ajax({
+    type: "get",
+    url: "/login.py",
+    async: true,
+    context: props,
+    success: function(xhr) {
+      store.dispatch(userLoginSuccess(JSON.parse(xhr.responseText)));
+    },
+    error: function(xhr) {
+      store.dispatch(userLoginFailure(JSON.parse(xhr.responseText)));
+    }
+  });
+
+  return {
+    type: types.VERIFY_USER_ID
+  };
+}
+
+export function verifyUserIDSuccess(user) {
+  return {
+    type: types.VERIFY_USER_ID_SUCCESS,
+    payload: user
+  };
+}
+
+export function verifyUserIDFailure(error) {
+  return {
+    type: types.VERIFY_USER_ID_FAILURE,
     payload: error
   };
 }

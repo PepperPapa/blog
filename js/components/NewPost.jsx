@@ -56,7 +56,10 @@ var NewPost = React.createClass({
     return (
       // return value require only one root element
       <div style={style.container}>
-        <form method="POST" action="#">
+        <form
+          method="POST"
+          action="/newPost"
+          onSubmit={this.props.publishPost}>
           <p style={style.p}>
             <label
               htmlFor="subject"
@@ -66,6 +69,7 @@ var NewPost = React.createClass({
               type="text"
               name="subject"
               placeholder="标题"
+              required
               style={style.input}
               onChange={this.props.handleSubjectChange} />
           </p>
@@ -77,14 +81,14 @@ var NewPost = React.createClass({
               id="content"
               name="content"
               placeholder="主体"
+              required
               style={style.textarea}
               onChange={this.props.handleContentChange}></textarea>
           </p>
           <p>
             <button type="submit"
               className="normal"
-              style={style.button}
-              onClick={(e) => this.props.publishPost(e)}>发布</button>
+              style={style.button}>发布</button>
           </p>
         </form>
       </div>

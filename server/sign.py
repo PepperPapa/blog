@@ -89,6 +89,9 @@ class Signup:
                 return json.dumps("用户名已存在").encode("utf-8")
 
 class Login:
+    def get(self, app, *args):
+        pass
+
     def post(self, app, *args):
         # get username, password from the request body
         user = app.getRequestContext()
