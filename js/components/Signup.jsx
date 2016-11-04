@@ -5,7 +5,6 @@ import { Link } from "react-router";
 var RegisterTip = function(props) {
     return (
       <span style={{fontSize: ".9em",
-                    fontStyle: "italic",
                     color: props.color}}>{props.info}</span>
     );
 }
@@ -43,14 +42,14 @@ var Signup = React.createClass({
     let { user, registering, error } = this.props.newUser;
     var tip_info = {};
     if (registering) {
-      tip_info.info = "正在注册请稍后... ";
+      tip_info.info = "-->正在注册请稍后... ";
       tip_info.color = "blue";
     } else if (error) {
-      tip_info.info = error.message;
+      tip_info.info = "-->" + error.message;
       tip_info.color = "red";
     } else if (user) {
-      tip_info.info = "注册成功请登陆";
-      tip_info.color = "yellowgreen";
+      tip_info.info = "-->注册成功请登陆";
+      tip_info.color = "green";
     }
 
     return (
@@ -58,9 +57,10 @@ var Signup = React.createClass({
       <div style={style.container}>
         <form
           method="post"
-          action="#"
+          action="/signup"
           className="login-area"
-          style={style.login_area}>
+          style={style.login_area}
+          onSubmit={this.props.registerNewUser}>
           <p style={{margin: "0"}}>
             <label htmlFor="user-name">用户名</label><br />
             <input
@@ -68,6 +68,7 @@ var Signup = React.createClass({
               id="user-name"
               style={style.input}
               pattern="[a-zA-Z_][a-zA-Z0-9_]{5,15}"
+              title="长度5-15的大写字母、小写字母、数字、下划线组合"
               required
               onChange={this.props.handleUserNameChange} />
           </p>
@@ -77,6 +78,9 @@ var Signup = React.createClass({
               type="password"
               id="user-password"
               style={style.input}
+              pattern="\S{6,26}"
+              title="长度6-26的非空字符"
+              required
               onChange={this.props.handlePasswordChange} />
           </p>
           <p style={{margin: "0"}}>
@@ -85,6 +89,9 @@ var Signup = React.createClass({
               type="password"
               id="user-verify"
               style={style.input}
+              pattern="\S{6,26}"
+              title="长度6-26的非空字符"
+              required
               onChange={this.props.handleVerifyChange} />
           </p>
           <p style={{margin: "0",
@@ -94,8 +101,7 @@ var Signup = React.createClass({
             <RegisterTip info={tip_info.info} color={tip_info.color} />
             <button
               type="submit"
-              className="normal"
-              onClick={this.props.registerNewUser}>注册</button>
+              className="normal">注册</button>
           </p>
           <p style={{fontSize: ".8em", marginTop: "3em"}}>
             <Link to="login" className="link-to">登陆</Link>|

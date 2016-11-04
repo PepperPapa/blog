@@ -32,9 +32,10 @@ var SignupContainer = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    if (nextProps.newUser.user) {
-      browserHistory.push("/login");
-    }
+    // TODO: zx -- not jump to login page temporarily
+    // if (nextProps.newUser.user) {
+    //   browserHistory.push("/login");
+    // }
   },
 
   render: function() {

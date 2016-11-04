@@ -14879,9 +14879,10 @@
 	  },
 	
 	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-	    if (nextProps.newUser.user) {
-	      _reactRouter.browserHistory.push("/login");
-	    }
+	    // TODO: zx -- not jump to login page temporarily
+	    // if (nextProps.newUser.user) {
+	    //   browserHistory.push("/login");
+	    // }
 	  },
 	
 	  render: function render() {
@@ -14927,7 +14928,6 @@
 	  return React.createElement(
 	    "span",
 	    { style: { fontSize: ".9em",
-	        fontStyle: "italic",
 	        color: props.color } },
 	    props.info
 	  );
@@ -14972,14 +14972,14 @@
 	
 	    var tip_info = {};
 	    if (registering) {
-	      tip_info.info = "正在注册请稍后... ";
+	      tip_info.info = "-->正在注册请稍后... ";
 	      tip_info.color = "blue";
 	    } else if (error) {
-	      tip_info.info = error.message;
+	      tip_info.info = "-->" + error.message;
 	      tip_info.color = "red";
 	    } else if (user) {
-	      tip_info.info = "注册成功请登陆";
-	      tip_info.color = "yellowgreen";
+	      tip_info.info = "-->注册成功请登陆";
+	      tip_info.color = "green";
 	    }
 	
 	    return (
@@ -14991,9 +14991,10 @@
 	          "form",
 	          {
 	            method: "post",
-	            action: "#",
+	            action: "/signup",
 	            className: "login-area",
-	            style: style.login_area },
+	            style: style.login_area,
+	            onSubmit: this.props.registerNewUser },
 	          React.createElement(
 	            "p",
 	            { style: { margin: "0" } },
@@ -15008,6 +15009,7 @@
 	              id: "user-name",
 	              style: style.input,
 	              pattern: "[a-zA-Z_][a-zA-Z0-9_]{5,15}",
+	              title: "\u957F\u5EA65-15\u7684\u5927\u5199\u5B57\u6BCD\u3001\u5C0F\u5199\u5B57\u6BCD\u3001\u6570\u5B57\u3001\u4E0B\u5212\u7EBF\u7EC4\u5408",
 	              required: true,
 	              onChange: this.props.handleUserNameChange })
 	          ),
@@ -15024,6 +15026,9 @@
 	              type: "password",
 	              id: "user-password",
 	              style: style.input,
+	              pattern: "\\S{6,26}",
+	              title: "\u957F\u5EA66-26\u7684\u975E\u7A7A\u5B57\u7B26",
+	              required: true,
 	              onChange: this.props.handlePasswordChange })
 	          ),
 	          React.createElement(
@@ -15039,6 +15044,9 @@
 	              type: "password",
 	              id: "user-verify",
 	              style: style.input,
+	              pattern: "\\S{6,26}",
+	              title: "\u957F\u5EA66-26\u7684\u975E\u7A7A\u5B57\u7B26",
+	              required: true,
 	              onChange: this.props.handleVerifyChange })
 	          ),
 	          React.createElement(
@@ -15052,8 +15060,7 @@
 	              "button",
 	              {
 	                type: "submit",
-	                className: "normal",
-	                onClick: this.props.registerNewUser },
+	                className: "normal" },
 	              "\u6CE8\u518C"
 	            )
 	          ),
