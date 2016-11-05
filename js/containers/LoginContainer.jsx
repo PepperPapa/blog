@@ -3,7 +3,7 @@ import { browserHistory } from "react-router";
 import { connect } from "react-redux";
 
 import Login from "../components/Login";
-import { userLogin } from "../actions/action";
+import { userLogin, verifyUserID } from "../actions/action";
 
 var LoginContainer = React.createClass({
   getInitialState: function() {

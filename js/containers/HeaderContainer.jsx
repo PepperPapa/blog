@@ -3,41 +3,43 @@ import { connect } from "react-redux";
 
 import Header from "../components/Header";
 import { verifyUserID } from "../actions/action";
+import store from "../store/store";
 
 var HeaderContainer = React.createClass({
-  getInitialState: function() {
-    var pattern = /user_id=(\d+)/;
-    const cookie = document.cookie;
-    var match = pattern.exec(cookie);
-    return {
-      user_id: match[1]
-    }
-  },
-
-  verifyUserID: function() {
-    // if cookie has user_id
-    if (this.state.user_id) {
-      this.props.verifyUserID(verifyUserID(JSON.stringify(this.state)));
-    }
-  },
+  // getInitialState: function() {
+  //   return {
+  //     currentUser: this.props.currentUser
+  //   };
+  // },
+  //
+  // componentDidMount: function() {
+  //   var self = this;
+  //   store.subscribe(function() {
+  //     console.log(store.getState());
+  //     self.setState({
+  //       currentUser: store.getState().verifyUserID
+  //     });
+  //   });
+  // },
 
   render: function() {
     return (
-      <Header />
+      <Header
+        currentUser={this.props.currentUser}/>
     );
   }
 });
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.verifyUserID
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    verifyUserID: function(props) {
-      return dispatch(verifyUserID(props));
+    verifyUserID: function() {
+      return dispatch(verifyUserID());
     }
   }
 }

@@ -90,7 +90,23 @@ class Signup:
 
 class Login:
     def get(self, app, *args):
-        pass
+        cookie = app.readCookie()
+        if cookie and ("user_id" in  cookie):
+            user_id = cookie["user_id"]
+            # data format: (id, username, password)
+            user_info = db.user.userByID(user_id)
+            if user_info:
+                print(user_info)
+                app.header("Content-Type", "application/json; charset=UTF-8")
+                return json.dumps(user_info[1]).encode("utf-8")
+            else:
+                app.status = "404 Not Found"
+                app.header("Content-Type", "application/json; charset=UTF-8")
+                return json.dumps("invalid user_id.").encode("utf-8")
+        else:
+            app.status = "404 Not Found"
+            app.header("Content-Type", "application/json; charset=UTF-8")
+            return json.dumps("no cookie related to user_id.").encode("utf-8")
 
     def post(self, app, *args):
         # get username, password from the request body

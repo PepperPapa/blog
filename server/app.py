@@ -12,6 +12,7 @@ else:
 # 使用uwsgi server，必须使用application作为方法名或类名
 class application:
     urls = (
+        # TODO: zx will remove
         ("/(:?\.json$)?/?(\?.*)?$", blogFront),
         ("/flush/?", blogFront),
         ("/newpost/?$", newPost),
@@ -20,6 +21,7 @@ class application:
         ("/logout/?$", logout),
         ("/(\d+)(:?\.json)?$", postPage),
 
+        # api
         ("/blog/posts.py", blogFront),
         ("/blog/(\d+).py", postPage),
         ("/blog/newpost.py", newPost),
@@ -87,4 +89,5 @@ class application:
         return content
 
     def readCookie(self):
-        return dict([self.environ["HTTP_COOKIE"].split("=")])
+        if "HTTP_COOKIE" in self.environ:
+            return dict([self.environ["HTTP_COOKIE"].split("=")])

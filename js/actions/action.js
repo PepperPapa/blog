@@ -46,6 +46,13 @@ export function fetchPosts() {
       store.dispatch(
         fetchPostsSuccess(JSON.parse(xhr.responseText))
       );
+
+      /* in index page("/blog"), after fetch posts success,
+         then dispatch verifyUserID for checking login status automatically
+      */
+      store.dispatch(
+        verifyUserID()
+      );
     },
     error: function(xhr) {
       store.dispatch(
@@ -213,17 +220,19 @@ export function userLoginFailure(error) {
 }
 
 // action creater for verify cookie for remember login status
-export function verifyUserID(props) {
+export function verifyUserID() {
   $.ajax({
     type: "get",
     url: "/login.py",
     async: true,
-    context: props,
+    context: null,
     success: function(xhr) {
-      store.dispatch(userLoginSuccess(JSON.parse(xhr.responseText)));
+      console.log(xhr.responseText);
+      store.dispatch(verifyUserIDSuccess(JSON.parse(xhr.responseText)));
     },
     error: function(xhr) {
-      store.dispatch(userLoginFailure(JSON.parse(xhr.responseText)));
+      console.log(xhr.responseText);
+      store.dispatch(verifyUserIDFailure(JSON.parse(xhr.responseText)));
     }
   });
 
