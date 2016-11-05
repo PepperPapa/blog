@@ -33,12 +33,16 @@ var NewPostContainer =  React.createClass({
       1. if response OK, jump to index page;
       2. is failed, jump to error page;
     */
-    this.props.createPost(JSON.stringify(this.state));
+    // must login first
+    if (this.props.verifyUserID.user) {
+      this.props.createPost(JSON.stringify(this.state));
+    }
   },
 
   render: function() {
     var page = <NewPost
       newPost={this.props.newPost}
+      verifyUserID={this.props.verifyUserID}
       publishPost={this.publishPost}
       handleSubjectChange={this.handleSubjectChange}
       handleContentChange={this.handleContentChange} />;
@@ -49,7 +53,8 @@ var NewPostContainer =  React.createClass({
 
 function mapStateToProps(state) {
   return {
-    newPost: state.newPost
+    newPost: state.newPost,
+    verifyUserID: state.verifyUserID
   };
 }
 

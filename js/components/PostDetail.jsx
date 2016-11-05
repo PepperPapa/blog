@@ -9,7 +9,7 @@ var PostDetail = React.createClass({
         flexFlow: "column",
         flex: "1",
         width: "100%",
-        maxWidth: "50em",
+        maxWidth: "65em",
         margin: "2em auto"
       },
       article: {

@@ -55,6 +55,8 @@ a.link-expand {
       overflow: hidden; }
 
 aside {
+  /* TODO: in pending for aside content */
+  display: none;
   margin: .2em;
   padding: 2em 1em 1em 1em; }
   aside h2 {

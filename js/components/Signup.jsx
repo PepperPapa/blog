@@ -39,7 +39,7 @@ var Signup = React.createClass({
         color: "#32373c",
       }
     }
-    let { user, registering, error } = this.props.newUser;
+    const { user, registering, error } = this.props.newUser;
     var tip_info = {};
     if (registering) {
       tip_info.info = "-->正在注册请稍后... ";

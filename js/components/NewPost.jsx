@@ -43,6 +43,13 @@ var NewPost = React.createClass({
       }
     }
     const {post, loading, error} = this.props.newPost;
+    const {user} = this.props.verifyUserID;
+
+    // check login status
+    let login_tip = "";
+    if (!user) {
+      login_tip = "请先登陆..."
+    }
 
     if (error) {
       return (
@@ -86,6 +93,7 @@ var NewPost = React.createClass({
               onChange={this.props.handleContentChange}></textarea>
           </p>
           <p>
+            <span style={{color: "red"}}>{login_tip}</span>
             <button type="submit"
               className="normal"
               style={style.button}>发布</button>

@@ -13,7 +13,7 @@ var Main = React.createClass({
             <input type="text" placeholder="搜索文章" />
             <input type="image" src="./images/search_btn.png" />
           </section>
-          <section style={{display: "none"}}>
+          <section>
             <h2>分类</h2>
             <ul>
               <li><a href="#">web frontend</a></li>

@@ -227,11 +227,9 @@ export function verifyUserID() {
     async: true,
     context: null,
     success: function(xhr) {
-      console.log(xhr.responseText);
       store.dispatch(verifyUserIDSuccess(JSON.parse(xhr.responseText)));
     },
     error: function(xhr) {
-      console.log(xhr.responseText);
       store.dispatch(verifyUserIDFailure(JSON.parse(xhr.responseText)));
     }
   });

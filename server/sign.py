@@ -127,7 +127,7 @@ class Login:
                 expires_days = 60
                 if not user["remember_me"]:
                     expires_days = 0
-                app.header("Set-Cookie", "user_id={};Expires={}"
+                app.header("Set-Cookie", "user_id={}; Expires={}"
                             .format(user_query[0], expires(expires_days)))
 
                 app.header("Content-Type", "application/json; charset=UTF-8")

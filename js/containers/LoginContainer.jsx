@@ -37,6 +37,11 @@ var LoginContainer = React.createClass({
     }
   },
 
+  componentWillUnmount: function() {
+    // TODO: should reset this.props.currentUser, otherwise login tip info still there
+    console.log("reset currentUser");
+  },
+
   render: function() {
     return (
       <Login

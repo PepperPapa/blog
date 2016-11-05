@@ -39,10 +39,7 @@ main {
   flex: 1; }
 
 main > section {
-  width: 75%; }
-
-main > aside {
-  width: 25%; }
+  width: 100%; }
 
 footer {
   padding: 10px 0;

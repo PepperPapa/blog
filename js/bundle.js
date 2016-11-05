@@ -11842,12 +11842,16 @@
 	      1. if response OK, jump to index page;
 	      2. is failed, jump to error page;
 	    */
-	    this.props.createPost(JSON.stringify(this.state));
+	    // must login first
+	    if (this.props.verifyUserID.user) {
+	      this.props.createPost(JSON.stringify(this.state));
+	    }
 	  },
 	
 	  render: function render() {
 	    var page = _react2.default.createElement(_NewPost2.default, {
 	      newPost: this.props.newPost,
+	      verifyUserID: this.props.verifyUserID,
 	      publishPost: this.publishPost,
 	      handleSubjectChange: this.handleSubjectChange,
 	      handleContentChange: this.handleContentChange });
@@ -11858,7 +11862,8 @@
 	
 	function mapStateToProps(state) {
 	  return {
-	    newPost: state.newPost
+	    newPost: state.newPost,
+	    verifyUserID: state.verifyUserID
 	  };
 	}
 	
@@ -11928,7 +11933,14 @@
 	    var post = _props$newPost.post;
 	    var loading = _props$newPost.loading;
 	    var error = _props$newPost.error;
+	    var user = this.props.verifyUserID.user;
 	
+	    // check login status
+	
+	    var login_tip = "";
+	    if (!user) {
+	      login_tip = "请先登陆...";
+	    }
 	
 	    if (error) {
 	      return (
@@ -11997,6 +12009,11 @@
 	          React.createElement(
 	            "p",
 	            null,
+	            React.createElement(
+	              "span",
+	              { style: { color: "red" } },
+	              login_tip
+	            ),
 	            React.createElement(
 	              "button",
 	              { type: "submit",
@@ -12267,11 +12284,9 @@
 	    async: true,
 	    context: null,
 	    success: function success(xhr) {
-	      console.log(xhr.responseText);
 	      _store2.default.dispatch(verifyUserIDSuccess(JSON.parse(xhr.responseText)));
 	    },
 	    error: function error(xhr) {
-	      console.log(xhr.responseText);
 	      _store2.default.dispatch(verifyUserIDFailure(JSON.parse(xhr.responseText)));
 	    }
 	  });
@@ -12602,7 +12617,7 @@
 	        flexFlow: "column",
 	        flex: "1",
 	        width: "100%",
-	        maxWidth: "50em",
+	        maxWidth: "65em",
 	        margin: "2em auto"
 	      },
 	      article: {
@@ -15018,6 +15033,11 @@
 	    if (nextProps.currentUser.user) {
 	      _reactRouter.browserHistory.push("/blog");
 	    }
+	  },
+	
+	  componentWillUnmount: function componentWillUnmount() {
+	    // TODO: should reset this.props.currentUser, otherwise login tip info still there
+	    console.log("reset currentUser");
 	  },
 	
 	  render: function render() {
@@ -32756,10 +32776,6 @@
 	
 	var _action = __webpack_require__(122);
 	
-	var _store = __webpack_require__(124);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var React = __webpack_require__(4);
@@ -32768,25 +32784,15 @@
 	var HeaderContainer = React.createClass({
 	  displayName: "HeaderContainer",
 	
-	  // getInitialState: function() {
-	  //   return {
-	  //     currentUser: this.props.currentUser
-	  //   };
-	  // },
-	  //
-	  // componentDidMount: function() {
-	  //   var self = this;
-	  //   store.subscribe(function() {
-	  //     console.log(store.getState());
-	  //     self.setState({
-	  //       currentUser: store.getState().verifyUserID
-	  //     });
-	  //   });
-	  // },
+	  logout: function logout() {
+	    // must content 'Path=/'
+	    document.cookie = "user_id=; Path=/; Expires=Thu, 26 Feb 2000 11:50:25 GMT;";
+	  },
 	
 	  render: function render() {
 	    return React.createElement(_Header2.default, {
-	      currentUser: this.props.currentUser });
+	      currentUser: this.props.currentUser,
+	      logout: this.logout });
 	  }
 	});
 	
@@ -32862,8 +32868,8 @@
 	                "li",
 	                null,
 	                React.createElement(
-	                  _reactRouter.Link,
-	                  { to: "#", className: "link-header" },
+	                  "a",
+	                  { href: "#", className: "link-header" },
 	                  user
 	                )
 	              ),
@@ -32872,7 +32878,10 @@
 	                null,
 	                React.createElement(
 	                  _reactRouter.Link,
-	                  { to: "#", className: "link-header" },
+	                  {
+	                    to: "/signup",
+	                    className: "link-header",
+	                    onClick: this.props.logout },
 	                  "\u6CE8\u9500"
 	                )
 	              )
@@ -32988,7 +32997,7 @@
 	        ),
 	        React.createElement(
 	          "section",
-	          { style: { display: "none" } },
+	          null,
 	          React.createElement(
 	            "h2",
 	            null,

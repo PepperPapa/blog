@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 var Header = React.createClass({
   render: function() {
-    let {user, logging_in, error} = this.props.currentUser;
+    const {user, logging_in, error} = this.props.currentUser;
 
     if (user) {
       return (
@@ -16,9 +16,14 @@ var Header = React.createClass({
                   <Link to="/blog/newpost" className="link-header">写文章</Link>
                 </li>
                 <li>
-                  <Link to="#" className="link-header">{user}</Link>
+                  <a href="#" className="link-header">{user}</a>
                 </li>
-                <li><Link to="#" className="link-header">注销</Link></li>
+                <li>
+                  <Link
+                    to="/signup"
+                    className="link-header"
+                    onClick={this.props.logout}>注销</Link>
+                </li>
               </ul>
             </nav>
           </div>

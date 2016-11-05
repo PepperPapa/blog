@@ -39,7 +39,7 @@ var Login = React.createClass({
       }
     }
 
-    let {user, error, logging_in} = this.props.currentUser;
+    const {user, error, logging_in} = this.props.currentUser;
     var tip_info = {};
     if (logging_in) {
       tip_info.info = "正在登陆请稍后 ";
