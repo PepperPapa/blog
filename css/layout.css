@@ -5,8 +5,7 @@
 
 header {
   font-family: "Microsoft Yahei",SimSun,sans-serif;
-  background: #655;
-  background-image: radial-gradient(#655050 30%, transparent 0), radial-gradient(#655050 30%, transparent 0);
+  background: #58a;
   background-size: 30px 30px;
   background-position: 0 0, 15px 15px;
   color: white; }
@@ -16,6 +15,8 @@ header {
     background-size: auto 100%; }
     header h1 a {
       color: white; }
+      header h1 a:hover {
+        color: #aab2ec; }
   header div {
     display: flex;
     align-items: center;
