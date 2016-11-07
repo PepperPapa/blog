@@ -96,7 +96,6 @@ class Login:
             # data format: (id, username, password)
             user_info = db.user.userByID(user_id)
             if user_info:
-                print(user_info)
                 app.header("Content-Type", "application/json; charset=UTF-8")
                 return json.dumps(user_info[1]).encode("utf-8")
             else:
