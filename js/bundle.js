@@ -12064,7 +12064,7 @@
 	        padding: "0 5px",
 	        lineHeight: "1.8em",
 	        width: "100%",
-	        border: "1px solid #eee",
+	        border: "1px solid #c9cabb",
 	        fontSize: "1.6em",
 	        boxSizing: "inherit",
 	        outline: "none"
@@ -12073,7 +12073,7 @@
 	        padding: "5px",
 	        width: "100%",
 	        minHeight: "15em",
-	        border: "1px solid #eee",
+	        border: "1px solid #c9cabb",
 	        fontFamily: "inherit",
 	        fontSize: "1em",
 	        resize: "vertical",
@@ -12123,6 +12123,7 @@
 	          {
 	            method: "POST",
 	            action: "/newPost",
+	            style: { margin: "0 .5em" },
 	            onSubmit: this.props.publishPost },
 	          React.createElement(
 	            "p",
@@ -12773,12 +12774,13 @@
 	        flex: "1",
 	        width: "100%",
 	        maxWidth: "65em",
-	        margin: "2em auto"
+	        margin: "1em auto"
 	      },
 	      article: {
+	        margin: "0 .5em",
 	        padding: "1em 2em",
-	        border: "1px solid #eee",
-	        borderBottom: "1px solid #ddd",
+	        border: "1px solid #eff0dc",
+	        boxShadow: "0 5px 4px -4px #c9cabb",
 	        background: "white"
 	      },
 	      head: {
@@ -33077,7 +33079,7 @@
 	              ),
 	              React.createElement(
 	                "li",
-	                null,
+	                { style: { display: "none" } },
 	                React.createElement(
 	                  _reactRouter.Link,
 	                  { to: "/signup", className: "link-header" },

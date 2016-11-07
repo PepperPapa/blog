@@ -10,12 +10,13 @@ var PostDetail = React.createClass({
         flex: "1",
         width: "100%",
         maxWidth: "65em",
-        margin: "2em auto"
+        margin: "1em auto"
       },
       article: {
+        margin: "0 .5em",
         padding: "1em 2em",
-        border: "1px solid #eee",
-        borderBottom: "1px solid #ddd",
+        border: "1px solid #eff0dc",
+        boxShadow: "0 5px 4px -4px #c9cabb",
         background: "white",
       },
       head: {

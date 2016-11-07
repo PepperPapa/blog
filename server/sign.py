@@ -56,6 +56,10 @@ def expires(days):
 
 class Signup:
     def post(self, app, *args):
+        # refuse signup after personal blog deployed
+        # if you need recover signup function, remove below return statement
+        return
+
         have_error = False
         # get username, password, verify from the request body
         user = app.getRequestContext()
