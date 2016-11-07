@@ -19,6 +19,7 @@ header {
         color: #aab2ec; }
   header div {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     margin: 0 10em; }
