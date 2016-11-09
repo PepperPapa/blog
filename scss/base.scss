@@ -51,8 +51,9 @@ a.link-expand {
 }
 
 .posts-container {
-  margin: .2em;
+  margin: .2em auto;
   padding: 2em 1em 1em 1em;
+  box-sizing: border-box;
   article {
     margin-bottom: 1em;
     padding: 1em;
