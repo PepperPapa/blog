@@ -1,5 +1,15 @@
 blockquote {
   border-left: 4px solid #aaa;
   padding-left: .5em;
+  padding-top: 1px;
+  padding-bottom: 1px;
   color: #888;	   	  
+  background: #eee;
+}
+
+.markdown a {
+  color: #4078c0;
+  &:hover {
+    text-decoration: underline;
+  }
 }

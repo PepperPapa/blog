@@ -55,7 +55,7 @@ var PostDetail = React.createClass({
       return (
         // return value require only one root element
         <div
-          className="post-detail"
+          className="post-detail markdown"
           style={style.container}>
           <article
             key={post.id}
