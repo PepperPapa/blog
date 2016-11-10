@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,UAAW,CACT,WAAW,CAAE,cAAc,CAC3B,YAAY,CAAE,IAAI,CAClB,KAAK,CAAE,IAAI",
+"sources": ["../scss/markdown.scss"],
+"names": [],
+"file": "markdown.css"
+}

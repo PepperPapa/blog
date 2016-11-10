@@ -14,7 +14,7 @@ var PostDetail = React.createClass({
       },
       article: {
         margin: "0 .5em",
-        padding: "1em 2em",
+        padding: "1em .5em",
         border: "1px solid #eff0dc",
         boxShadow: "0 5px 4px -4px #c9cabb",
         background: "white",
