@@ -10,12 +10,13 @@ var PostDetail = React.createClass({
         flex: "1",
         width: "100%",
         maxWidth: "65em",
-        margin: "2em auto"
+        margin: "1em auto"
       },
       article: {
-        padding: "1em 2em",
-        border: "1px solid #eee",
-        borderBottom: "1px solid #ddd",
+        margin: "0 .5em",
+        padding: "1em .5em",
+        border: "1px solid #eff0dc",
+        boxShadow: "0 5px 4px -4px #c9cabb",
         background: "white",
       },
       head: {
@@ -54,7 +55,7 @@ var PostDetail = React.createClass({
       return (
         // return value require only one root element
         <div
-          className="post-detail"
+          className="post-detail markdown"
           style={style.container}>
           <article
             key={post.id}

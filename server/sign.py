@@ -56,6 +56,10 @@ def expires(days):
 
 class Signup:
     def post(self, app, *args):
+        # refuse signup after personal blog deployed
+        # if you need recover signup function, remove below return statement
+        return
+
         have_error = False
         # get username, password, verify from the request body
         user = app.getRequestContext()
@@ -96,7 +100,6 @@ class Login:
             # data format: (id, username, password)
             user_info = db.user.userByID(user_id)
             if user_info:
-                print(user_info)
                 app.header("Content-Type", "application/json; charset=UTF-8")
                 return json.dumps(user_info[1]).encode("utf-8")
             else:

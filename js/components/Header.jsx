@@ -39,7 +39,7 @@ var Header = React.createClass({
                 <li>
                   <Link to="/login" className="link-header">登陆</Link>
                 </li>
-                <li>
+                <li style={{display: "none"}}>
                   <Link to="/signup" className="link-header">注册</Link>
                 </li>
               </ul>

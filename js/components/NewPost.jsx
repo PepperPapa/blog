@@ -22,7 +22,7 @@ var NewPost = React.createClass({
         padding: "0 5px",
         lineHeight: "1.8em",
         width: "100%",
-        border: "1px solid #eee",
+        border: "1px solid #c9cabb",
         fontSize: "1.6em",
         boxSizing: "inherit",
         outline: "none"
@@ -31,7 +31,7 @@ var NewPost = React.createClass({
         padding: "5px",
         width: "100%",
         minHeight: "15em",
-        border: "1px solid #eee",
+        border: "1px solid #c9cabb",
         fontFamily: "inherit",
         fontSize: "1em",
         resize: "vertical",
@@ -66,6 +66,7 @@ var NewPost = React.createClass({
         <form
           method="POST"
           action="/newPost"
+	  style={{margin: "0 .5em"}}
           onSubmit={this.props.publishPost}>
           <p style={style.p}>
             <label
