@@ -1,15 +1,30 @@
+$bg_gray: #eee;
+
 blockquote {
   border-left: 4px solid #aaa;
   padding-left: .5em;
   padding-top: 1px;
   padding-bottom: 1px;
-  color: #888;	   	  
-  background: #eee;
+  color: #888;
+  background: $bg_gray;
 }
 
-.markdown a {
-  color: #4078c0;
-  &:hover {
-    text-decoration: underline;
+.markdown {
+  a {
+    color: #4078c0;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  code {
+    display: block;
+    padding: 1em;
+    white-space: pre;
+    tab-size: 2;
+    font-family: monospace;
+    overflow-x: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: $bg_gray;
   }
 }

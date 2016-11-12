@@ -24,7 +24,7 @@ var Articles = React.createClass({
     }
 
     return (
-      <section className="posts-container">
+      <section className="posts-container markdown">
         {posts.map(function(post) {
           /*  post format:
           [id, subject, content, created, last_modified]
