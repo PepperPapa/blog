@@ -36,7 +36,7 @@ var NewPost = React.createClass({
         fontSize: "1em",
         resize: "vertical",
         boxSizing: "inherit",
-        outline: "none"
+        outline: "none",
       },
       button: {
         float: "right"
