@@ -38,13 +38,13 @@
 > 系统环境：Ubuntu 14.04.5 LTS (GNU/Linux 3.13.0-24-generic x86_64)
 > TIP: 由于对shell脚本不太熟悉，目前网站部署过程过于复杂，本文只是详细记录本人博客的部署过程，后续尝试实现一键式部署上线
 
-1. 更新软件源
+### 1. 更新软件源
 初次使用需要更新软件源列表，否则可能后续步骤的安装会报错
 ```
 $ apt-get update 
 ```
 
-2. 安装依赖软件
+### 2. 安装依赖软件
 安装git，版本管理必备工具，推荐安装（可选）
 ```
 $ apt-get install git 
@@ -104,7 +104,7 @@ $ gem install sass
 $ sass -v 
 ```
 
-3. 安装项目运行所需的npm包
+### 3. 安装项目运行所需的npm包
 cd到project/blog目录下，执行：
 ```
 $ cnpm install 
@@ -112,7 +112,7 @@ $ cnpm install webpack -g
 ```
 *全局安装webpack，全局安装后才可以在终端使用webpack命令*
 
-4. clone项目代码并启动上线
+### 4. clone项目代码并启动上线
 cd至/etc/nginx目录，更新nginx.conf文件
 
 ```
