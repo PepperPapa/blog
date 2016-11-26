@@ -35,26 +35,24 @@
 
 ## 安装依赖及启动上线
 > 部署服务器：华为弹性云服务器
-
 > 系统环境：Ubuntu 14.04.5 LTS (GNU/Linux 3.13.0-24-generic x86_64)
-
 > TIP: 由于对shell脚本不太熟悉，目前网站部署过程过于复杂，本文只是详细记录本人博客的部署过程，后续尝试实现一键式部署上线
 
-1.更新软件源
-
+1. 更新软件源
 初次使用需要更新软件源列表，否则可能后续步骤的安装会报错
-```$ apt-get update 
+```
+$ apt-get update 
 ```
 
-2.安装依赖软件
+2. 安装依赖软件
 安装git，版本管理必备工具，推荐安装（可选）
-```$ apt-get install git 
 ```
-
+$ apt-get install git 
+```
 安装emacs（可选）
-```$ apt-get install emacs24 
 ```
-
+$ apt-get install emacs24 
+```
 python3默认已安装至服务器，默认版本为3.4.3，安装python3包管理工具pip
 ```$ apt-get install python3-pip 
 ```
@@ -64,17 +62,16 @@ python3默认已安装至服务器，默认版本为3.4.3，安装python3包管�
 $ apt-get install uwsgi-python3 
 $ apt-get install uwsgi-plugin-python3 
 ```
-
 安装nginx服务器，用于server端静态文件请求
 ```$ apt-get install nginx 
 ```
-
 安装nodejs
 > 默认已经安装了node，但是可能版本过低，而且软件源列表也没有更新更高版本的node（执行$ apt-get install node会返回已安装的提示），会导致终端下无法识别node命令，只能识别nodejs命令，建议这种情况下使用Node.js 源码安装。
 
 > 以下部分介绍在Ubuntu Linux下安装 Node.js参考链接 。 在 Github 上获取 Node.js 源码：
 
-```$ sudo git clone https://github.com/nodejs/node.git 
+```
+$ sudo git clone https://github.com/nodejs/node.git 
 修改目录权限：
 $ sudo chmod -R 755 node 
 使用 ./configure 创建编译文件，并按照:
@@ -88,17 +85,20 @@ v8.00-pre
 ```
 
 安装npm
-```$ apt-get install npm 
+```
+$ apt-get install npm 
 ```
 
 安装cnpm，解决npm国内下载慢的问题
-```$ npm install -g cnpm --registry=https://registry.npm.taobao.org 
+```
+$ npm install -g cnpm --registry=https://registry.npm.taobao.org 
 ```
 
 安装ruby和sass（使用sass必须先安装ruby）：
 > sass默认源被墙，需更改源，否则执行gem install sass没有任何反应
 
-```$ apt-get install ruby  
+```
+$ apt-get install ruby  
 $ gem source --add https://gems.ruby-china.org/
 $ gem install sass 
 $ sass -v 
@@ -106,7 +106,8 @@ $ sass -v
 
 3. 安装项目运行所需的npm包
 cd到project/blog目录下，执行：
-```$ cnpm install 
+```
+$ cnpm install 
 $ cnpm install webpack -g
 ```
 *全局安装webpack，全局安装后才可以在终端使用webpack命令*
@@ -114,21 +115,25 @@ $ cnpm install webpack -g
 4. clone项目代码并启动上线
 cd至/etc/nginx目录，更新nginx.conf文件
 
-```user www-data; 更新为 user root root; 
+```
+user www-data; 更新为 user root root; 
 不更改的话，nginx会以www-data用户运行，该用户无权限访问blog/目录中文件。
 $ ps aux -P | grep nginx --命令可以查看nginx的进程信息
 ```
 
 cd至项目根目录/blog, 更新nginx-blog.conf文件
-```listen端口号更改为80（默认http端口号） root路径更新为华为云服务器blog根目录
+```
+listen端口号更改为80（默认http端口号） root路径更新为华为云服务器blog根目录
 ```
 
 更新uwsgi-blog.ini文件
-```更新wsgi-file路径为云服务器项目目录下的app.py的路径
+```
+更新wsgi-file路径为云服务器项目目录下的app.py的路径
 ```
 
 cd至/etc/nginx/sites-enabled，执行
-```$ rm default --删除默认链接文件 $ ln -s ~/projects/blog/nginx-blog.conf --创建新链接，链接至blog的配置文件
+```
+$ rm default --删除默认链接文件 $ ln -s ~/projects/blog/nginx-blog.conf --创建新链接，链接至blog的配置文件
 ```
 
 重启nginx服务
@@ -136,7 +141,8 @@ cd至/etc/nginx/sites-enabled，执行
 ```
 
 启动uwsgi服务器
-```$ cd ~/projects/blog
+```
+$ cd ~/projects/blog
 $ uwsgi --ini uwsgi-blog.ini
 ```
 
