@@ -95,8 +95,7 @@ $ npm install -g cnpm --registry=https://registry.npm.taobao.org
 ```
 
 安装ruby和sass（使用sass必须先安装ruby）：
-> sass默认源被墙，需更改源，否则执行gem install sass没有任何反应
-
+sass默认源被墙，需更改源，否则执行gem install sass没有任何反应
 ```
 $ apt-get install ruby  
 $ gem source --add https://gems.ruby-china.org/
@@ -106,11 +105,12 @@ $ sass -v
 
 ### 3. 安装项目运行所需的npm包
 cd到project/blog目录下，执行：
+
 ```
 $ cnpm install 
 $ cnpm install webpack -g
+全局安装webpack，全局安装后才可以在终端使用webpack命令
 ```
-*全局安装webpack，全局安装后才可以在终端使用webpack命令*
 
 ### 4. clone项目代码并启动上线
 cd至/etc/nginx目录，更新nginx.conf文件
@@ -137,7 +137,8 @@ $ rm default --删除默认链接文件 $ ln -s ~/projects/blog/nginx-blog.conf 
 ```
 
 重启nginx服务
-```$ service nginx reload
+```
+$ service nginx reload
 ```
 
 启动uwsgi服务器
