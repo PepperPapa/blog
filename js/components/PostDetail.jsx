@@ -1,5 +1,4 @@
 var React = require("react");
-var markdown = require("markdown").markdown;
 
 var PostDetail = React.createClass({
   render: function() {
@@ -73,7 +72,7 @@ var PostDetail = React.createClass({
             <p
               className="post-content"
               style={style.content}
-              dangerouslySetInnerHTML={{__html: markdown.toHTML(post.content)}}>
+              dangerouslySetInnerHTML={{__html: post.content}}>
             </p>
           </article>
         </div>

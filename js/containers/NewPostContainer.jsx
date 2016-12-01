@@ -2,6 +2,8 @@ import React from "react";
 import { browserHistory } from "react-router";
 import { connect } from "react-redux";
 
+var marked = require("marked");
+
 import NewPost from "../components/NewPost";
 import { createPost } from "../actions/action";
 
@@ -18,7 +20,7 @@ var NewPostContainer =  React.createClass({
   },
 
   handleContentChange: function(event) {
-    this.setState({content: event.target.value});
+    this.setState({content: marked(event.target.value)});
   },
 
   componentWillReceiveProps: function(nextProps) {
@@ -45,7 +47,8 @@ var NewPostContainer =  React.createClass({
       verifyUserID={this.props.verifyUserID}
       publishPost={this.publishPost}
       handleSubjectChange={this.handleSubjectChange}
-      handleContentChange={this.handleContentChange} />;
+      handleContentChange={this.handleContentChange}
+      content={this.state.content} />;
 
     return page;
   }
