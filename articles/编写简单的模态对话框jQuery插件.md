@@ -1,7 +1,7 @@
-# 一个简单的模态对话框jQuery插件
-> 一个简单的模态对话框插件的实现，实现比较简单，主要是练习jQuery插件的编写方法和插件结构形式
+﻿> 一个简单的模态对话框插件的实现，实现比较简单，主要是练习jQuery插件的编写方法和插件结构形式
 
 ## 1. 如下为mymodal.js插件的源码
+
 ```
 /*
  * 简单的模态对话框插件
@@ -102,6 +102,7 @@ $(function($) {
 
   return Mymodal;
 }(jQuery));
+```
 
 ## 2. 使用该插件的示例
 实现了打开两个模态对话框的简单示例，点击github项目链接[简单的模态对话框示例](https://github.com/PepperPapa/Bootstrap_v4_comments)，进入exercise\jQueryPlugin-demo目录，打开modal.html即可查看demo效果。
