@@ -18,8 +18,9 @@ blockquote {
   }
   code {
     display: block;
+    margin: 0 1em;
     padding: 1em;
-    white-space: pre;
+    // white-space: pre;
     tab-size: 2;
     font-family: monospace;
     overflow-x: auto;

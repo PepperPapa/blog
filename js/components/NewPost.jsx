@@ -36,7 +36,7 @@ var NewPost = React.createClass({
         fontSize: "1em",
         resize: "vertical",
         boxSizing: "inherit",
-        outline: "none"
+        outline: "none",
       },
       button: {
         float: "right"
@@ -92,13 +92,18 @@ var NewPost = React.createClass({
               required
               style={style.textarea}
               onChange={this.props.handleContentChange}></textarea>
-          </p>
+
+	  </p>
           <p>
             <span style={{color: "red"}}>{login_tip}</span>
             <button type="submit"
               className="normal"
               style={style.button}>发布</button>
           </p>
+	  <div
+	    className="clearfloat preview markdown post-detail"
+	    dangerouslySetInnerHTML={{__html: this.props.content}}>
+	  </div>
         </form>
       </div>
     );

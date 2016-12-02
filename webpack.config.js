@@ -4,7 +4,7 @@ module.exports = {
   entry: ["./js/app.js"],
   devtool: "source-map",
   output: {
-    path: __dirname + "/js",
+    path: __dirname + "/dist",
     filename: "bundle.js"
   },
   module: {
@@ -16,7 +16,15 @@ module.exports = {
         query: {
           presets: ["es2015", "react"]
         }
-      }
+      },
+	{
+	    test: [/\.scss$/],
+	    loader: "style!css!sass"
+	},
+	{
+	    test: [/\.png$/],
+	    loader: "file-loader?name=../[path]/[name].[ext]"
+	}
     ]
   },
   resolve: {
