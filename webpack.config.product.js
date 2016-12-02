@@ -4,7 +4,7 @@ var webpack = require("webpack");
 module.exports = {
   entry: ["./js/app.js"],
   output: {
-    path: __dirname + "/js",
+    path: __dirname + "/dist",
     filename: "bundle.js"
   },
   module: {
@@ -23,7 +23,7 @@ module.exports = {
 	},
 	{
 	    test: [/\.png$/],
-	    loader: "url-loader?limit=10240"
+	    loader: "file-loader?name=../[path]/[name].[ext]"
 	}
     ]
   },

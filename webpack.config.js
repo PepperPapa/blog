@@ -4,7 +4,7 @@ module.exports = {
   entry: ["./js/app.js"],
   devtool: "source-map",
   output: {
-    path: __dirname + "/js",
+    path: __dirname + "/dist",
     filename: "bundle.js"
   },
   module: {
@@ -23,7 +23,7 @@ module.exports = {
 	},
 	{
 	    test: [/\.png$/],
-	    loader: "url-loader?limit=1?name=[name].[ext]"
+	    loader: "file-loader?name=../[path]/[name].[ext]"
 	}
     ]
   },
