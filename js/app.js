@@ -13,6 +13,11 @@ import LoginContainer from "./containers/LoginContainer";
 import SignupContainer from "./containers/SignupContainer";
 import store from "./store/store";
 
+// scss style files
+require("../scss/base.scss");
+require("../scss/button.scss");
+require("../scss/layout.scss");
+require("../scss/markdown.scss");
 
 // you can't insert comments in first parameter for ReactDOM.render function
 /*
