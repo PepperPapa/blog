@@ -8,6 +8,10 @@ import NewPost from "../components/NewPost";
 import { createPost } from "../actions/action";
 
 var NewPostContainer =  React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object
+  },
+  
   getInitialState: function() {
     return {
       subject: "",
@@ -25,7 +29,9 @@ var NewPostContainer =  React.createClass({
 
   componentWillReceiveProps: function(nextProps) {
     if(nextProps.newPost.post && !nextProps.newPost.error) {
-      browserHistory.push('/blog');
+      // browserHistory.push('/blog');
+      // another solution for navigating
+      this.context.router.push('/blog');
     }
   },
 

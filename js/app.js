@@ -36,8 +36,8 @@ require("../scss/markdown.scss");
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
+      <Redirect from="/" to="/blog" />	
       <Route path="/blog" component={BlogApp}>
-        <IndexRoute component={Main} />
         <Route path="newpost" component={NewPostContainer} />
         <Route path=":postId" component={PostDetailContainer} />
       </Route>
