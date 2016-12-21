@@ -29,7 +29,6 @@ var PostDetail = React.createClass({
       },
       content: {
         fontSize: "1.2em",
-        fontFamily: "serif"
       }
     }
     const {post, loading, error} = this.props.activePost;
