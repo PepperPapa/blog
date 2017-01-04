@@ -1,4 +1,4 @@
-$bg_gray: #eee;
+$bg_gray: #efefef;
 
 blockquote {
   border-left: 4px solid #aaa;
@@ -11,20 +11,19 @@ blockquote {
 
 .markdown {
   a {
-    color: #4078c0;
     &:hover {
-      text-decoration: underline;
+      color: #4078c0;
     }
   }
   code {
     display: block;
     margin: 0 1em;
     padding: 1em;
-    // white-space: pre;
+    /* white-space: pre; */
     tab-size: 2;
     font-family: monospace;
     overflow-x: auto;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 4px;
     background: $bg_gray;
   }

@@ -47,6 +47,7 @@ a.link-expand {
   color: #0073aa;
   &:hover {
     color: #04577e;
+    text-decoration: underline;
   }
 }
 
@@ -73,6 +74,9 @@ a.link-expand {
       line-height: 1.2em;
       max-height: 6em;
       overflow: hidden;
+      * {
+        color: #666 !important;
+      }
     }
   }
 }
