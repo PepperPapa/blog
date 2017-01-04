@@ -11,9 +11,8 @@ blockquote {
 
 .markdown {
   a {
-    color: #4078c0;
     &:hover {
-      text-decoration: underline;
+      color: #4078c0;
     }
   }
   code {
