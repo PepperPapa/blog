@@ -95,7 +95,7 @@ class Signup:
 class Login:
     def get(self, app, *args):
         cookie = app.readCookie()
-        if cookie and ("user_id" in  cookie):
+        if cookie and ("user_id" in cookie):
             user_id = cookie["user_id"]
             # data format: (id, username, password)
             user_info = db.user.userByID(user_id)

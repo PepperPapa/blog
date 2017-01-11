@@ -90,4 +90,6 @@ class application:
 
     def readCookie(self):
         if "HTTP_COOKIE" in self.environ:
-            return dict([self.environ["HTTP_COOKIE"].split("=")])
+            cookie = self.environ["HTTP_COOKIE"].split(";")
+            cookie = dict([item.split("=") for item in cookie])
+            return cookie
