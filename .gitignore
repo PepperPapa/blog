@@ -2,3 +2,4 @@
 .sass-cache/
 **/__pycache__/
 **/myblog.db
+**/myblog.backup.db
