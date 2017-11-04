@@ -22,11 +22,11 @@ class Tags(models.Model):
 class Notes(models.Model):
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField("发表时间")
-    content = models.CharField(max_length=50000)
+    content = models.TextField(max_length=50000)
     tag_id = models.ForeignKey(Tags, on_delete=models.CASCADE)
     like_num = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 

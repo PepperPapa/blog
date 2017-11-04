@@ -1,6 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+
+from .models import *
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Welcome to my blog!")
+    lastest_notes_list = Notes.objects.order_by('-pub_date')[:5]
+    context = {
+        "lastest_notes_list": lastest_notes_list,
+    }
+    return render(request, "blog/index.html", context)
