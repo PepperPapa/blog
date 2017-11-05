@@ -1,25 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+{% extends "blog/base.html" %} 
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!-- title -->
+{% block title %}
     <title>PepperPapa's Blog</title>
-</head>
+{% endblock %}
 
-<body>
-    {% if lastest_notes_list %}
-    <ul>
-        {% for note in lastest_notes_list %}
-        <li>
-            <a href="#">{{ note.title }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No polls are available.</p>
-    {% endif %}
-</body>
+<!-- customer stylesheet -->
+{% block stylesheet %}
+    {% load static %}   <!-- 使用static前必须先load -->
+    <link href="{% static 'blog/blog.css' %}" rel="stylesheet">
+{% endblock %}
 
-</html>
+<!-- content -->
+{% block content %} 
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+            {% if lastest_post_list %}
+                {% for post in lastest_post_list %}
+                    <div class="blog-post">
+                        <h2 class="blog-post-title">{{ post.title }}</h2>
+                        <p class="blog-post-meta">{{ post.pub_date }}</p>
+                        <div class="blog-post-text">{{ post.content }}</div>
+                    </div><!-- /.blog-post -->
+                {% endfor %}
+            {% else %}
+                <div class="blog-post">
+                    <p>你还没有发表任何文章哦，快来写一篇吧！ <a href="/admin">写博客</a></p>
+                </div>
+            {% endif %} 
+            
+            <nav class="blog-pagination">
+                <a class="btn btn-outline-primary" href="#">加载更多</a>
+                <!-- <a class="btn btn-outline-secondary disabled" href="#">Newer</a> -->
+            </nav>
+
+        </div><!-- /.blog-main -->
+        <div class="col-sm-3 offset-sm-1 blog-sidebar">
+            <div class="sidebar-module sidebar-module-inset">
+            <h4>关于</h4>
+            <p>在一个崇高的目标支持下，不停地工作，即使慢，也一定会获得成功。----<em>爱因斯坦</em></p>
+            </div>
+            <div class="sidebar-module">
+            <h4>分类</h4>
+            <ol class="list-unstyled">
+                {% if all_tag_list %}
+                    {% for tag in all_tag_list %}
+                        <li><a href="#">{{ tag }}</a></li>
+                    {% endfor %}
+                {% else %}
+                    <li><a href="/admin/blog/tags/add/" target="_blank">+添加标签</a></li>
+                {% endif %} 
+            </ol>
+            </div>
+            <div class="sidebar-module">
+            <h4>关注我</h4>
+            <ol class="list-unstyled">
+                <li><a href="https://github.com/PepperPapa" target="_blank">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/xin-zhong-a92218144/" target="_blan">LinkedIn</a></li>
+            </ol>
+            </div>
+        </div><!-- /.blog-sidebar -->
+    </div><!-- /.row -->
+{% endblock %}
+
+<!-- javascript -->
+{% block javascript %}
+
+{% endblock %}
