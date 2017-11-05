@@ -21,3 +21,20 @@ def index(request):
 def getAllTags():
     tag_list = Tags.objects.order_by('name')
     return [tag.name for tag in tag_list] 
+
+"""
+/blog/lists  博客文章列表页
+"""
+def list(request):
+    post_title_list = Notes.objects.order_by('-pub_date')
+    context = {
+        "post_title_list": post_title_list,
+        "all_tag_list": getAllTags()
+    }
+    return render(request, "blog/list.html", context)
+
+"""
+/blog/\d+  显示单个文章页面
+"""
+def detail(request):
+    pass
