@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.utils import timezone
+import datetime
 
 # 表tags（标签）：
 # * id
@@ -27,6 +28,10 @@ class Notes(models.Model):
     like_num = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.title
+        return "Notes"
+
+    def wasPublishedRecently(self):
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
 

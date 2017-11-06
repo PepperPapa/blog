@@ -15,24 +15,11 @@
 {% block content %} 
     <div class="row">
         <div class="col-sm-8 blog-main">
-            {% if lastest_post_list %}
-                {% for post in lastest_post_list %}
-                    <div class="blog-post">
-                        <h2 class="blog-post-title">{{ post.title }}</h2>
-                        <p class="blog-post-meta">{{ post.pub_date }}</p>
-                        <div class="blog-post-text">{{ post.content }}</div>
-                    </div><!-- /.blog-post -->
-                {% endfor %}
-            {% else %}
-                <div class="blog-post">
-                    <p>你还没有发表任何文章哦，快来写一篇吧！ <a href="/admin">写博客</a></p>
-                </div>
-            {% endif %} 
-            
-            <nav class="blog-pagination">
-                <a class="btn btn-outline-primary" href="#">加载更多</a>
-                <!-- <a class="btn btn-outline-secondary disabled" href="#">Newer</a> -->
-            </nav>
+            <div class="blog-post">
+                <h2 class="blog-post-title">{{ post_detail.title }}</h2>
+                <p class="blog-post-meta">{{ post_detail.pub_date }}</p>
+                <div class="blog-post-text">{{ post_detail.content }}</div>
+            </div><!-- /.blog-post -->
 
         </div><!-- /.blog-main -->
         <div class="col-sm-3 offset-sm-1 blog-sidebar">

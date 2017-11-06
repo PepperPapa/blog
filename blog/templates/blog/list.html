@@ -20,7 +20,7 @@
                     {% for post in post_title_list %}
                         <li class="blog-post-meta">
                             {{ post.pub_date }} » 
-                            <a href="#">{{ post.title }}</a>
+                            <a href="/blog/{{ post.id }}">{{ post.title }}</a>
                             <span class="badge badge-danger">New</span>
                         </li>
                     {% endfor %}
