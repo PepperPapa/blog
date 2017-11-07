@@ -21,7 +21,9 @@
                         <li class="blog-post-meta">
                             {{ post.pub_date }} » 
                             <a href="/blog/{{ post.id }}">{{ post.title }}</a>
+                            {% if post.wasPublishedRecently %}
                             <span class="badge badge-danger">New</span>
+                            {% endif %}
                         </li>
                     {% endfor %}
                 </ul><!-- /.blog-post -->

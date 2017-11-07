@@ -32,6 +32,6 @@ class Notes(models.Model):
 
     def wasPublishedRecently(self):
         now = timezone.now()
-        return now - datetime.timedelta(days=1) <= self.pub_date <= now
+        return now - datetime.timedelta(days=3) <= self.pub_date <= now
 
 

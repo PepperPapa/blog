@@ -28,9 +28,7 @@ def index(request):
 """
 def list(request):
     post_title_list = Notes.objects.order_by('-pub_date')
-    # for post in post_title_list:
-    #     post["wasPublishedRecently"] = post.wasPublishedRecently()
-
+    
     context = {
         "post_title_list": post_title_list,
         "all_tag_list": getAllTags(),
