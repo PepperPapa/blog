@@ -25,7 +25,7 @@
                 {% endfor %}
             {% else %}
                 <div class="blog-post">
-                    <p>你还没有发表任何文章哦，快来写一篇吧！ <a href="/admin">写博客</a></p>
+                    <p>你还没有发表任何文章哦，快来写一篇吧！ <a href="/admin/blog/notes/add">写博客</a></p>
                 </div>
             {% endif %} 
             
@@ -45,7 +45,7 @@
             <ol class="list-unstyled">
                 {% if all_tag_list %}
                     {% for tag in all_tag_list %}
-                        <li><a href="#">{{ tag }}</a></li>
+                        <li><a href="/blog/list/{{ tag }}">{{ tag }}</a></li>
                     {% endfor %}
                 {% else %}
                     <li><a href="/admin/blog/tags/add/" target="_blank">+添加标签</a></li>

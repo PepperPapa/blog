@@ -26,8 +26,12 @@ def index(request):
 """
 /blog/lists  博客文章列表页
 """
-def list(request):
-    post_title_list = Notes.objects.order_by('-pub_date')
+def list(request, tag_name):
+    if tag_name:
+        tag_id = Tags.objects.get(name=tag_name).id
+        post_title_list = Notes.objects.all().filter(tag_id=tag_id).order_by('-pub_date')
+    else:
+        post_title_list = Notes.objects.order_by('-pub_date')
     
     context = {
         "post_title_list": post_title_list,

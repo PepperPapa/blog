@@ -32,7 +32,7 @@
             <ol class="list-unstyled">
                 {% if all_tag_list %}
                     {% for tag in all_tag_list %}
-                        <li><a href="#">{{ tag }}</a></li>
+                        <li><a href="/blog/list/{{ tag }}">{{ tag }}</a></li>
                     {% endfor %}
                 {% else %}
                     <li><a href="/admin/blog/tags/add/" target="_blank">+添加标签</a></li>
