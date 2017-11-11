@@ -20,7 +20,7 @@
                     <div class="blog-post">
                         <h2 class="blog-post-title">{{ post.title }}</h2>
                         <p class="blog-post-meta">{{ post.pub_date }}</p>
-                        <div class="blog-post-text">{{ post.content }}</div>
+                        <div class="blog-post-text">{{ post.content | safe }}</div>
                     </div><!-- /.blog-post -->
                 {% endfor %}
             {% else %}

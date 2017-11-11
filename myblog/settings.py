@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ckeditor',
+    'ckeditor_uploader',
     'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -120,3 +122,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# upload media(images,etc) files
+MEDIA_URL = '/blog/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'blog')
+CKEDITOR_UPLOAD_PATH = 'upload/'
+
+# ckeditor configs
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': (
+			['div','Source','-','Save','NewPage','Preview','-','Templates'], 
+			['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print','SpellChecker','Scayt'], 
+			['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'], 
+			['Form','Checkbox','Radio','TextField','Textarea','Select','Button', 'ImageButton','HiddenField'], 
+			['Bold','Italic','Underline','Strike','-','Subscript','Superscript'], 
+			['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'], 
+			['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'], 
+			['Link','Unlink','Anchor'], 
+			['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'], 
+			['Styles','Format','Font','FontSize'], 
+			['TextColor','BGColor'], 
+			['Maximize','ShowBlocks','-','About', 'pbckcode'],
+		),
+	}
+}
