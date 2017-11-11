@@ -2,7 +2,8 @@ from django.db import models
 from django.utils import timezone
 import datetime
 
-from ckeditor.fields import RichTextField
+# from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # 表tags（标签）：
 # * id
@@ -26,7 +27,7 @@ class Notes(models.Model):
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField("发表时间")
     # config_name和settings.py中的CKEDITOR_CONFIGS中的default相同
-    content = RichTextField("正文", config_name="default")
+    content = RichTextUploadingField("正文", config_name="default")
     # content = models.TextField(max_length=50000)
     tag_id = models.ForeignKey(Tags, on_delete=models.CASCADE)
     like_num = models.PositiveIntegerField(default=0)
