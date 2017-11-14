@@ -127,6 +127,8 @@ STATIC_URL = '/static/'
 
 # upload media(images,etc) files
 MEDIA_URL = 'http://192.168.31.223/'
+# for dev server only
+# MEDIA_URL = 'http://127.0.0.1:8000/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'blog')
 CKEDITOR_UPLOAD_PATH = 'upload/'
 
