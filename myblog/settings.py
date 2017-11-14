@@ -26,7 +26,7 @@ SECRET_KEY = '&ev)_^*h+z#p+8q5bvs6de=9rrq!aevii0d$if@7te_4p^#+ew'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-  '192.168.31.223',
+  'www.pepperpapa.top',
 ]
 
 
@@ -126,7 +126,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # upload media(images,etc) files
-MEDIA_URL = 'http://192.168.31.223/'
+MEDIA_URL = 'http://www.pepperpapa.top/'
 # for dev server only
 # MEDIA_URL = 'http://127.0.0.1:8000/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'blog')
