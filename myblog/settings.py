@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
   'www.pepperpapa.top',
   '122.112.235.173',
+  '127.0.0.1',
 ]
 
 
